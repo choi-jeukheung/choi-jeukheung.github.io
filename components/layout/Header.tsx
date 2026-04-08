@@ -1,27 +1,31 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
-import Link from './Link'
+import Link from '../ui/Link'
 import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
 import SearchButton from './SearchButton'
 
 const Header = () => {
+  const pathname = usePathname()
+  const isHome = pathname === '/'
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
+    if (!isHome) return
     const onScroll = () => setScrolled(window.scrollY > 60)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  }, [isHome])
 
   return (
     <>
       {/* 모바일: 스크롤 후 상단 고정 */}
       <header
-        className={`fixed top-0 right-0 left-0 z-50 flex items-center justify-between border-b border-gray-100 bg-white/80 px-5 py-3 backdrop-blur-xl transition-all duration-300 sm:hidden dark:border-gray-800 dark:bg-gray-950/80 ${scrolled ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}
+        className={`fixed top-0 right-0 left-0 z-50 flex items-center justify-between border-b border-gray-100 bg-white/80 px-5 py-3 backdrop-blur-xl transition-all duration-300 sm:hidden dark:border-gray-800 dark:bg-gray-950/80 ${isHome && !scrolled ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'}`}
       >
         <Link href="/" aria-label={siteMetadata.headerTitle}>
           <div className="text-xl font-black tracking-tighter text-gray-900 dark:text-white">

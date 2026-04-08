@@ -2,7 +2,7 @@
 
 import { Dialog, DialogPanel, Transition, TransitionChild } from '@headlessui/react'
 import { Fragment, useState } from 'react'
-import Link from './Link'
+import Link from '../ui/Link'
 import headerNavLinks from '@/data/headerNavLinks'
 import siteMetadata from '@/data/siteMetadata'
 

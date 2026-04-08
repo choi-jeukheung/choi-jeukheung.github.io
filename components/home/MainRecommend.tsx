@@ -1,3 +1,5 @@
+import Link from '../ui/Link'
+
 const affiliateLinks = [
   { label: '사용중인 가성비 팬 (쿠팡)', href: 'https://link.coupang.com/...', icon: '🍳' },
   { label: '파스타 소스 최저가', href: 'https://link.coupang.com/...', icon: '🍝' },
@@ -27,6 +29,16 @@ const MainRecommend = () => {
           <span className="text-gray-300 dark:text-gray-600">↗</span>
         </a>
       ))}
+
+      {/* 전체 추천 상품 보기 */}
+      <Link
+        href="/products"
+        className="mt-1 flex items-center justify-center gap-2 rounded-2xl border border-dashed border-gray-200 py-4 text-sm font-black text-gray-400 transition-all hover:border-orange-300 hover:text-orange-500 dark:border-gray-700 dark:hover:border-orange-700 dark:hover:text-orange-400"
+      >
+        <span>🛒</span>
+        전체 추천 아이템 보기
+        <span className="text-xs">→</span>
+      </Link>
     </div>
   )
 }

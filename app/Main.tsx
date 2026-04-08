@@ -1,6 +1,6 @@
-import RecipeFeed from '@/components/RecipeFeed'
-import MainProfile from '@/components/MainProfile'
-import MainRecommend from '@/components/MainRecommend'
+import RecipeFeed from '@/components/home/RecipeFeed'
+import MainProfile from '@/components/home/MainProfile'
+import MainRecommend from '@/components/home/MainRecommend'
 
 const MAX_DISPLAY = 4
 

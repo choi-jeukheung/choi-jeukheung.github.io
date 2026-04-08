@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import Link from './Link'
-import Image from './Image'
-import { StarFull, StarHalf, StarEmpty } from './social-icons/icons'
+import Link from '../ui/Link'
+import Image from '../ui/Image'
+import { StarFull, StarHalf, StarEmpty } from '../social-icons/icons'
 import { formatDate } from 'pliny/utils/formatDate'
 import siteMetadata from '@/data/siteMetadata'
 
@@ -122,10 +122,10 @@ export default function RecipeFeed({ featuredRecipes, latestPosts }: RecipeFeedP
 
   return (
     <div>
-      <div className="mb-6 flex items-center gap-1 rounded-2xl border border-gray-100 bg-gray-50 p-1 dark:border-gray-800 dark:bg-gray-900">
+      <div className="mb-6 flex items-center gap-1 rounded-2xl border border-gray-100 bg-[#0064FF] p-1 dark:border-gray-800 dark:bg-gray-900">
         <button
           onClick={() => setTab('featured')}
-          className={`flex-1 rounded-xl py-2.5 text-sm font-black transition-all ${
+          className={`flex-1 rounded-xl py-2.5 text-base font-black transition-all ${
             tab === 'featured'
               ? 'bg-white text-orange-600 shadow-sm dark:bg-gray-800 dark:text-orange-400'
               : 'text-gray-500 hover:text-gray-700 dark:text-gray-500 dark:hover:text-gray-300'
@@ -135,7 +135,7 @@ export default function RecipeFeed({ featuredRecipes, latestPosts }: RecipeFeedP
         </button>
         <button
           onClick={() => setTab('latest')}
-          className={`flex-1 rounded-xl py-2.5 text-sm font-black transition-all ${
+          className={`flex-1 rounded-xl py-2.5 text-base font-black transition-all ${
             tab === 'latest'
               ? 'bg-white text-orange-600 shadow-sm dark:bg-gray-800 dark:text-orange-400'
               : 'text-gray-500 hover:text-gray-700 dark:text-gray-500 dark:hover:text-gray-300'

@@ -1,10 +1,9 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: '면시피 | myeoncipe',
-  author: '면시피',
-  headerTitle: '면시피',
-  description:
-    '면시피(myeoncipe)에 오신 것을 환영합니다! 미슐랭급 맛을 압축한 비밀 레시피 파일 📂 아는 맛의 하이엔드화, 도파민 폭발 레시피를 면시피에서 확인하세요.',
+  title: '최즉흥',
+  author: '최즉흥',
+  headerTitle: '최즉흥',
+  description: '최즉흥에 오신 것을 환영합니다!',
   language: 'ko-kr',
   theme: 'system', // system, dark or light
   siteUrl: 'https://myeoncipe.github.io/', // 나중에 실제 도메인으로 변경하세요

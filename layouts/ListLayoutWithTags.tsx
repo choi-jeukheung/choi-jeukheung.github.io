@@ -24,32 +24,39 @@ interface ListLayoutProps {
 
 const categoriesData = [
   {
-    name: '시그니처 누들', // 메인 면요리 (파스타, 라멘, 국수 등)
-    icon: '🍝',
-    category: 'signature',
+    name: '밥도둑',
+    icon: '🍚',
+    category: '밥도둑',
     bgColor: 'bg-orange-50 dark:bg-orange-900/20',
     textColor: 'text-orange-600 dark:text-orange-400',
   },
   {
-    name: '라이트 누들', // 두부면, 곤약면, 저칼로리 레시피 (살 안 찌는 면)
-    icon: '🌿',
-    category: 'light',
-    bgColor: 'bg-green-50 dark:bg-green-900/20',
-    textColor: 'text-green-600 dark:text-green-400',
-  },
-  {
-    name: '원팬 & 이지', // 3분 요리, 편의점, 10분 완성 초간단
-    icon: '⚡',
-    category: 'easy',
+    name: '면발의 위로',
+    icon: '🍜',
+    category: '면발의위로',
     bgColor: 'bg-yellow-50 dark:bg-yellow-900/20',
     textColor: 'text-yellow-600 dark:text-yellow-400',
   },
   {
-    name: '소울푸드.zip', // 기타 모든 요리 (고기, 안주, 맛의 추출물)
-    icon: '🔓', // 해제 아이콘
-    category: 'unzip',
+    name: '국물이 답이야',
+    icon: '🥘',
+    category: '국물이답이야',
     bgColor: 'bg-blue-50 dark:bg-blue-900/20',
     textColor: 'text-blue-600 dark:text-blue-400',
+  },
+  {
+    name: '안주각',
+    icon: '🔥',
+    category: '안주각',
+    bgColor: 'bg-red-50 dark:bg-red-900/20',
+    textColor: 'text-red-600 dark:text-red-400',
+  },
+  {
+    name: '다이어트',
+    icon: '🥗',
+    category: '다이어트',
+    bgColor: 'bg-green-50 dark:bg-green-900/20',
+    textColor: 'text-green-600 dark:text-green-400',
   },
 ]
 

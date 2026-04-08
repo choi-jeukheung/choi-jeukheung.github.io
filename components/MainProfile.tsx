@@ -3,8 +3,8 @@ import Image from 'next/image'
 
 const MainProfile = () => {
   return (
-    <div className="pt-10 pb-8 text-center">
-      <div className="mx-auto mb-5 h-[150px] w-[150px] overflow-hidden rounded-full ring-4 ring-orange-100 dark:ring-orange-900/40">
+    <div className="pt-16 pb-8 text-center">
+      <div className="mx-auto mb-5 h-[180px] w-[180px] overflow-hidden rounded-full ring-4 ring-orange-100 dark:ring-orange-900/40">
         <Image
           src={siteMetadata.siteLogo}
           alt={siteMetadata.headerTitle}

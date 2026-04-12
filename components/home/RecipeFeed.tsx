@@ -122,7 +122,7 @@ export default function RecipeFeed({ featuredRecipes, latestPosts }: RecipeFeedP
 
   return (
     <div>
-      <div className="mb-6 flex items-center gap-1 rounded-2xl border border-gray-100 bg-[#0064FF] p-1 dark:border-gray-800 dark:bg-gray-900">
+      <div className="mb-6 flex items-center gap-1 rounded-2xl border border-gray-100 bg-gray-50 p-1 dark:border-gray-800 dark:bg-gray-900">
         <button
           onClick={() => setTab('featured')}
           className={`flex-1 rounded-xl py-2.5 text-base font-black transition-all ${

@@ -29,7 +29,7 @@ const Header = () => {
       >
         <Link href="/" aria-label={siteMetadata.headerTitle}>
           <div className="text-xl font-black tracking-tighter text-gray-900 dark:text-white">
-            면시피
+            최즉흥
           </div>
         </Link>
         <div className="flex items-center gap-1">
@@ -43,7 +43,7 @@ const Header = () => {
       <header className="sticky top-4 z-50 mx-auto my-4 hidden w-full max-w-5xl items-center justify-between rounded-3xl border border-white/20 bg-white/70 px-6 py-4 shadow-lg shadow-black/5 backdrop-blur-xl sm:flex dark:bg-gray-950/70">
         <Link href="/" aria-label={siteMetadata.headerTitle}>
           <div className="text-2xl font-black tracking-tighter text-gray-900 dark:text-white">
-            면시피
+            최즉흥
           </div>
         </Link>
 

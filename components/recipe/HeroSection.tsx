@@ -9,7 +9,7 @@ interface HeroSectionProps {
 }
 
 export default function HeroSection({
-  channelName = '면시피 MyeonCipe',
+  channelName = '최즉흥',
   heroImage,
   heroVideo,
 }: HeroSectionProps) {
@@ -83,7 +83,7 @@ export default function HeroSection({
           </Link>
 
           <Link
-            href="https://www.youtube.com/@%EB%A9%B4%EC%8B%9C%ED%94%BC-p4o"
+            href="https://www.youtube.com/@%EC%B5%9C%EC%A6%89%ED%9D%A5-yjin"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center rounded-3xl border-2 border-gray-100 bg-white px-10 py-5 text-lg font-black text-gray-900 shadow-sm transition-all hover:border-gray-200 hover:bg-gray-50 active:scale-95 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700"

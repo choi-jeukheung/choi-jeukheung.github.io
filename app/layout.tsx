@@ -66,8 +66,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: '면시피',
-    alternateName: ['면시피', 'myeoncipe'],
+    name: '최즉흥',
+    alternateName: ['최즉흥', 'choi-jeukheung'],
     url: siteMetadata.siteUrl,
   }
 

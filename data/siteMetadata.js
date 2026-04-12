@@ -14,13 +14,13 @@ const siteMetadata = {
   email: 'cyd9911@gmail.com',
   // github: 'https://github.com', // 깃허브 주소
   // x: 'https://twitter.com/x',
-  youtube: 'https://www.youtube.com/@%EB%A9%B4%EC%8B%9C%ED%94%BC-p4o',
+  youtube: 'https://www.youtube.com/@%EC%B5%9C%EC%A6%89%ED%9D%A5-yjin',
   // linkedin: 'https://www.linkedin.com',
   // threads: 'https://www.threads.net',
-  instagram: 'https://www.instagram.com/myeoncipe',
+  instagram: 'https://www.instagram.com/choi_jeukheung',
   // medium: 'https://medium.com',
   // bluesky: 'https://bsky.app/',
-  tiktok: 'https://www.tiktok.com/@myeoncipe',
+  // tiktok: 아직 없음
   locale: 'ko-KR',
   stickyNav: true, // 트렌디한 사이트는 헤더가 고정된 경우가 많아 true 추천
   analytics: {

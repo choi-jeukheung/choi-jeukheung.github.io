@@ -21,26 +21,9 @@ export default function PlatformLinks() {
 
           {/* SNS 버튼 그룹 */}
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-            {/* 틱톡 */}
-            <Link
-              href="https://www.tiktok.com/@myeoncipe"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-2.5 rounded-2xl border border-gray-100 bg-white px-5 py-2.5 shadow-sm transition-all hover:-translate-y-1 hover:bg-black hover:text-white hover:shadow-xl dark:border-gray-800 dark:bg-gray-900 dark:hover:bg-white dark:hover:text-black"
-            >
-              <svg
-                className="h-5 w-5 fill-current"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
-              </svg>
-              <span className="text-sm font-black italic">TikTok</span>
-            </Link>
-
             {/* 유튜브 */}
             <Link
-              href="https://www.youtube.com/channel/UC5sstROQBLgzn_BWx6UwkNw"
+              href="https://www.youtube.com/@%EC%B5%9C%EC%A6%89%ED%9D%A5-yjin"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center gap-2.5 rounded-2xl border border-gray-100 bg-white px-5 py-2.5 shadow-sm transition-all hover:-translate-y-1 hover:border-[#FF0000] hover:bg-[#FF0000] hover:text-white hover:shadow-xl dark:border-gray-800 dark:bg-gray-900"
@@ -51,7 +34,7 @@ export default function PlatformLinks() {
 
             {/* 인스타그램 */}
             <Link
-              href="https://www.instagram.com/myeoncipe"
+              href="https://www.instagram.com/choi_jeukheung"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center gap-2.5 rounded-2xl border border-gray-100 bg-white px-5 py-2.5 shadow-sm transition-all hover:-translate-y-1 hover:border-transparent hover:bg-gradient-to-tr hover:from-[#f9ce34] hover:via-[#ee2a7b] hover:to-[#6228d7] hover:text-white hover:shadow-xl dark:border-gray-800 dark:bg-gray-900"

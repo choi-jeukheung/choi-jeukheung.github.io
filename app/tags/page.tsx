@@ -21,7 +21,7 @@ export default async function Page() {
           Recipe Archive Index
         </span>
         <h1 className="mb-6 text-5xl font-black tracking-tighter text-gray-900 md:text-7xl dark:text-white">
-          면시피<span className="text-orange-500">.</span>Tags
+          최즉흥<span className="text-orange-500">.</span>Tags
         </h1>
         <p className="max-w-md text-lg leading-tight font-medium text-gray-500 dark:text-gray-400">
           현재{' '}

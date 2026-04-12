@@ -1,11 +1,14 @@
 import Link from '../ui/Link'
 
 const affiliateLinks = [
-  { label: '사용중인 가성비 팬 (쿠팡)', href: 'https://link.coupang.com/...', icon: '🍳' },
-  { label: '파스타 소스 최저가', href: 'https://link.coupang.com/...', icon: '🍝' },
-  { label: '밥 재료', href: 'https://...', icon: '🍚' },
-  { label: '소스 재료', href: 'https://...', icon: '🥫' },
-  { label: '치즈 재료', href: 'https://...', icon: '🧀' },
+  { label: '디벨라 토마토 퓌레 680G', href: 'https://link.coupang.com/a/eniXyb', icon: '🍅' },
+  { label: '데체코 구르메 스파게티 500g', href: 'https://link.coupang.com/a/eniVLJ', icon: '🍝' },
+  {
+    label: '아그리폼 파르미지아노 레지아노 200g',
+    href: 'https://link.coupang.com/a/enjp3D',
+    icon: '🧀',
+  },
+  { label: '이금기 프리미엄 굴소스 167g', href: 'https://link.coupang.com/a/enjsUx', icon: '🥫' },
 ]
 
 const MainRecommend = () => {

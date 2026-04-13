@@ -6,12 +6,12 @@ const siteMetadata = {
   description: '최즉흥에 오신 것을 환영합니다!',
   language: 'ko-kr',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://myeoncipe.github.io/', // 나중에 실제 도메인으로 변경하세요
-  siteRepo: 'https://myeoncipe.github.io/',
+  siteUrl: 'https://choi-jeukheung.github.io/',
+  siteRepo: 'https://choi-jeukheung.github.io/',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,
   // mastodon: 'https://mastodon.social/@mastodonuser',
-  email: 'cyd9911@gmail.com',
+  email: 'cyd5538@gmail.com',
   // github: 'https://github.com', // 깃허브 주소
   // x: 'https://twitter.com/x',
   youtube: 'https://www.youtube.com/@%EC%B5%9C%EC%A6%89%ED%9D%A5-yjin',

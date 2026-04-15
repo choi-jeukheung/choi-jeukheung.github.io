@@ -25,7 +25,7 @@ export async function generateMetadata(props: {
 }
 
 export const generateStaticParams = async () => {
-  const categories = ['signature', 'light', 'easy', 'unzip']
+  const categories = [...new Set(allBlogs.map((post) => post.category).filter(Boolean))] as string[]
   return categories.map((category) => ({
     category: encodeURI(category),
   }))

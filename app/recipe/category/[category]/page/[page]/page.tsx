@@ -6,7 +6,7 @@ import ListLayout from '@/layouts/ListLayoutWithTags'
 const POSTS_PER_PAGE = 5
 
 export const generateStaticParams = async () => {
-  const categories = ['godsaeng', 'clean', 'dopamine', 'convenience', 'mood', 'fridge-raid']
+  const categories = [...new Set(allBlogs.map((post) => post.category).filter(Boolean))] as string[]
   const params: Array<{ category: string; page: string }> = []
 
   categories.forEach((category) => {

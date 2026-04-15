@@ -24,10 +24,15 @@ export async function generateMetadata(props: {
   })
 }
 
+const ALL_CATEGORIES = ['밥도둑', '면발의위로', '국물이답이야', '안주각', '다이어트']
+
 export const generateStaticParams = async () => {
-  const categories = [...new Set(allBlogs.map((post) => post.category).filter(Boolean))] as string[]
-  return categories.map((category) => ({
-    category: encodeURI(category),
+  const postCategories = [
+    ...new Set(allBlogs.map((post) => post.category).filter(Boolean)),
+  ] as string[]
+  const allCategories = [...new Set([...ALL_CATEGORIES, ...postCategories])]
+  return allCategories.map((category) => ({
+    category,
   }))
 }
 

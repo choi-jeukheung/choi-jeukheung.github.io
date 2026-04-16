@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
+import Image from 'next/image'
 import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
 import Link from '../ui/Link'
@@ -28,9 +29,13 @@ const Header = () => {
         className={`fixed top-0 right-0 left-0 z-50 flex items-center justify-between border-b border-gray-100 bg-white/80 px-5 py-3 backdrop-blur-xl transition-all duration-300 sm:hidden dark:border-gray-800 dark:bg-gray-950/80 ${isHome && !scrolled ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'}`}
       >
         <Link href="/" aria-label={siteMetadata.headerTitle}>
-          <div className="text-xl font-black tracking-tighter text-gray-900 dark:text-white">
-            최즉흥
-          </div>
+          <Image
+            src={siteMetadata.siteLogo}
+            alt={siteMetadata.headerTitle}
+            width={80}
+            height={32}
+            className="h-8 w-auto"
+          />
         </Link>
         <div className="flex items-center gap-1">
           <SearchButton />
@@ -42,9 +47,13 @@ const Header = () => {
       {/* 데스크탑: 기존 헤더 유지 */}
       <header className="sticky top-4 z-50 mx-auto my-4 hidden w-full max-w-5xl items-center justify-between rounded-3xl border border-white/20 bg-white/70 px-6 py-4 shadow-lg shadow-black/5 backdrop-blur-xl sm:flex dark:bg-gray-950/70">
         <Link href="/" aria-label={siteMetadata.headerTitle}>
-          <div className="text-2xl font-black tracking-tighter text-gray-900 dark:text-white">
-            최즉흥
-          </div>
+          <Image
+            src={siteMetadata.siteLogo}
+            alt={siteMetadata.headerTitle}
+            width={120}
+            height={40}
+            className="h-10 w-auto"
+          />
         </Link>
 
         <div className="flex items-center space-x-2 leading-5">

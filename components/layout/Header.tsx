@@ -26,16 +26,10 @@ const Header = () => {
     <>
       {/* 모바일: 스크롤 후 상단 고정 */}
       <header
-        className={`fixed top-0 right-0 left-0 z-50 flex items-center justify-between border-b border-gray-100 bg-white/80 px-5 py-3 backdrop-blur-xl transition-all duration-300 sm:hidden dark:border-gray-800 dark:bg-gray-950/80 ${isHome && !scrolled ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'}`}
+        className={`fixed top-0 right-0 left-0 z-50 flex items-center justify-between border-b border-gray-100 bg-white/80 px-5 py-3 font-bold backdrop-blur-xl transition-all duration-300 sm:hidden dark:border-gray-800 dark:bg-gray-950/80 ${isHome && !scrolled ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'}`}
       >
         <Link href="/" aria-label={siteMetadata.headerTitle}>
-          <Image
-            src={siteMetadata.siteLogo}
-            alt={siteMetadata.headerTitle}
-            width={80}
-            height={32}
-            className="h-8 w-auto"
-          />
+          최즉흥
         </Link>
         <div className="flex items-center gap-1">
           <SearchButton />
@@ -45,15 +39,9 @@ const Header = () => {
       </header>
 
       {/* 데스크탑: 기존 헤더 유지 */}
-      <header className="sticky top-4 z-50 mx-auto my-4 hidden w-full max-w-5xl items-center justify-between rounded-3xl border border-white/20 bg-white/70 px-6 py-4 shadow-lg shadow-black/5 backdrop-blur-xl sm:flex dark:bg-gray-950/70">
+      <header className="sticky top-4 z-50 mx-auto my-4 hidden w-full max-w-5xl items-center justify-between rounded-3xl border border-white/20 bg-white/70 px-6 py-4 font-bold shadow-lg shadow-black/5 backdrop-blur-xl sm:flex dark:bg-gray-950/70">
         <Link href="/" aria-label={siteMetadata.headerTitle}>
-          <Image
-            src={siteMetadata.siteLogo}
-            alt={siteMetadata.headerTitle}
-            width={120}
-            height={40}
-            className="h-10 w-auto"
-          />
+          최즉흥
         </Link>
 
         <div className="flex items-center space-x-2 leading-5">

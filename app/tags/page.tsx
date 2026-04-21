@@ -24,9 +24,10 @@ export default async function Page() {
           최즉흥<span className="text-orange-500">.</span>Tags
         </h1>
         <p className="max-w-md text-lg leading-tight font-medium text-gray-500 dark:text-gray-400">
-          현재{' '}
-          <span className="font-bold text-gray-900 dark:text-gray-200">{tagKeys.length}개</span>의
-          미식 파일이 <br /> 압축 해제를 기다리고 있습니다.
+          <span className="font-bold text-gray-900 dark:text-gray-200">
+            {tagKeys.length}개의 키워드
+          </span>
+          로 <br /> 요리를 찾아보세요.
         </p>
       </div>
 

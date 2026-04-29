@@ -20,8 +20,11 @@ export default function Footer() {
           <div>{` • `}</div>
           <Link href="/">{siteMetadata.title}</Link>
         </div>
-        <div className="mb-8 text-sm text-gray-500 dark:text-gray-400">
+        <div className="mb-2 text-sm text-gray-500 dark:text-gray-400">
           쿠팡파트너스 활동을 통해 일정액의 수수료를 제공받을 수 있습니다.
+        </div>
+        <div className="mb-8 text-sm text-gray-500 dark:text-gray-400">
+          <Link href="/privacy">개인정보처리방침</Link>
         </div>
       </div>
     </footer>

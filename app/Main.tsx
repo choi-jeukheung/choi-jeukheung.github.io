@@ -1,6 +1,7 @@
 import RecipeFeed from '@/components/home/RecipeFeed'
 import MainProfile from '@/components/home/MainProfile'
 import MainRecommend from '@/components/home/MainRecommend'
+import MainSnsLink from '@/components/home/MainSnsLink'
 
 const MAX_DISPLAY = 4
 

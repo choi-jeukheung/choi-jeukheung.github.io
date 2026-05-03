@@ -9,6 +9,7 @@ const affiliateLinks = [
     icon: '🧀',
   },
   { label: '이금기 프리미엄 굴소스 167g', href: 'https://link.coupang.com/a/enjsUx', icon: '🥫' },
+  { label: '데체코 리가토니, 500g, 1개', href: 'https://link.coupang.com/a/eBFjOh', icon: '🍝' },
 ]
 
 const MainRecommend = () => {

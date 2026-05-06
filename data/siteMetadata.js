@@ -20,7 +20,7 @@ const siteMetadata = {
   instagram: 'https://www.instagram.com/choi_jeukheung',
   // medium: 'https://medium.com',
   // bluesky: 'https://bsky.app/',
-  // tiktok: 아직 없음
+  tiktok: 'https://www.tiktok.com/@choi_jeukheung',
   locale: 'ko-KR',
   stickyNav: true, // 트렌디한 사이트는 헤더가 고정된 경우가 많아 true 추천
   analytics: {

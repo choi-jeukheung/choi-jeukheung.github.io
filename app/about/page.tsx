@@ -1,6 +1,6 @@
 import { genPageMetadata } from 'app/seo'
 import Image from 'next/image'
-import { Youtube, Instagram, Mail } from '@/components/social-icons/icons'
+import { Youtube, Instagram, Mail, Tiktok } from '@/components/social-icons/icons'
 import type { Metadata } from 'next'
 import siteMetadata from '@/data/siteMetadata'
 
@@ -19,6 +19,12 @@ const socialLinks = [
     icon: Instagram,
     className:
       'bg-linear-to-r from-purple-500 via-pink-500 to-orange-400 hover:opacity-90 text-white',
+  },
+  {
+    label: '틱톡',
+    href: 'https://www.tiktok.com/@choi_jeukheung',
+    icon: Tiktok,
+    className: 'bg-black dark:bg-gray-900 text-white hover:opacity-90',
   },
   {
     label: '이메일',

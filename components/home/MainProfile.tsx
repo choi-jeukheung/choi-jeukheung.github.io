@@ -17,9 +17,9 @@ const MainProfile = () => {
         {siteMetadata.headerTitle}
       </h1>
       <p className="text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-        먹고싶거나 해보고싶었던 음식을 📂
+        먹고 싶은 요리를 즉흥적으로 만들어보고
         <br />
-        즉흥적으로 해봅니다.
+        레시피도 함께 기록하는 요리 블로그입니다.
       </p>
     </div>
   )

@@ -33,16 +33,16 @@ export default function Home({ posts }) {
 
       {/* ── SNS 링크 ── */}
       {/* 추후에 넣을까말까 고민 */}
-      {/* <MainSnsLink /> */}
-
-      {/* ── 추천 링크 ── */}
-      <MainRecommend />
+      <MainSnsLink />
 
       {/* ── 구분선 ── */}
       <div className="my-10 border-t border-gray-100 dark:border-gray-800" />
 
       {/* ── 레시피 피드 (같은 컬럼 안에서 2열 그리드) ── */}
       <RecipeFeed featuredRecipes={featuredRecipes} latestPosts={latestPosts} />
+
+      {/* ── 추천 링크 ── */}
+      <MainRecommend />
     </div>
   )
 }

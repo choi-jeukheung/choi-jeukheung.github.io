@@ -14,20 +14,22 @@ const snsLinks = [
   {
     label: 'TikTok',
     href: siteMetadata.tiktok,
-    icon: <TikTokIcon className="h-5 w-5" />,
+    icon: <TikTokIcon className="h-5 w-5 fill-current" />,
     hoverClass:
       'hover:bg-black hover:text-white hover:border-black dark:hover:bg-white dark:hover:text-black dark:hover:border-white',
   },
   {
     label: 'YouTube',
     href: siteMetadata.youtube,
-    icon: <Youtube className="h-5 w-5 fill-current" />,
+    // ⬇⬇⬇ stroke 아이콘 → 굵기 추가
+    icon: <Youtube className="h-5 w-5 stroke-2" />,
     hoverClass: 'hover:bg-[#FF0000] hover:text-white hover:border-[#FF0000]',
   },
   {
     label: 'Instagram',
     href: siteMetadata.instagram,
-    icon: <Instagram className="h-5 w-5 fill-current" />,
+    // ⬇⬇⬇ stroke 아이콘 → 굵기 추가
+    icon: <Instagram className="h-5 w-5 stroke-2" />,
     hoverClass:
       'hover:bg-gradient-to-tr hover:from-[#f9ce34] hover:via-[#ee2a7b] hover:to-[#6228d7] hover:text-white hover:border-transparent',
   },
@@ -43,11 +45,13 @@ const MainSnsLink = () => {
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className={`flex items-center gap-4 rounded-2xl border border-gray-200 bg-white px-5 py-4 font-bold text-gray-800 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 ${hoverClass}`}
+            className={`group flex items-center gap-4 rounded-2xl border border-gray-200 bg-white px-5 py-4 font-bold text-gray-800 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 ${hoverClass}`}
           >
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gray-50 dark:bg-gray-700">
+            {/* 아이콘 박스 — 아이콘 색은 부모 text-color 따라감 */}
+            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gray-50 dark:bg-gray-700">
               {icon}
             </span>
+
             <span className="flex-1 text-[15px]">{label}</span>
             <span className="text-gray-300 dark:text-gray-600">↗</span>
           </Link>

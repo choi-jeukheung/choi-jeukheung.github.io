@@ -25,14 +25,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          # 잠시 캐시 기능을 끄고 진행하여 lock 파일 에러를 우회합니다.
-          # cache: 'yarn' (이 부분이 에러의 원인이었습니다)
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
       - name: Install dependencies
-        # yarn.lock이 있다면 yarn을, 없다면 npm을 사용하도록 처리
+        # lock 파일 유무에 따라 유연하게 설치
         run: |
           if [ -f "yarn.lock" ]; then
             yarn install
@@ -41,10 +39,10 @@ jobs:
           fi
 
       - name: Build Contentlayer & Next.js
+        # Next.js 16의 Turbopack과 Contentlayer의 Webpack 설정 충돌을 방지하기 위해 --webpack 명시
         run: |
-          # npx를 사용하여 설치된 패키지의 실행 파일을 직접 호출
           npx contentlayer2 build
-          npx next build
+          npx next build --webpack
         env:
           EXPORT: 1
           UNOPTIMIZED: 1

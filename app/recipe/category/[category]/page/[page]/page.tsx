@@ -16,8 +16,9 @@ export const generateStaticParams = async () => {
 
     for (let i = 1; i <= pagesToGenerate; i++) {
       params.push({
-        // 한글 카테고리명이 URL에서 깨지지 않도록 인코딩하여 경로 생성
-        category: encodeURIComponent(category),
+        // 수정: encodeURIComponent를 제거하고 한글을 그대로 전달합니다.
+        // Next.js가 빌드 시점에 카테고리별 경로를 알아서 안전하게 매핑합니다.
+        category: category,
         page: i.toString(),
       })
     }
@@ -31,7 +32,8 @@ export default async function CategoryPage(props: {
 }) {
   const params = await props.params
 
-  // URL에서 넘어온 인코딩된 카테고리명을 다시 한글로 변환 ("%EB%A9%B4..." -> "면발의위로")
+  // params에서 넘어오는 값은 이미 디코딩되어 있을 수 있지만,
+  // 배포 환경의 일관성을 위해 decodeURIComponent를 유지하는 것이 안전합니다.
   const category = decodeURIComponent(params.category)
   const pageNumber = parseInt(params.page)
 
@@ -46,7 +48,6 @@ export default async function CategoryPage(props: {
 
   const categoryName = categoryNames[category] || category
 
-  // 해당 카테고리에 속한 포스트만 필터링
   const allPosts = allCoreContent(sortPosts(allBlogs))
   const filteredPosts = allCoreContent(
     sortPosts(allBlogs.filter((post) => post.category === category))
@@ -54,12 +55,10 @@ export default async function CategoryPage(props: {
 
   const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE)
 
-  // 페이지 범위가 벗어나면 404 처리
   if (pageNumber < 1 || (totalPages > 0 && pageNumber > totalPages) || isNaN(pageNumber)) {
     return notFound()
   }
 
-  // 현재 페이지에 보여줄 포스트 계산
   const initialDisplayPosts = filteredPosts.slice(
     POSTS_PER_PAGE * (pageNumber - 1),
     POSTS_PER_PAGE * pageNumber

@@ -12,13 +12,12 @@ export const generateStaticParams = async () => {
   categories.forEach((category) => {
     const filteredPosts = allBlogs.filter((post) => post.category === category)
     const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE)
-
-    // 핵심 수정: 글이 없어도 최소 1페이지는 생성하도록 보장 (빌드 에러 방지)
     const pagesToGenerate = totalPages > 0 ? totalPages : 1
 
     for (let i = 1; i <= pagesToGenerate; i++) {
       params.push({
-        category: category, // encodeURI 없이 직접 전달 (Next.js가 자동 처리)
+        // 한글 카테고리명이 URL에서 깨지지 않도록 인코딩하여 경로 생성
+        category: encodeURIComponent(category),
         page: i.toString(),
       })
     }
@@ -31,8 +30,9 @@ export default async function CategoryPage(props: {
   params: Promise<{ category: string; page: string }>
 }) {
   const params = await props.params
-  // Next.js 15+ 에서는 params가 이미 디코딩되어 들어오는 경우가 많으므로 안전하게 처리
-  const category = params.category
+
+  // URL에서 넘어온 인코딩된 카테고리명을 다시 한글로 변환 ("%EB%A9%B4..." -> "면발의위로")
+  const category = decodeURIComponent(params.category)
   const pageNumber = parseInt(params.page)
 
   const categoryNames: Record<string, string> = {
@@ -43,19 +43,23 @@ export default async function CategoryPage(props: {
     mood: '무드 메이커',
     'fridge-raid': '냉털 챌린지',
   }
+
   const categoryName = categoryNames[category] || category
 
+  // 해당 카테고리에 속한 포스트만 필터링
   const allPosts = allCoreContent(sortPosts(allBlogs))
   const filteredPosts = allCoreContent(
     sortPosts(allBlogs.filter((post) => post.category === category))
   )
+
   const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE)
 
-  // 글이 하나도 없는 카테고리의 1페이지는 404가 아닌 '글 없음'으로 보여주는 것이 빌드에 안전합니다.
+  // 페이지 범위가 벗어나면 404 처리
   if (pageNumber < 1 || (totalPages > 0 && pageNumber > totalPages) || isNaN(pageNumber)) {
     return notFound()
   }
 
+  // 현재 페이지에 보여줄 포스트 계산
   const initialDisplayPosts = filteredPosts.slice(
     POSTS_PER_PAGE * (pageNumber - 1),
     POSTS_PER_PAGE * pageNumber

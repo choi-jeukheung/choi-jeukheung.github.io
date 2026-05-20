@@ -23,7 +23,7 @@ const MainRecommend = () => {
           key={label}
           href={href}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener noreferrer nofollow"
           className="flex items-center gap-4 rounded-2xl border border-gray-200 bg-white px-5 py-4 font-bold text-gray-800 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-orange-200 hover:bg-orange-50 hover:shadow-md dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:hover:border-orange-900/50"
         >
           <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gray-50 text-4xl dark:bg-gray-700">

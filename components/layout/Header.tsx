@@ -27,7 +27,7 @@ const Header = () => {
           최즉흥
         </Link>
         <div className="flex items-center gap-1">
-          <SearchButton />
+          {/* <SearchButton /> */}
           <ThemeSwitch />
           <MobileNav />
         </div>
@@ -54,7 +54,7 @@ const Header = () => {
               ))}
           </div>
           <div className="ml-2 flex items-center gap-1 border-l border-gray-200 pl-2 dark:border-gray-800">
-            <SearchButton />
+            {/* <SearchButton /> */}
             <ThemeSwitch />
             <MobileNav />
           </div>

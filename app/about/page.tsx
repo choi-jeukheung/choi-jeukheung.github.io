@@ -36,10 +36,10 @@ const socialLinks = [
 ]
 
 const cookRules = [
-  '지금 이 순간, 가장 당기는 메뉴일 것',
+  '지금 내가 가장 먹고 싶었던 음식',
   '레시피에 갇히지 않고 감(Sense)으로 갈 것',
-  '복잡한 정석보다 내 입맛에 맞는 변칙',
-  '실패해도 그 과정 자체를 즐길 것',
+  '누구나 따라 해보고 싶은 맛있는 음식',
+  '실패해도 즐겁게 배워나가는 과정',
 ]
 
 export default function AboutPage() {
@@ -100,33 +100,43 @@ export default function AboutPage() {
             "레시피대로만 하면 재미없잖아요?"
           </p>
           <p className="mt-3">
-            계량컵보다는 손맛을, 정석보다는 <strong>내 혀의 즉흥적인 감각</strong>을 믿습니다.
-            릴스에서 보던 짧고 강렬한 요리부터, 블로그에 기록하는 깊은 맛의 기록까지 담고 있어요.
+            안녕하세요, '최즉흥'입니다.
+            <br />
+            사실 올해부터 본격적으로 요리에 재미를 붙이기 시작했어요. 요리를 전문적으로 배운 사람은
+            아니고, 그냥 그날그날 내가 먹고 싶은 메뉴를 즉흥적으로 만들어서 편하게 기록해 두는
+            공간입니다.
+            <br />
+            정확하게 계량하는 것보단 대충 손대중으로 때려 넣으면서 내 입맛에 맞춰 맛있게 요리해
+            볼게요.
           </p>
           <p className="mt-3">
-            면 요리라면 자다가도 일어납니다. 장르 불문, 세상의 모든 맛있는 레시피를
-            <strong> '최즉흥' 스타일로 재해석해서 일단 맛있게 차려볼게요.</strong>
+            특히 면 요리라면 환장합니다.
+            <br />
+            장르 상관없이 제 스타일대로 재해석한 즉흥 레시피들 편하게 기록해 둘 테니까, 구경하시다가
+            당기는 거 있으면 여러분도 즉흥적으로 한번 만들어 보세요!
           </p>
         </div>
-      </div>
 
-      {/* 만드는 기준 */}
-      <div className="mb-8">
-        <p className="mb-1 px-1 text-base font-black tracking-widest text-gray-900 uppercase dark:text-white">
-          만드는 기준
-        </p>
-        <div className="mt-4 flex flex-col gap-3">
-          {cookRules.map((rule) => (
-            <div
-              key={rule}
-              className="flex items-center gap-4 rounded-2xl border border-gray-200 bg-white px-5 py-4 shadow-sm dark:border-gray-700 dark:bg-gray-800"
-            >
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-orange-50 text-lg dark:bg-orange-950/40">
-                ✦
-              </span>
-              <span className="text-[15px] font-bold text-gray-800 dark:text-gray-100">{rule}</span>
-            </div>
-          ))}
+        {/* 만드는 기준 */}
+        <div className="mb-8">
+          <p className="mb-1 px-1 text-base font-black tracking-widest text-gray-900 uppercase dark:text-white">
+            만드는 기준
+          </p>
+          <div className="mt-4 flex flex-col gap-3">
+            {cookRules.map((rule) => (
+              <div
+                key={rule}
+                className="flex items-center gap-4 rounded-2xl border border-gray-200 bg-white px-5 py-4 shadow-sm dark:border-gray-700 dark:bg-gray-800"
+              >
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-purple-500 text-lg dark:bg-orange-950/40">
+                  🍝
+                </span>
+                <span className="text-[15px] font-bold text-gray-800 dark:text-gray-100">
+                  {rule}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

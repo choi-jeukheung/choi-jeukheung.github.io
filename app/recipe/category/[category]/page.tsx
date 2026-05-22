@@ -24,7 +24,7 @@ export async function generateMetadata(props: {
   })
 }
 
-const ALL_CATEGORIES = ['밥도둑', '면발의위로', '국물이답이야', '안주각', '다이어트']
+const ALL_CATEGORIES = ['밥도둑', '면발의위로', '국물이답이야', '안주각', '다이어트', '인스턴트']
 
 export const generateStaticParams = async () => {
   const postCategories = [

@@ -58,6 +58,13 @@ const categoriesData = [
     bgColor: 'bg-green-50 dark:bg-green-900/20',
     textColor: 'text-green-600 dark:text-green-400',
   },
+  {
+    name: '인스턴트',
+    icon: '🍜',
+    category: '인스턴트',
+    bgColor: 'bg-purple-50 dark:bg-purple-900/20',
+    textColor: 'text-purple-600 dark:text-purple-400',
+  },
 ]
 
 const formatToKoreanDate = (date: string) => {

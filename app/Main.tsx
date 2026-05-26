@@ -2,6 +2,7 @@ import RecipeFeed from '@/components/home/RecipeFeed'
 import MainProfile from '@/components/home/MainProfile'
 import MainRecommend from '@/components/home/MainRecommend'
 import MainSnsLink from '@/components/home/MainSnsLink'
+import MainContour from '@/components/home/MainContour'
 
 const MAX_DISPLAY = 4
 
@@ -36,10 +37,13 @@ export default function Home({ posts }) {
       <MainSnsLink />
 
       {/* ── 구분선 ── */}
-      <div className="my-10 border-t border-gray-100 dark:border-gray-800" />
+      <MainContour />
 
       {/* ── 레시피 피드 (같은 컬럼 안에서 2열 그리드) ── */}
       <RecipeFeed featuredRecipes={featuredRecipes} latestPosts={latestPosts} />
+
+      {/* ── 구분선 ── */}
+      <MainContour />
 
       {/* ── 추천 링크 ── */}
       <MainRecommend />

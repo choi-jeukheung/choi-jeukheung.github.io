@@ -14,15 +14,15 @@ function TikTokIcon({ className }: { className?: string }) {
 }
 
 const snsLinks = [
-  {
-    label: 'TikTok',
-    href: siteMetadata.tiktok,
-    icon: (
-      <TikTokIcon className="h-5 w-5 fill-black group-hover:fill-white dark:fill-white dark:group-hover:fill-black" />
-    ),
-    hoverClass:
-      'hover:bg-black hover:text-white hover:border-black dark:hover:bg-white dark:hover:text-black dark:hover:border-white',
-  },
+  // {
+  //   label: 'TikTok',
+  //   href: siteMetadata.tiktok,
+  //   icon: (
+  //     <TikTokIcon className="h-5 w-5 fill-black group-hover:fill-white dark:fill-white dark:group-hover:fill-black" />
+  //   ),
+  //   hoverClass:
+  //     'hover:bg-black hover:text-white hover:border-black dark:hover:bg-white dark:hover:text-black dark:hover:border-white',
+  // },
   {
     label: 'YouTube',
     href: siteMetadata.youtube,

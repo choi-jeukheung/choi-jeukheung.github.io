@@ -7,6 +7,7 @@ import CustomLink from '../ui/Link'
 import TableWrapper from './TableWrapper'
 import YouTubeShorts from '../recipe/YoutubeShorts'
 import YouTube from '../recipe/YoutubeShorts'
+import KakaoAd from '../ad/KakaoAd'
 
 export const components: MDXComponents = {
   Image,
@@ -17,4 +18,5 @@ export const components: MDXComponents = {
   BlogNewsletterForm,
   YouTubeShorts,
   YouTube,
+  KakaoAd,
 }

@@ -52,6 +52,10 @@ export default function Home({ posts }) {
       {/* ── 구분선 ── */}
       <MainContour />
 
+      <div className="my-6 flex justify-center">
+        <KakaoAd2 />
+      </div>
+
       {/* ── 추천 링크 ── */}
       <MainRecommend />
     </div>

@@ -13,6 +13,10 @@ import { Metadata } from 'next'
 import siteMetadata from '@/data/siteMetadata'
 import { notFound } from 'next/navigation'
 
+// 👇 광고 컴포넌트 추가
+import KakaoAd from '@/components/ad/KakaoAd'
+import KakaoAd2 from '@/components/ad/KakaoAd2'
+
 const defaultLayout = 'PostLayout'
 const layouts = {
   PostSimple,
@@ -20,13 +24,13 @@ const layouts = {
   PostBanner,
 }
 
-/* --- 중요: 이 부분이 정확해야 에러가 사라집니다 --- */
+/* --- 중요 --- */
 export async function generateStaticParams() {
   return allBlogs.map((p) => ({
     slug: p.slug.split('/'),
   }))
 }
-/* ------------------------------------------- */
+/* ----------- */
 
 export async function generateMetadata(props: {
   params: Promise<{ slug: string[] }>
@@ -35,12 +39,6 @@ export async function generateMetadata(props: {
   const slug = decodeURI(slugArray.join('/'))
   const post = allBlogs.find((p) => p.slug === slug)
   if (!post) return
-
-  const authorList = post?.authors || ['default']
-  const authorDetails = authorList.map((author) => {
-    const authorResults = allAuthors.find((p) => p.slug === author)
-    return coreContent(authorResults as Authors)
-  })
 
   return {
     title: post.title,
@@ -82,7 +80,13 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
 
   return (
     <Layout content={mainContent} authorDetails={authorDetails} next={next} prev={prev}>
+      {/* ===== 본문 시작 ===== */}
       <MDXLayoutRenderer code={post.body.code} components={components} toc={post.toc} />
+
+      {/* ===== 광고 자동 삽입 ===== */}
+      <div className="my-10 flex justify-center">
+        <KakaoAd />
+      </div>
     </Layout>
   )
 }

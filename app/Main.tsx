@@ -3,6 +3,8 @@ import MainProfile from '@/components/home/MainProfile'
 import MainRecommend from '@/components/home/MainRecommend'
 import MainSnsLink from '@/components/home/MainSnsLink'
 import MainContour from '@/components/home/MainContour'
+import KakaoAd2 from '@/components/ad/KakaoAd2'
+import KakaoAd from '@/components/ad/KakaoAd'
 
 const MAX_DISPLAY = 4
 
@@ -35,6 +37,11 @@ export default function Home({ posts }) {
       {/* ── SNS 링크 ── */}
       {/* 추후에 넣을까말까 고민 */}
       <MainSnsLink />
+
+      {/* 메인 광고 */}
+      <div className="my-6 flex justify-center">
+        <KakaoAd />
+      </div>
 
       {/* ── 구분선 ── */}
       <MainContour />

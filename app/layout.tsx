@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     url: './',
     siteName: siteMetadata.title,
     images: [siteMetadata.socialBanner],
-    locale: 'ko_KR', // 한국어 서비스이므로 ko_KR 권장
+    locale: 'ko_KR',
     type: 'website',
   },
   alternates: {
@@ -62,7 +62,6 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const basePath = process.env.BASE_PATH || ''
 
-  // 검색 결과 개선을 위한 JSON-LD 데이터 구성
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
@@ -77,20 +76,28 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${space_grotesk.variable} scroll-smooth`}
       suppressHydrationWarning
     >
-      {/* Google tag (gtag.js) */}
+      {/* Google Analytics */}
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-Q9JP6VYKGR"
         strategy="afterInteractive"
       />
+
       <Script id="google-analytics" strategy="afterInteractive">
         {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
 
-            gtag('config', 'G-Q9JP6VYKGR');
+          gtag('config', 'G-Q9JP6VYKGR');
         `}
       </Script>
+
+      {/* ✅ Kakao AdFit */}
+      <Script
+        id="kakao-adfit"
+        src="https://t1.kakaocdn.net/kas/static/ba.min.js"
+        strategy="afterInteractive"
+      />
 
       <head>
         {/* Google Tag Manager */}
@@ -101,11 +108,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-M29XZJDC');`}
         </Script>
-        {/* End Google Tag Manager */}
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+
         <link
           rel="apple-touch-icon"
           sizes="76x76"
@@ -135,6 +143,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           href={`${basePath}/static/favicons/safari-pinned-tab.svg`}
           color="#5bbad5"
         />
+
         <meta name="google-adsense-account" content="ca-pub-3099944836452254" />
         <meta
           name="google-site-verification"
@@ -146,8 +155,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
         <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
       </head>
+
       <body className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white">
-        {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-M29XZJDC"
@@ -157,14 +166,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             title="Google Tag Manager"
           />
         </noscript>
-        {/* End Google Tag Manager (noscript) */}
+
         <ThemeProviders>
           <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
+
           <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
             <SectionContainer>
               <Header />
             </SectionContainer>
+
             <main className="mb-auto">{children}</main>
+
             <SectionContainer>
               <Footer />
             </SectionContainer>

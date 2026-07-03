@@ -15,7 +15,6 @@ import { notFound } from 'next/navigation'
 
 // 👇 광고 컴포넌트 추가
 import KakaoAd from '@/components/ad/KakaoAd'
-import KakaoAd2 from '@/components/ad/KakaoAd2'
 
 const defaultLayout = 'PostLayout'
 const layouts = {

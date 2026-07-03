@@ -8,7 +8,6 @@ import TableWrapper from './TableWrapper'
 import YouTubeShorts from '../recipe/YoutubeShorts'
 import YouTube from '../recipe/YoutubeShorts'
 import KakaoAd from '../ad/KakaoAd'
-import KakaoAd2 from '../ad/KakaoAd2'
 
 export const components: MDXComponents = {
   Image,
@@ -20,5 +19,4 @@ export const components: MDXComponents = {
   YouTubeShorts,
   YouTube,
   KakaoAd,
-  KakaoAd2,
 }

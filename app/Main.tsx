@@ -3,7 +3,6 @@ import MainProfile from '@/components/home/MainProfile'
 import MainRecommend from '@/components/home/MainRecommend'
 import MainSnsLink from '@/components/home/MainSnsLink'
 import MainContour from '@/components/home/MainContour'
-import KakaoAd2 from '@/components/ad/KakaoAd2'
 import KakaoAd from '@/components/ad/KakaoAd'
 
 const MAX_DISPLAY = 4

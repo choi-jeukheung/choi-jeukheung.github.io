@@ -7,6 +7,7 @@ import CustomLink from '../ui/Link'
 import TableWrapper from './TableWrapper'
 import YouTubeShorts from '../recipe/YoutubeShorts'
 import YouTube from '../recipe/YoutubeShorts'
+import ProductCard from '../recipe/ProductCard'
 import KakaoAd from '../ad/KakaoAd'
 
 export const components: MDXComponents = {
@@ -19,4 +20,5 @@ export const components: MDXComponents = {
   YouTubeShorts,
   YouTube,
   KakaoAd,
+  ProductCard,
 }

@@ -15,11 +15,6 @@ export default function ProductCard({ image, title, description, link }) {
 
       {/* 2. 제품 설명 영역 */}
       <div className="flex-1">
-        <div className="flex items-center gap-2">
-          <span className="text-[10px] font-medium tracking-wider text-orange-600 uppercase dark:text-orange-400">
-            레시피 치트키
-          </span>
-        </div>
         <h4 className="mt-1 text-base font-bold text-gray-900 dark:text-neutral-100">{title}</h4>
         <p className="mt-1.5 max-w-2xl text-xs leading-relaxed text-gray-500 dark:text-neutral-400">
           {description}

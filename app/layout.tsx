@@ -143,7 +143,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           href={`${basePath}/static/favicons/safari-pinned-tab.svg`}
           color="#5bbad5"
         />
-
+        <meta name="naver-site-verification" content="d35d7c472271b4e691f730a903e194ef3047e973" />
         <meta name="google-adsense-account" content="ca-pub-3099944836452254" />
         <meta
           name="google-site-verification"

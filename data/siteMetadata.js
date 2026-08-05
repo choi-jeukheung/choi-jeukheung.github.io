@@ -1,36 +1,40 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: '최즉흥',
+  title: '최즉흥 | 쉽고 맛있는 레시피 블로그',
   author: '최즉흥',
   headerTitle: '최즉흥',
-  description: '최즉흥에 오신 것을 환영합니다!',
+  description:
+    '라면, 파스타, 한식 등 직접 만들어본 쉽고 맛있는 레시피를 공유하는 요리 블로그입니다. 누구나 따라 할 수 있는 간단한 집밥 레시피와 요리 팁을 소개합니다.',
   language: 'ko-kr',
-  theme: 'system', // system, dark or light
+
+  theme: 'system',
+
   siteUrl: 'https://choi-jeukheung.github.io/',
   siteRepo: 'https://choi-jeukheung.github.io/',
+
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,
-  // mastodon: 'https://mastodon.social/@mastodonuser',
+
   email: 'cyd5538@gmail.com',
-  // github: 'https://github.com', // 깃허브 주소
-  // x: 'https://twitter.com/x',
+
   youtube: 'https://www.youtube.com/@%EC%B5%9C%EC%A6%89%ED%9D%A5-yjin',
-  // linkedin: 'https://www.linkedin.com',
-  // threads: 'https://www.threads.net',
   instagram: 'https://www.instagram.com/choi_jeukheung',
-  // medium: 'https://medium.com',
-  // bluesky: 'https://bsky.app/',
   tiktok: 'https://www.tiktok.com/@choi_jeukheung',
+
   locale: 'ko-KR',
-  stickyNav: true, // 트렌디한 사이트는 헤더가 고정된 경우가 많아 true 추천
+
+  stickyNav: true,
+
   analytics: {
     umamiAnalytics: {
       umamiWebsiteId: process.env.NEXT_UMAMI_ID,
     },
   },
+
   newsletter: {
     provider: 'buttondown',
   },
+
   comments: {
     provider: 'giscus',
     giscusConfig: {
@@ -43,9 +47,10 @@ const siteMetadata = {
       metadata: '0',
       theme: 'light',
       darkTheme: 'transparent_dark',
-      lang: 'ko', // 댓글창 언어도 한국어로 변경
+      lang: 'ko',
     },
   },
+
   search: {
     provider: 'kbar',
     kbarConfig: {

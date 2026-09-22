@@ -6,7 +6,7 @@ import Image from '../ui/Image'
 import CustomLink from '../ui/Link'
 import TableWrapper from './TableWrapper'
 import YouTubeShorts from '../recipe/YoutubeShorts'
-import YouTube from '../recipe/YoutubeShorts'
+import YouTube from '../recipe/Youtube'
 import ProductCard from '../recipe/ProductCard'
 import KakaoAd from '../ad/KakaoAd'
 

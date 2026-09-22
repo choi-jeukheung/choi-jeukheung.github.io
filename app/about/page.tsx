@@ -1,52 +1,23 @@
 import { genPageMetadata } from 'app/seo'
+import Link from 'next/link'
 import Image from 'next/image'
-import { Youtube, Instagram, Mail, Tiktok } from '@/components/social-icons/icons'
-import type { Metadata } from 'next'
 import siteMetadata from '@/data/siteMetadata'
+import MainSnsLink from '@/components/home/MainSnsLink'
+import MainContour from '@/components/home/MainContour'
+import type { Metadata } from 'next'
 
-export const metadata: Metadata = genPageMetadata({ title: '최즉흥 소개' })
+export const metadata: Metadata = genPageMetadata({
+  title: '최즉흥 소개',
+  description:
+    '30대 백수 남자의 잘 해 먹는 일상. 한식·일식·양식·중식 조리기능사를 취득한 최즉흥의 맛있는 한 끼 프로젝트입니다.',
+})
 
-const socialLinks = [
-  {
-    label: '유튜브',
-    href: 'https://www.youtube.com/@%EC%B5%9C%EC%A6%89%ED%9D%A5-yjin',
-    icon: Youtube,
-    className: 'bg-[#FF0000] hover:bg-red-600 text-white',
-  },
-  {
-    label: '인스타그램',
-    href: 'https://www.instagram.com/choi_jeukheung',
-    icon: Instagram,
-    className:
-      'bg-linear-to-r from-purple-500 via-pink-500 to-orange-400 hover:opacity-90 text-white',
-  },
-  // {
-  //   label: '틱톡',
-  //   href: 'https://www.tiktok.com/@choi_jeukheung',
-  //   icon: Tiktok,
-  //   className: 'bg-black dark:bg-gray-900 text-white hover:opacity-90',
-  // },
-  {
-    label: '이메일',
-    href: 'mailto:cyd5538@gmail.com',
-    icon: Mail,
-    className:
-      'border border-gray-200 bg-white hover:border-orange-200 hover:bg-orange-50 text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:hover:border-orange-900/50',
-  },
-]
-
-const cookRules = [
-  '지금 내가 가장 먹고 싶었던 음식',
-  '레시피에 갇히지 않고 감(Sense)으로 갈 것',
-  '누구나 따라 해보고 싶은 맛있는 음식',
-  '실패해도 즐겁게 배워나가는 과정',
-]
+const qualifications = ['한식', '일식', '양식', '중식']
 
 export default function AboutPage() {
   return (
-    <div className="mx-auto w-full max-w-[640px] px-5 pt-16 pb-16">
-      {/* 프로필 */}
-      <div className="mb-8 text-center">
+    <article className="mx-auto w-full max-w-[640px] px-5 pb-16">
+      <header className="pt-16 pb-8 text-center">
         <div className="mx-auto mb-5 h-[180px] w-[180px] overflow-hidden rounded-full ring-4 ring-orange-100 dark:ring-orange-900/40">
           <Image
             src={siteMetadata.siteLogo}
@@ -57,88 +28,100 @@ export default function AboutPage() {
             priority
           />
         </div>
-        <h1 className="mb-2 text-2xl font-black tracking-tight text-gray-900 dark:text-white">
-          {siteMetadata.headerTitle}
+        <p className="mb-3 text-sm font-bold text-orange-600 dark:text-orange-400">
+          30대 백수 남자의 잘 해 먹는 일상
+        </p>
+        <h1 className="mb-3 text-2xl font-black tracking-tight text-gray-900 sm:text-3xl dark:text-white">
+          백수지만, 밥은 잘 해 먹습니다.
         </h1>
         <p className="text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-          먹고싶은걸 즉흥적으로 만들어볼게요.
+          먹고 싶은 게 생기면 일단 주방으로 갑니다.
+          <br />
+          안녕하세요, 최즉흥입니다.
         </p>
-      </div>
+      </header>
 
-      {/* SNS 링크 */}
-      <div className="mb-8 flex flex-col gap-3">
-        <p className="mb-1 px-1 text-base font-black tracking-widest text-gray-900 uppercase dark:text-white">
-          채널
-        </p>
-        {socialLinks.map(({ label, href, icon: Icon, className }) => (
-          <a
-            key={label}
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`flex items-center gap-4 rounded-2xl px-5 py-4 font-bold shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md ${className}`}
+      <section className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
+        <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
+          시간은 좀 있고, 먹고 싶은 건 많습니다.
+        </h2>
+        <div className="space-y-4 text-base leading-relaxed text-gray-600 dark:text-gray-300">
+          <p>
+            30대 백수 남자입니다. 하루 세 끼를 다 거창하게 차리는 건 아니지만, 먹고 싶은 음식이
+            떠오르면 직접 만들어 보는 편이에요. 냉장고에 있는 재료를 꺼내 시작할 때도 있고, 한 끼
+            먹겠다고 장부터 보고 올 때도 있습니다.
+          </p>
+          <p>
+            한식, 일식, 양식, 중식 조리기능사를 따뒀습니다. 배운 것도 써먹고, 제 입맛대로 바꿔보기도
+            하면서 요리해요. 자격증은 네 개지만 매일의 고민은 똑같습니다. 그래서 오늘은 뭘 먹지?
+          </p>
+          <p>
+            여기는 그렇게 해 먹은 음식들을 남기는 공간입니다. 만드는 과정은 영상으로, 재료와 순서는
+            글로 정리해 둡니다. 구경하다가 당기는 메뉴가 있으면 한 번 해 드셔 보세요.
+          </p>
+        </div>
+      </section>
+
+      <MainContour />
+
+      <section aria-labelledby="qualifications-heading">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+          <h2
+            id="qualifications-heading"
+            className="text-lg font-black text-gray-900 dark:text-white"
           >
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/20">
-              <Icon className="h-5 w-5 fill-current" />
-            </span>
-            <span className="flex-1 text-[15px]">{label}</span>
-            <span className="opacity-50">↗</span>
-          </a>
-        ))}
-      </div>
-
-      {/* 구분선 */}
-      <div className="my-8 border-t border-gray-100 dark:border-gray-800" />
-
-      {/* 소개 */}
-      <div className="mb-8">
-        <p className="mb-1 px-1 text-base font-black tracking-widest text-gray-900 uppercase dark:text-white">
-          소개
-        </p>
-        <div className="mt-4 rounded-2xl border border-gray-200 bg-white px-6 py-6 text-[15px] leading-relaxed text-gray-700 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300">
-          <p className="font-bold text-gray-900 dark:text-white">
-            "레시피대로만 하면 재미없잖아요?"
-          </p>
-          <p className="mt-3">
-            안녕하세요, '최즉흥'입니다.
-            <br />
-            사실 올해부터 본격적으로 요리에 재미를 붙이기 시작했어요. 요리를 전문적으로 배운 사람은
-            아니고, 그냥 그날그날 내가 먹고 싶은 메뉴를 즉흥적으로 만들어서 편하게 기록해 두는
-            공간입니다.
-            <br />
-            정확하게 계량하는 것보단 대충 손대중으로 때려 넣으면서 내 입맛에 맞춰 맛있게 요리해
-            볼게요.
-          </p>
-          <p className="mt-3">
-            특히 면 요리라면 환장합니다.
-            <br />
-            장르 상관없이 제 스타일대로 재해석한 즉흥 레시피들 편하게 기록해 둘 테니까, 구경하시다가
-            당기는 거 있으면 여러분도 즉흥적으로 한번 만들어 보세요!
-          </p>
+            주방에 쌓아둔 기본기
+          </h2>
+          <span className="rounded-lg bg-orange-50 px-2.5 py-1 text-xs font-bold text-orange-600 dark:bg-orange-900/20 dark:text-orange-400">
+            조리기능사 4종 취득
+          </span>
         </div>
-
-        {/* 만드는 기준 */}
-        <div className="mb-8">
-          <p className="mb-1 px-1 text-base font-black tracking-widest text-gray-900 uppercase dark:text-white">
-            만드는 기준
-          </p>
-          <div className="mt-4 flex flex-col gap-3">
-            {cookRules.map((rule) => (
-              <div
-                key={rule}
-                className="flex items-center gap-4 rounded-2xl border border-gray-200 bg-white px-5 py-4 shadow-sm dark:border-gray-700 dark:bg-gray-800"
+        <ul className="grid grid-cols-2 gap-4">
+          {qualifications.map((name) => (
+            <li
+              key={name}
+              className="flex items-center gap-3 rounded-2xl border border-gray-100 bg-white p-5 shadow-sm dark:border-gray-800 dark:bg-gray-900"
+            >
+              <span
+                aria-hidden="true"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-orange-50 text-orange-500 dark:bg-orange-900/20 dark:text-orange-400"
               >
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-purple-500 text-lg dark:bg-orange-950/40">
-                  🍝
-                </span>
-                <span className="text-[15px] font-bold text-gray-800 dark:text-gray-100">
-                  {rule}
-                </span>
+                ✓
+              </span>
+              <div>
+                <p className="font-bold text-gray-900 dark:text-white">{name}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">조리기능사</p>
               </div>
-            ))}
-          </div>
-        </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <MainContour />
+
+      <section aria-labelledby="channels-heading">
+        <h2 id="channels-heading" className="mb-4 text-lg font-black text-gray-900 dark:text-white">
+          다른 곳에서도 만나요
+        </h2>
+        <MainSnsLink />
+        <a
+          href="mailto:cyd5538@gmail.com"
+          className="mt-3 flex items-center justify-between rounded-2xl border border-gray-200 bg-white px-5 py-4 text-[15px] font-bold text-gray-800 shadow-sm transition-all hover:border-orange-200 hover:shadow-md dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:hover:border-orange-900/40"
+        >
+          <span>이야기 나누고 싶다면, 이메일</span>
+          <span aria-hidden="true" className="text-gray-400">
+            ↗
+          </span>
+        </a>
+      </section>
+      <div className="mt-8 flex justify-center">
+        <Link
+          href="/recipe"
+          className="rounded-2xl border-2 border-gray-200 bg-white px-8 py-3 text-sm font-black text-gray-700 shadow-sm transition-all hover:border-orange-400 hover:text-orange-600 hover:shadow-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-orange-500 dark:hover:text-orange-400"
+        >
+          오늘 뭐 해 먹지? 레시피 보기 →
+        </Link>
       </div>
-    </div>
+    </article>
   )
 }

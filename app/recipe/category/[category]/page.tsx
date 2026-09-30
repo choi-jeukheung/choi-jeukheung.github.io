@@ -1,3 +1,4 @@
+import { recipeCategories, getCategoryName } from '@/data/recipeCategories'
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
 import { allBlogs } from 'contentlayer/generated'
 import { genPageMetadata } from 'app/seo'
@@ -11,20 +12,14 @@ export async function generateMetadata(props: {
 }): Promise<Metadata> {
   const params = await props.params
   const category = decodeURI(params.category)
-  const categoryNames: Record<string, string> = {
-    signature: '시그니처 누들',
-    light: '라이트 누들',
-    easy: '원팬 & 이지',
-    unzip: '소울푸드.zip',
-  }
-  const categoryName = categoryNames[category] || category
+  const categoryName = getCategoryName(category)
   return genPageMetadata({
     title: categoryName,
     description: `${categoryName} 레시피 모음`,
   })
 }
 
-const ALL_CATEGORIES = ['밥도둑', '면발의위로', '국물이답이야', '안주각', '다이어트', '인스턴트']
+const ALL_CATEGORIES = recipeCategories.map((item) => item.category)
 
 export const generateStaticParams = async () => {
   const postCategories = [
@@ -39,13 +34,7 @@ export const generateStaticParams = async () => {
 export default async function CategoryPage(props: { params: Promise<{ category: string }> }) {
   const params = await props.params
   const category = decodeURI(params.category)
-  const CATEGORY_MAP: Record<string, string> = {
-    signature: '시그니처 누들',
-    light: '라이트 누들',
-    easy: '원팬 & 이지',
-    unzip: '소울푸드.zip',
-  }
-  const categoryName = CATEGORY_MAP[category] || category
+  const categoryName = getCategoryName(category)
 
   // 모든 포스트를 posts로 전달 (사이드바 카운트용)
   const allPosts = allCoreContent(sortPosts(allBlogs))

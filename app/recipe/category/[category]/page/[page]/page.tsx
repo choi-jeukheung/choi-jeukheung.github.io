@@ -1,3 +1,4 @@
+import { getCategoryName } from '@/data/recipeCategories'
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
 import { allBlogs } from 'contentlayer/generated'
 import { notFound } from 'next/navigation'
@@ -37,16 +38,7 @@ export default async function CategoryPage(props: {
   const category = decodeURIComponent(params.category)
   const pageNumber = parseInt(params.page)
 
-  const categoryNames: Record<string, string> = {
-    godsaeng: '갓생 한끼',
-    clean: '클린 식단',
-    dopamine: '도파민 폭발',
-    convenience: '편의점 털기',
-    mood: '무드 메이커',
-    'fridge-raid': '냉털 챌린지',
-  }
-
-  const categoryName = categoryNames[category] || category
+  const categoryName = getCategoryName(category)
 
   const allPosts = allCoreContent(sortPosts(allBlogs))
   const filteredPosts = allCoreContent(

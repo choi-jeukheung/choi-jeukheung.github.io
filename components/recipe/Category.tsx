@@ -1,20 +1,12 @@
-import Link from '@/components/Link'
+import { getCategoryName } from '@/data/recipeCategories'
+import Link from '@/components/ui/Link'
 
 interface Props {
   category: string
 }
 
-const categoryNames: Record<string, string> = {
-  godsaeng: '갓생 한끼',
-  clean: '클린 식단',
-  dopamine: '도파민 폭발',
-  convenience: '편의점 털기',
-  mood: '무드 메이커',
-  'fridge-raid': '냉털 챌린지',
-}
-
 const Category = ({ category }: Props) => {
-  const categoryName = categoryNames[category] || category
+  const categoryName = getCategoryName(category)
   return (
     <Link
       href={`/recipe/category/${category}`}

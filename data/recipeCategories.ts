@@ -41,6 +41,13 @@ export const recipeCategories = [
     bgColor: 'bg-purple-50 dark:bg-purple-900/20',
     textColor: 'text-purple-600 dark:text-purple-400',
   },
+  {
+    name: '쇼츠요리',
+    icon: '📱',
+    category: '쇼츠요리',
+    bgColor: 'bg-rose-50 dark:bg-rose-900/20',
+    textColor: 'text-rose-600 dark:text-rose-400',
+  },
 ]
 
 export function getCategoryName(category: string) {

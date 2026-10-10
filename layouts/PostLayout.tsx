@@ -3,170 +3,130 @@ import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Blog, Authors } from 'contentlayer/generated'
 import Comments from '@/components/mdx/Comments'
 import Link from '@/components/ui/Link'
-import PageTitle from '@/components/ui/PageTitle'
-import SectionContainer from '@/components/layout/SectionContainer'
-import Image from '@/components/ui/Image'
 import Tag from '@/components/recipe/Tag'
+import { getCategoryName } from '@/data/recipeCategories'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ui/ScrollTopAndComment'
-
-const editUrl = (path) => `${siteMetadata.siteRepo}/blob/main/data/${path}`
-const discussUrl = (path) =>
-  `https://mobile.twitter.com/search?q=${encodeURIComponent(`${siteMetadata.siteUrl}/${path}`)}`
-
-const postDateTemplate: Intl.DateTimeFormatOptions = {
-  weekday: 'long',
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-}
 
 interface LayoutProps {
   content: CoreContent<Blog>
   authorDetails: CoreContent<Authors>[]
   next?: { path: string; title: string }
   prev?: { path: string; title: string }
+  toc?: { value: string; url: string; depth: number }[]
   children: ReactNode
 }
 
-export default function PostLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
-  const { filePath, path, slug, date, title, tags } = content
-  const basePath = path.split('/')[0]
+export default function PostLayout({
+  content,
+  authorDetails,
+  next,
+  prev,
+  toc = [],
+  children,
+}: LayoutProps) {
+  const { slug, date, title, tags, category, time, videoType } = content
+  const ingredients = toc.find((item) => item.depth === 2 && /재료/.test(item.value))
+  const steps = toc.find((item) => item.depth === 2 && /만들|만드|조리/.test(item.value))
 
   return (
-    <SectionContainer>
+    <article className="mx-auto w-full max-w-3xl min-w-0 py-6 sm:py-10">
       <ScrollTopAndComment />
-      <article>
-        <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
-          <header className="pt-6 xl:pb-6">
-            <div className="space-y-1 text-center">
-              <dl className="space-y-10">
-                <div>
-                  <dt className="sr-only">Published on</dt>
-                  <dd className="text-base leading-6 font-medium text-gray-500 dark:text-gray-400">
-                    <time dateTime={date}>
-                      {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
-                    </time>
-                  </dd>
-                </div>
-              </dl>
-              <div>
-                <PageTitle>{title}</PageTitle>
-              </div>
-            </div>
-          </header>
-          <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:divide-y-0 dark:divide-gray-700">
-            <dl className="pt-6 pb-10 xl:border-b xl:border-gray-200 xl:pt-11 xl:dark:border-gray-700">
-              <dt className="sr-only">Authors</dt>
-              <dd>
-                <ul className="flex flex-wrap justify-center gap-4 sm:space-x-12 xl:block xl:space-y-8 xl:space-x-0">
-                  {authorDetails.map((author) => (
-                    <li className="flex items-center space-x-2" key={author.name}>
-                      {author.avatar && (
-                        <Image
-                          src={author.avatar}
-                          width={38}
-                          height={38}
-                          alt="avatar"
-                          className="h-10 w-10 rounded-full"
-                        />
-                      )}
-                      <dl className="text-sm leading-5 font-medium whitespace-nowrap">
-                        <dt className="sr-only">Name</dt>
-                        <dd className="text-gray-900 dark:text-gray-100">{author.name}</dd>
-                        <dt className="sr-only">Twitter</dt>
-                        <dd>
-                          {author.twitter && (
-                            <Link
-                              href={author.twitter}
-                              className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                            >
-                              {author.twitter
-                                .replace('https://twitter.com/', '@')
-                                .replace('https://x.com/', '@')}
-                            </Link>
-                          )}
-                        </dd>
-                      </dl>
-                    </li>
-                  ))}
-                </ul>
-              </dd>
-            </dl>
-            <div className="divide-y divide-gray-200 xl:col-span-3 xl:row-span-2 xl:pb-0 dark:divide-gray-700">
-              <div className="prose dark:prose-invert max-w-none pt-10 pb-8">{children}</div>
-              <div className="pt-6 pb-6 text-sm text-gray-700 dark:text-gray-300">
-                <Link href={discussUrl(path)} rel="nofollow">
-                  Discuss on Twitter
-                </Link>
-                {` • `}
-                <Link href={editUrl(filePath)}>View on GitHub</Link>
-              </div>
-              {siteMetadata.comments && (
-                <div
-                  className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300"
-                  id="comment"
-                >
-                  <Comments slug={slug} />
-                </div>
-              )}
-            </div>
-            <footer>
-              <div className="divide-gray-200 text-sm leading-5 font-medium xl:col-start-1 xl:row-start-2 xl:divide-y dark:divide-gray-700">
-                {tags && (
-                  <div className="py-4 xl:py-8">
-                    <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
-                      Tags
-                    </h2>
-                    <div className="flex flex-wrap">
-                      {tags.map((tag) => (
-                        <Tag key={tag} text={tag} />
-                      ))}
-                    </div>
-                  </div>
-                )}
-                {(next || prev) && (
-                  <div className="flex justify-between py-4 xl:block xl:space-y-8 xl:py-8">
-                    {prev && prev.path && (
-                      <div>
-                        <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
-                          Previous Article
-                        </h2>
-                        <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                          <Link href={`/${prev.path.replace(/^blog\//, 'recipe/')}`}>
-                            {prev.title}
-                          </Link>
-                        </div>
-                      </div>
-                    )}
-                    {next && next.path && (
-                      <div>
-                        <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
-                          Next Article
-                        </h2>
-                        <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                          <Link href={`/${next.path.replace(/^blog\//, 'recipe/')}`}>
-                            {next.title}
-                          </Link>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-              <div className="pt-4 xl:pt-8">
-                <Link
-                  href={`/${basePath}`}
-                  className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                  aria-label="Back to the blog"
-                >
-                  &larr; Back to the blog
-                </Link>
-              </div>
-            </footer>
-          </div>
+      <header className="border-b border-gray-100 pb-6 dark:border-gray-800">
+        <Link
+          href="/recipe"
+          className="mb-4 inline-flex min-h-11 items-center text-sm font-bold text-gray-500 hover:text-orange-600 dark:text-gray-400"
+        >
+          ← 모든 레시피
+        </Link>
+        <div className="mb-3 flex flex-wrap items-center gap-2 text-xs font-bold">
+          {category && (
+            <Link
+              href={`/recipe/category/${category}`}
+              className="inline-flex min-h-9 items-center rounded-lg bg-orange-50 px-3 text-orange-700 dark:bg-orange-900/20 dark:text-orange-300"
+            >
+              {getCategoryName(category)}
+            </Link>
+          )}
+          <span className="text-gray-500 dark:text-gray-400">
+            {videoType === 'short' ? '쇼츠 레시피' : '영상 레시피'}
+          </span>
         </div>
-      </article>
-    </SectionContainer>
+        <h1 className="text-[1.75rem] leading-tight tracking-tight break-words text-gray-900 sm:text-4xl dark:text-white">
+          {title}
+        </h1>
+        <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <span>{authorDetails.map((author) => author.name).join(', ')}</span>
+          <time dateTime={date}>
+            {new Date(date).toLocaleDateString('ko-KR', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+              timeZone: 'Asia/Seoul',
+            })}
+          </time>
+          {time && (
+            <span className="rounded-lg bg-gray-50 px-2 py-1 dark:bg-gray-900">조리 {time}</span>
+          )}
+        </div>
+        {(ingredients || steps) && (
+          <nav aria-label="레시피 바로가기" className="mt-5 grid grid-cols-2 gap-3">
+            {ingredients && (
+              <a
+                href={ingredients.url}
+                className="flex min-h-12 items-center justify-center rounded-xl bg-orange-500 px-3 py-3 font-bold text-white hover:bg-orange-600"
+              >
+                재료 보기 ↓
+              </a>
+            )}
+            {steps && (
+              <a
+                href={steps.url}
+                className="flex min-h-12 items-center justify-center rounded-xl border border-gray-200 px-3 py-3 font-bold text-gray-700 hover:border-orange-400 dark:border-gray-700 dark:text-gray-200"
+              >
+                조리 순서 ↓
+              </a>
+            )}
+          </nav>
+        )}
+      </header>
+      <div className="recipe-content prose dark:prose-invert prose-headings:scroll-mt-28 prose-h2:text-2xl prose-h3:text-xl prose-li:my-2 max-w-none pt-4 pb-8 text-base leading-8 break-words sm:pt-6">
+        {children}
+      </div>
+      <footer className="border-t border-gray-100 pt-6 dark:border-gray-800">
+        {tags && (
+          <div className="flex flex-wrap gap-y-3">
+            {tags.map((tag) => (
+              <Tag key={tag} text={tag} />
+            ))}
+          </div>
+        )}
+        <nav aria-label="다른 레시피" className="mt-6 grid gap-3 sm:grid-cols-2">
+          {[
+            { post: prev, label: '이전 레시피' },
+            { post: next, label: '다음 레시피' },
+          ].map(
+            ({ post, label }) =>
+              post && (
+                <Link
+                  key={post.path}
+                  href={`/${post.path.replace(/^blog\//, 'recipe/')}`}
+                  className="min-w-0 rounded-2xl border border-gray-200 p-4 hover:border-orange-300 dark:border-gray-800"
+                >
+                  <span className="text-xs text-gray-500 dark:text-gray-400">{label}</span>
+                  <span className="mt-2 block font-bold break-words text-gray-900 dark:text-gray-100">
+                    {post.title}
+                  </span>
+                </Link>
+              )
+          )}
+        </nav>
+        {siteMetadata.comments?.provider && (
+          <div className="mt-8 scroll-mt-28" id="comment">
+            <Comments slug={slug} />
+          </div>
+        )}
+      </footer>
+    </article>
   )
 }

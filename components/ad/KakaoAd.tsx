@@ -33,5 +33,5 @@ export default function KakaoAd() {
     adRef.current.appendChild(script)
   }, [pathname])
 
-  return <div ref={adRef} />
+  return <div ref={adRef} className="w-full max-w-[320px] overflow-hidden" />
 }

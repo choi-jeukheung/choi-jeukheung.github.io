@@ -106,6 +106,7 @@ export const Blog = defineDocumentType(() => ({
     draft: { type: 'boolean' },
     // 추천 메뉴 여부
     featured: { type: 'boolean', default: false },
+    videoType: { type: 'enum', options: ['full', 'short'], default: 'full' },
     // 난이도 (별점 0~5점 사이, 소수점 포함 가능하도록 number 타입)
     difficulty: { type: 'number', default: 3 },
     thumbnail: { type: 'string' },

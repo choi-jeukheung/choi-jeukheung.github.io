@@ -16,7 +16,7 @@ const MainRecommend = () => {
   return (
     <div className="mt-6 flex flex-col gap-3">
       <p className="mb-1 px-1 text-base font-black tracking-widest text-gray-900 uppercase dark:text-white">
-        추천 링크
+        추천 아이템
       </p>
       {affiliateLinks.map(({ label, href, icon }) => (
         <a

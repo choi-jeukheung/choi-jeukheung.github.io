@@ -1,6 +1,6 @@
 'use client'
 
-import { Dialog, DialogPanel, Transition, TransitionChild } from '@headlessui/react'
+import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import Link from '../ui/Link'
 import headerNavLinks from '@/data/headerNavLinks'
@@ -56,15 +56,15 @@ const MobileNav = () => {
               enterTo="translate-y-0"
               leave="ease-in duration-300"
             >
-              <DialogPanel className="relative w-full max-w-lg overflow-hidden rounded-t-[3.5rem] bg-white p-8 pt-14 shadow-2xl dark:bg-gray-950">
+              <DialogPanel className="relative max-h-[90dvh] w-full max-w-lg overflow-y-auto rounded-t-[3.5rem] bg-white px-5 pt-10 pb-[max(1.25rem,env(safe-area-inset-bottom))] shadow-2xl dark:bg-gray-950">
                 {/* 상단 드래그 핸들 */}
                 <div className="absolute top-5 left-1/2 h-1.5 w-14 -translate-x-1/2 rounded-full bg-gray-200 dark:bg-gray-800" />
 
                 <div className="flex flex-col space-y-8">
                   <div className="px-2 text-center">
-                    <h2 className="mb-1 text-3xl font-black tracking-tighter text-gray-900 dark:text-gray-100">
+                    <DialogTitle className="mb-1 text-3xl font-black tracking-tighter text-gray-900 dark:text-gray-100">
                       오늘의 메뉴 🍳
-                    </h2>
+                    </DialogTitle>
                     <p className="text-sm font-bold tracking-widest text-orange-500 uppercase">
                       Select Category
                     </p>
@@ -79,7 +79,7 @@ const MobileNav = () => {
                           key={link.title}
                           href={link.href}
                           onClick={onToggleNav}
-                          className="group relative flex flex-col items-center justify-center overflow-hidden rounded-[2.5rem] border-2 border-transparent bg-gray-50 p-8 transition-all hover:border-orange-100 hover:bg-orange-50 active:scale-95 dark:bg-gray-900 dark:hover:bg-orange-950/20"
+                          className="group relative flex flex-col items-center justify-center overflow-hidden rounded-[2.5rem] border-2 border-transparent bg-gray-50 p-5 transition-all hover:border-orange-100 hover:bg-orange-50 active:scale-95 dark:bg-gray-900 dark:hover:bg-orange-950/20"
                         >
                           <span className="mb-4 text-5xl transition-transform duration-300 group-hover:scale-125 group-hover:rotate-12">
                             {icon}

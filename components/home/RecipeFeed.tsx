@@ -30,6 +30,7 @@ interface Post {
 interface RecipeFeedProps {
   featuredRecipes: Recipe[]
   latestPosts: Post[]
+  shortPosts: Post[]
 }
 
 function Stars({ difficulty }: { difficulty: number }) {
@@ -105,10 +106,10 @@ function PostRow({ post }: { post: Post }) {
         {post.summary && (
           <p className="line-clamp-1 text-xs text-gray-500 dark:text-gray-400">{post.summary}</p>
         )}
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
           <span className="text-xs font-bold text-orange-500">{post.time}</span>
           <Stars difficulty={post.difficulty} />
-          <time className="ml-auto text-xs text-gray-400">
+          <time className="text-xs text-gray-400 sm:ml-auto">
             {formatDate(post.date, siteMetadata.locale)}
           </time>
         </div>
@@ -117,50 +118,64 @@ function PostRow({ post }: { post: Post }) {
   )
 }
 
-export default function RecipeFeed({ featuredRecipes, latestPosts }: RecipeFeedProps) {
-  const [tab, setTab] = useState<'featured' | 'latest'>('featured')
+const feedTabs = [
+  { value: 'featured', label: '✨ 추천' },
+  { value: 'latest', label: '🍳 최신' },
+  { value: 'short', label: '📱 쇼츠' },
+] as const
+
+export default function RecipeFeed({ featuredRecipes, latestPosts, shortPosts }: RecipeFeedProps) {
+  const [tab, setTab] = useState<'featured' | 'latest' | 'short'>('featured')
+  const visibleRecipes =
+    tab === 'featured' ? featuredRecipes : tab === 'short' ? shortPosts : latestPosts
 
   return (
     <div>
-      <div className="mb-6 flex items-center gap-1 rounded-2xl border border-gray-100 bg-gray-50 p-1 dark:border-gray-800 dark:bg-gray-900">
-        <button
-          onClick={() => setTab('featured')}
-          className={`flex-1 rounded-xl py-2.5 text-base font-black transition-all ${
-            tab === 'featured'
-              ? 'bg-white text-orange-600 shadow-sm dark:bg-gray-800 dark:text-orange-400'
-              : 'text-gray-500 hover:text-gray-700 dark:text-gray-500 dark:hover:text-gray-300'
-          }`}
-        >
-          ✨ 추천
-        </button>
-        <button
-          onClick={() => setTab('latest')}
-          className={`flex-1 rounded-xl py-2.5 text-base font-black transition-all ${
-            tab === 'latest'
-              ? 'bg-white text-orange-600 shadow-sm dark:bg-gray-800 dark:text-orange-400'
-              : 'text-gray-500 hover:text-gray-700 dark:text-gray-500 dark:hover:text-gray-300'
-          }`}
-        >
-          🍳 최신
-        </button>
+      <div
+        aria-label="레시피 보기 방식"
+        className="mb-6 flex items-center gap-1 rounded-2xl border border-gray-100 bg-gray-50 p-1 dark:border-gray-800 dark:bg-gray-900"
+      >
+        {feedTabs.map(({ value, label }) => (
+          <button
+            key={value}
+            type="button"
+            aria-pressed={tab === value}
+            aria-controls="recipe-feed-results"
+            onClick={() => setTab(value)}
+            className={`flex-1 rounded-xl py-2.5 text-base font-black transition-all ${
+              tab === value
+                ? 'bg-white text-orange-600 shadow-sm dark:bg-gray-800 dark:text-orange-400'
+                : 'text-gray-500 hover:text-gray-700 dark:text-gray-500 dark:hover:text-gray-300'
+            }`}
+          >
+            {label}
+          </button>
+        ))}
       </div>
 
-      {tab === 'featured' && (
-        <div className="grid grid-cols-2 gap-4">
-          {featuredRecipes.map((recipe) => (
-            <RecipeCard key={recipe.slug} recipe={recipe} />
-          ))}
-        </div>
-      )}
-
-      {/* Latest tab: list rows */}
-      {tab === 'latest' && (
-        <div className="flex flex-col gap-3">
-          {latestPosts.map((post) => (
-            <PostRow key={post.slug} post={post} />
-          ))}
-        </div>
-      )}
+      <div id="recipe-feed-results" aria-live="polite">
+        {visibleRecipes.length === 0 ? (
+          <p className="py-12 text-center text-sm text-gray-500 dark:text-gray-400">
+            {tab === 'featured'
+              ? '아직 추천 레시피가 없습니다.'
+              : tab === 'short'
+                ? '아직 쇼츠 레시피가 없습니다.'
+                : '아직 등록된 레시피가 없습니다.'}
+          </p>
+        ) : tab === 'latest' ? (
+          <div className="flex flex-col gap-3">
+            {latestPosts.map((post) => (
+              <PostRow key={post.slug} post={post} />
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 gap-4">
+            {visibleRecipes.map((recipe) => (
+              <RecipeCard key={recipe.slug} recipe={recipe} />
+            ))}
+          </div>
+        )}
+      </div>
 
       {/* 더보기 */}
       <div className="mt-8 flex justify-center">

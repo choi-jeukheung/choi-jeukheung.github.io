@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
 import Link from '../ui/Link'
@@ -9,19 +8,11 @@ import ThemeSwitch from './ThemeSwitch'
 import SearchButton from './SearchButton'
 
 const Header = () => {
-  const [scrolled, setScrolled] = useState(false)
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
   return (
     <>
-      {/* 모바일: 스크롤 후 상단 고정 */}
+      {/* 모바일: 첫 방문에서도 메뉴에 바로 접근 */}
       <header
-        className={`fixed top-0 right-0 left-0 z-50 flex items-center justify-between border-b border-gray-100 bg-white/80 px-5 py-3 font-bold backdrop-blur-xl transition-all duration-300 sm:hidden dark:border-gray-800 dark:bg-gray-950/80 ${!scrolled ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'}`}
+        className={`sticky top-0 z-50 flex items-center justify-between border-b border-gray-100 bg-white/80 px-5 py-3 font-bold backdrop-blur-xl transition-all duration-300 sm:hidden dark:border-gray-800 dark:bg-gray-950/80`}
       >
         <Link href="/" aria-label={siteMetadata.headerTitle}>
           최즉흥

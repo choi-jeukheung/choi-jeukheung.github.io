@@ -42,12 +42,19 @@ export async function generateMetadata(props: {
   return {
     title: post.title,
     description: post.summary,
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.summary,
+      images: [post.thumbnail || siteMetadata.socialBanner],
+    },
     openGraph: {
       title: post.title,
       description: post.summary,
       siteName: siteMetadata.title,
       locale: 'ko_KR',
       type: 'article',
+      images: [post.thumbnail || siteMetadata.socialBanner],
       url: './',
     },
   }
@@ -78,7 +85,13 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
   const Layout = layouts[post.layout || defaultLayout]
 
   return (
-    <Layout content={mainContent} authorDetails={authorDetails} next={next} prev={prev}>
+    <Layout
+      content={mainContent}
+      authorDetails={authorDetails}
+      next={next}
+      prev={prev}
+      toc={post.toc}
+    >
       {/* ===== 본문 시작 ===== */}
       <MDXLayoutRenderer code={post.body.code} components={components} toc={post.toc} />
 

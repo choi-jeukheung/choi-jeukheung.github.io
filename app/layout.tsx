@@ -171,9 +171,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
 
           <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
-            <SectionContainer>
-              <Header />
-            </SectionContainer>
+            <div className="sticky top-0 z-50 sm:static">
+              <SectionContainer>
+                <Header />
+              </SectionContainer>
+            </div>
 
             <main className="mb-auto">{children}</main>
 

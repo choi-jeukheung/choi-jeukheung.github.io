@@ -71,7 +71,9 @@ export default function ProductsClient({ products }: { products: Product[] }) {
               key={product.slug}
               href={product.link}
               target="_blank"
-              rel="noopener noreferrer"
+              rel={
+                product.affiliate ? 'noopener noreferrer sponsored nofollow' : 'noopener noreferrer'
+              }
               className="group overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900"
             >
               <div className="relative aspect-square overflow-hidden bg-gray-100 dark:bg-gray-800">

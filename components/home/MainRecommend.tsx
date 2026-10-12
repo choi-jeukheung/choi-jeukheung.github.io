@@ -1,6 +1,11 @@
 import Link from '../ui/Link'
 
 const affiliateLinks = [
+  {
+    label: '비비고 왕교자 (냉동), 1.715kg, 1개',
+    href: 'https://link.coupang.com/a/hMwkBM7Wxg',
+    icon: '🥟',
+  },
   { label: '디벨라 토마토 퓌레 680G', href: 'https://link.coupang.com/a/eniXyb', icon: '🍅' },
   { label: '데체코 구르메 스파게티 500g', href: 'https://link.coupang.com/a/eniVLJ', icon: '🍝' },
   {

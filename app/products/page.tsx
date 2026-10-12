@@ -27,7 +27,10 @@ export default function ProductsPage() {
           추천 상품
         </h1>
         <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-          직접 써보고 추천하는 조리도구와 식재료예요.
+          요리에 곁들일 조리도구와 식재료를 모았어요.
+        </p>
+        <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
+          이 페이지는 쿠팡파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.
         </p>
       </div>
       <ProductsClient products={products} />

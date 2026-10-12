@@ -23,7 +23,7 @@ export default function ProductCard({ image, title, description, link }) {
           <a
             href={link}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer sponsored nofollow"
             className="inline-flex items-center text-xs font-medium text-gray-900 underline underline-offset-4 transition-colors hover:text-blue-600 dark:text-neutral-100 dark:hover:text-blue-400"
           >
             제품 정보 확인하기 →

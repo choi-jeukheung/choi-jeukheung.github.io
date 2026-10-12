@@ -40,7 +40,7 @@ const snsLinks = [
 
 const MainSnsLink = () => {
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-wrap gap-2">
       {snsLinks.map(({ label, href, icon, hoverClass }) =>
         href ? (
           <Link
@@ -48,12 +48,10 @@ const MainSnsLink = () => {
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className={`group flex items-center gap-4 rounded-2xl border border-gray-200 bg-white px-5 py-4 font-bold text-gray-800 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 ${hoverClass}`}
+            className={`group inline-flex min-h-11 items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-2 text-xs font-bold text-gray-800 transition-colors dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 ${hoverClass}`}
           >
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gray-50 group-hover:bg-white/20 dark:bg-gray-700 dark:group-hover:bg-white/20">
-              {icon}
-            </span>
-            <span className="flex-1 text-[15px]">{label}</span>
+            <span className="flex h-5 w-5 items-center justify-center">{icon}</span>
+            <span>{label}</span>
             <span className="text-gray-300 dark:text-gray-600">↗</span>
           </Link>
         ) : null

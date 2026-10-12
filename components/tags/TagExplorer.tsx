@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import PageIntro from '@/components/layout/PageIntro'
 
 type RecipeTag = { name: string; slug: string; count: number }
 
@@ -25,30 +26,17 @@ export default function TagExplorer({
 
   return (
     <div className="mx-auto w-full max-w-[640px] px-5 pb-16 text-gray-800 dark:text-gray-200">
-      <header className="pt-16 pb-8 text-center">
-        <span
-          aria-hidden="true"
-          className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-orange-50 text-3xl font-bold text-orange-500 dark:bg-orange-900/20 dark:text-orange-400"
-        >
-          #
+      <PageIntro icon={<span aria-hidden="true">#</span>} title="태그로 찾는 한 끼">
+        재료나 메뉴를 골라 오늘의 레시피를 찾아보세요.
+      </PageIntro>
+      <div className="mb-6 flex gap-2 text-xs font-bold">
+        <span className="rounded-lg bg-orange-50 px-3 py-1.5 text-orange-600 dark:bg-orange-900/20 dark:text-orange-400">
+          태그 {tags.length}개
         </span>
-        <h1 className="mb-3 text-2xl font-black tracking-tight text-gray-900 sm:text-3xl dark:text-white">
-          오늘은 뭐가 당기세요?
-        </h1>
-        <p className="text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-          냉장고에 남은 재료도, 문득 먹고 싶은 메뉴도.
-          <br />
-          태그를 골라 오늘의 한 끼를 찾아보세요.
-        </p>
-        <div className="mt-5 flex justify-center gap-2 text-xs font-bold">
-          <span className="rounded-lg bg-orange-50 px-3 py-1.5 text-orange-600 dark:bg-orange-900/20 dark:text-orange-400">
-            태그 {tags.length}개
-          </span>
-          <span className="rounded-lg bg-gray-100 px-3 py-1.5 text-gray-500 dark:bg-gray-800 dark:text-gray-400">
-            레시피 {recipeCount}편
-          </span>
-        </div>
-      </header>
+        <span className="rounded-lg bg-gray-50 px-3 py-1.5 text-gray-500 dark:bg-gray-800 dark:text-gray-400">
+          레시피 {recipeCount}편
+        </span>
+      </div>
 
       <section aria-labelledby="tag-list-heading">
         <div className="mb-7 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
@@ -56,7 +44,7 @@ export default function TagExplorer({
             <label htmlFor="tag-search" className="mb-2 block text-sm font-semibold">
               어떤 재료나 메뉴를 찾으세요?
             </label>
-            <div className="flex items-center gap-3 rounded-xl border border-gray-300 bg-white px-4 focus-within:border-orange-400 focus-within:ring-2 focus-within:ring-orange-400/20 dark:border-gray-700 dark:bg-gray-900">
+            <div className="flex items-center gap-3 rounded-2xl border border-gray-200 bg-white px-4 focus-within:border-orange-400 focus-within:ring-2 focus-within:ring-orange-400/20 dark:border-gray-700 dark:bg-gray-900">
               <svg
                 aria-hidden="true"
                 viewBox="0 0 24 24"
@@ -86,7 +74,7 @@ export default function TagExplorer({
               id="tag-sort"
               value={sort}
               onChange={(event) => setSort(event.target.value)}
-              className="rounded-lg border-gray-300 bg-white py-2.5 pr-9 pl-3 text-sm focus:border-orange-400 focus:ring-orange-400 dark:border-gray-700 dark:bg-gray-900"
+              className="rounded-xl border-gray-200 bg-white py-2.5 pr-9 pl-3 text-sm focus:border-orange-400 focus:ring-orange-400 dark:border-gray-700 dark:bg-gray-900"
             >
               <option value="count">레시피 많은 순</option>
               <option value="name">가나다순</option>
@@ -94,7 +82,7 @@ export default function TagExplorer({
           </div>
         </div>
 
-        <div className="mb-4 flex items-baseline justify-between gap-4 border-b border-gray-200 pb-4 dark:border-gray-800">
+        <div className="mb-4 flex items-baseline justify-between gap-4 border-b border-gray-100 pb-4 dark:border-gray-800">
           <h2 id="tag-list-heading" className="text-lg font-black">
             {normalizedQuery ? '검색한 태그' : '모든 태그'}
           </h2>
@@ -108,7 +96,7 @@ export default function TagExplorer({
               <li key={tag.slug}>
                 <Link
                   href={`/tags/${tag.slug}`}
-                  className="group flex h-full min-h-24 items-center gap-3 rounded-2xl border border-gray-100 bg-white p-4 shadow-sm transition-all hover:border-orange-200 hover:shadow-md dark:border-gray-800 dark:bg-gray-900 dark:hover:border-orange-900/40"
+                  className="group flex h-full min-h-20 items-center gap-3 rounded-2xl border border-gray-100 bg-white p-4 shadow-sm transition-all hover:border-orange-200 hover:shadow-md dark:border-gray-800 dark:bg-gray-900 dark:hover:border-orange-900/40"
                 >
                   <span
                     aria-hidden="true"
@@ -117,7 +105,7 @@ export default function TagExplorer({
                     #
                   </span>
                   <div className="min-w-0 flex-1">
-                    <p className="text-base font-semibold break-words text-gray-800 dark:text-gray-100">
+                    <p className="text-sm font-bold break-words text-gray-800 dark:text-gray-100">
                       {tag.name}
                     </p>
                     <p className="mt-1.5 text-xs text-gray-500 dark:text-gray-400">
@@ -157,7 +145,7 @@ export default function TagExplorer({
             )}
           </div>
         )}
-        <div className="mt-9 flex flex-wrap items-center justify-between gap-3 border-t border-gray-200 pt-6 text-sm dark:border-gray-800">
+        <div className="mt-9 flex flex-wrap items-center justify-between gap-3 border-t border-gray-100 pt-6 text-sm dark:border-gray-800">
           <p className="text-gray-500 dark:text-gray-400">아직 메뉴를 못 정했다면</p>
           <Link
             href="/recipe"

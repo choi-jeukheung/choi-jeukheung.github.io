@@ -5,6 +5,7 @@ import siteMetadata from '@/data/siteMetadata'
 import MainSnsLink from '@/components/home/MainSnsLink'
 import MainContour from '@/components/home/MainContour'
 import type { Metadata } from 'next'
+import PageIntro from '@/components/layout/PageIntro'
 
 export const metadata: Metadata = genPageMetadata({
   title: '최즉흥 소개',
@@ -17,35 +18,27 @@ const qualifications = ['한식', '일식', '양식', '중식']
 export default function AboutPage() {
   return (
     <article className="mx-auto w-full max-w-[640px] px-5 pb-16">
-      <header className="pt-16 pb-8 text-center">
-        <div className="mx-auto mb-5 h-[180px] w-[180px] overflow-hidden rounded-full ring-4 ring-orange-100 dark:ring-orange-900/40">
+      <PageIntro
+        icon={
           <Image
             src={siteMetadata.siteLogo}
             alt={siteMetadata.headerTitle}
-            width={180}
-            height={180}
+            width={48}
+            height={48}
             className="h-full w-full scale-175 object-cover"
             priority
           />
-        </div>
-        <p className="mb-3 text-sm font-bold text-orange-600 dark:text-orange-400">
-          30대 백수 남자의 잘 해 먹는 일상
-        </p>
-        <h1 className="mb-3 text-2xl font-black tracking-tight text-gray-900 sm:text-3xl dark:text-white">
-          백수지만, 밥은 잘 해 먹습니다.
-        </h1>
-        <p className="text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-          먹고 싶은 게 생기면 일단 주방으로 갑니다.
-          <br />
-          안녕하세요, 최즉흥입니다.
-        </p>
-      </header>
+        }
+        title="최즉흥 소개"
+      >
+        30대 백수 남자의 잘 해 먹는 일상
+      </PageIntro>
 
       <section className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
-        <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
+        <h2 className="mb-4 text-base font-black text-gray-900 dark:text-white">
           시간은 좀 있고, 먹고 싶은 건 많습니다.
         </h2>
-        <div className="space-y-4 text-base leading-relaxed text-gray-600 dark:text-gray-300">
+        <div className="space-y-4 text-sm leading-7 text-gray-600 dark:text-gray-300">
           <p>
             30대 백수 남자입니다. 하루 세 끼를 다 거창하게 차리는 건 아니지만, 먹고 싶은 음식이
             떠오르면 직접 만들어 보는 편이에요. 냉장고에 있는 재료를 꺼내 시작할 때도 있고, 한 끼
@@ -68,7 +61,7 @@ export default function AboutPage() {
         <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
           <h2
             id="qualifications-heading"
-            className="text-lg font-black text-gray-900 dark:text-white"
+            className="text-base font-black text-gray-900 dark:text-white"
           >
             주방에 쌓아둔 기본기
           </h2>
@@ -80,7 +73,7 @@ export default function AboutPage() {
           {qualifications.map((name) => (
             <li
               key={name}
-              className="flex items-center gap-3 rounded-2xl border border-gray-100 bg-white p-5 shadow-sm dark:border-gray-800 dark:bg-gray-900"
+              className="flex items-center gap-3 rounded-2xl border border-gray-100 bg-white p-4 shadow-sm dark:border-gray-800 dark:bg-gray-900"
             >
               <span
                 aria-hidden="true"
@@ -100,7 +93,10 @@ export default function AboutPage() {
       <MainContour />
 
       <section aria-labelledby="channels-heading">
-        <h2 id="channels-heading" className="mb-4 text-lg font-black text-gray-900 dark:text-white">
+        <h2
+          id="channels-heading"
+          className="mb-4 text-base font-black text-gray-900 dark:text-white"
+        >
           다른 곳에서도 만나요
         </h2>
         <MainSnsLink />

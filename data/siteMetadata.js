@@ -7,7 +7,7 @@ const siteMetadata = {
     '라면, 파스타, 한식 등 직접 만들어본 쉽고 맛있는 레시피를 공유하는 요리 블로그입니다. 누구나 따라 할 수 있는 간단한 집밥 레시피와 요리 팁을 소개합니다.',
   language: 'ko-kr',
 
-  theme: 'system',
+  theme: 'light',
 
   siteUrl: 'https://choi-jeukheung.github.io/',
   siteRepo: 'https://choi-jeukheung.github.io/',

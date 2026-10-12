@@ -47,15 +47,16 @@ export default function ProductsClient({ products }: { products: Product[] }) {
       </div>
 
       {/* 카테고리 탭 */}
-      <div className="mb-8 flex flex-wrap gap-2">
+      <div className="mb-6 flex flex-wrap gap-1 rounded-2xl border border-gray-100 bg-gray-50 p-1 dark:border-gray-800 dark:bg-gray-900">
         {CATEGORIES.map((cat) => (
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className={`rounded-full px-4 py-1.5 text-sm font-bold transition-all ${
+            aria-pressed={activeCategory === cat}
+            className={`min-h-11 flex-1 rounded-xl px-2 py-2 text-xs font-black transition-all sm:text-sm ${
               activeCategory === cat
-                ? 'bg-orange-500 text-white shadow-sm'
-                : 'border border-gray-200 bg-white text-gray-500 hover:border-orange-300 hover:text-orange-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400'
+                ? 'bg-white text-orange-600 shadow-sm dark:bg-gray-800 dark:text-orange-400'
+                : 'text-gray-500 hover:text-orange-600 dark:text-gray-400 dark:hover:text-orange-400'
             }`}
           >
             {cat}
@@ -65,7 +66,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
 
       {/* 상품 그리드 */}
       {filtered.length > 0 ? (
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4">
           {filtered.map((product) => (
             <a
               key={product.slug}
@@ -84,7 +85,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
                   className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
                 />
                 {product.affiliate && (
-                  <span className="absolute top-2 left-2 rounded-full bg-orange-500 px-2 py-0.5 text-[10px] font-black text-white">
+                  <span className="absolute top-2 left-2 rounded-lg bg-orange-50 px-2 py-1 text-[10px] font-black text-orange-600">
                     AD
                   </span>
                 )}

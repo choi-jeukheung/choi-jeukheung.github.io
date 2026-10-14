@@ -22,7 +22,7 @@ export function extractRecipeDetails(markdown: string, url: string) {
       section =
         /재료/.test(heading) && !/정보|추천/.test(heading)
           ? 'ingredients'
-          : /만들|만드|조리/.test(heading)
+          : /^(이렇게 만들었어요|만드는 순서|만드는 법|조리 순서)$/.test(heading)
             ? 'steps'
             : ''
     } else if (section === 'ingredients' && node.type === 'list') {

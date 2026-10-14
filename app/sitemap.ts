@@ -15,7 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .map((post) => {
       const path = post.path.replace(/^\//, '').replace(/^blog\//, 'recipe/')
       return {
-        url: `${siteUrl}/${path}`,
+        url: post.canonicalUrl || `${siteUrl}/${path}/`,
         lastModified: post.lastmod || post.date,
       }
     })

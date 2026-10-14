@@ -1,3 +1,4 @@
+import { extractRecipeDetails } from './utils/recipe-seo'
 import { defineDocumentType, ComputedFields, makeSource } from 'contentlayer2/source-files'
 import { writeFileSync } from 'fs'
 import readingTime from 'reading-time'
@@ -99,6 +100,7 @@ export const Blog = defineDocumentType(() => ({
   contentType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
+    seoTitle: { type: 'string' },
     date: { type: 'date', required: true },
     category: { type: 'string' },
     tags: { type: 'list', of: { type: 'string' }, default: [] },
@@ -121,16 +123,24 @@ export const Blog = defineDocumentType(() => ({
     ...computedFields,
     structuredData: {
       type: 'json',
-      resolve: (doc) => ({
-        '@context': 'https://schema.org',
-        '@type': 'BlogPosting',
-        headline: doc.title,
-        datePublished: doc.date,
-        dateModified: doc.lastmod || doc.date,
-        description: doc.summary,
-        thumbnail: doc.thumbnail ? doc.thumbnail[0] : siteMetadata.socialBanner,
-        url: `${siteMetadata.siteUrl}/${doc._raw.flattenedPath}`,
-      }),
+      resolve: (doc) => {
+        const recipeSlug = doc._raw.flattenedPath.replace(/^blog\//, '')
+        const url =
+          doc.canonicalUrl || `${siteMetadata.siteUrl.replace(/\/$/, '')}/recipe/${recipeSlug}/`
+        return {
+          '@context': 'https://schema.org',
+          '@type': 'Recipe',
+          name: doc.seoTitle || doc.title,
+          datePublished: doc.date,
+          dateModified: doc.lastmod || doc.date,
+          description: doc.summary,
+          image: [new URL(doc.thumbnail || siteMetadata.socialBanner, siteMetadata.siteUrl).href],
+          author: { '@type': 'Person', name: siteMetadata.author },
+          url,
+          mainEntityOfPage: url,
+          ...extractRecipeDetails(doc.body.raw, url),
+        }
+      },
     },
   },
 }))

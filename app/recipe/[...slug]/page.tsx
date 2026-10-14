@@ -25,9 +25,11 @@ const layouts = {
 
 /* --- 중요 --- */
 export async function generateStaticParams() {
-  return allBlogs.map((p) => ({
-    slug: p.slug.split('/'),
-  }))
+  return allBlogs
+    .filter((p) => !p.draft)
+    .map((p) => ({
+      slug: p.slug.split('/'),
+    }))
 }
 /* ----------- */
 
@@ -37,25 +39,30 @@ export async function generateMetadata(props: {
   const { slug: slugArray } = await props.params
   const slug = decodeURI(slugArray.join('/'))
   const post = allBlogs.find((p) => p.slug === slug)
-  if (!post) return
+  if (!post || post.draft) return
 
+  const canonical = post.canonicalUrl || new URL(`/recipe/${post.slug}/`, siteMetadata.siteUrl).href
+  const title = post.seoTitle || post.title
   return {
-    title: post.title,
+    title: { absolute: `${title} | ${siteMetadata.headerTitle}` },
+    alternates: { canonical },
     description: post.summary,
     twitter: {
       card: 'summary_large_image',
-      title: post.title,
+      title,
       description: post.summary,
       images: [post.thumbnail || siteMetadata.socialBanner],
     },
     openGraph: {
-      title: post.title,
+      title,
       description: post.summary,
       siteName: siteMetadata.title,
       locale: 'ko_KR',
       type: 'article',
       images: [post.thumbnail || siteMetadata.socialBanner],
-      url: './',
+      url: canonical,
+      publishedTime: post.date,
+      modifiedTime: post.lastmod || post.date,
     },
   }
 }
@@ -64,7 +71,7 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
   const { slug: slugArray } = await props.params
   const slug = decodeURI(slugArray.join('/'))
 
-  const sortedCoreContents = allCoreContent(sortPosts(allBlogs))
+  const sortedCoreContents = allCoreContent(sortPosts(allBlogs.filter((p) => !p.draft)))
   const postIndex = sortedCoreContents.findIndex((p) => p.slug === slug)
 
   if (postIndex === -1) {
@@ -92,6 +99,12 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
       prev={prev}
       toc={post.toc}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(post.structuredData).replace(/</g, '\\u003c'),
+        }}
+      />
       {/* ===== 본문 시작 ===== */}
       <MDXLayoutRenderer code={post.body.code} components={components} toc={post.toc} />
 

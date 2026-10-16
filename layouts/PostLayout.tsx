@@ -25,7 +25,7 @@ export default function PostLayout({
   toc = [],
   children,
 }: LayoutProps) {
-  const { slug, date, title, tags, category, time, videoType } = content
+  const { slug, date, title, tags, category, time, videoType, recipeCuisine } = content
   const ingredients = toc.find((item) => item.depth === 2 && /재료/.test(item.value))
   const steps = toc.find((item) => item.depth === 2 && /만들|만드|조리/.test(item.value))
 
@@ -51,6 +51,9 @@ export default function PostLayout({
           <span className="text-gray-500 dark:text-gray-400">
             {videoType === 'short' ? '쇼츠 레시피' : '영상 레시피'}
           </span>
+          {recipeCuisine && (
+            <span className="text-gray-500 dark:text-gray-400">{recipeCuisine}</span>
+          )}
         </div>
         <h1 className="text-[1.75rem] leading-tight tracking-tight break-words text-gray-900 sm:text-4xl dark:text-white">
           {title}

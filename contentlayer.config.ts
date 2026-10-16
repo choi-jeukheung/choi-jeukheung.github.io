@@ -1,4 +1,4 @@
-import { extractRecipeDetails } from './utils/recipe-seo'
+import { extractRecipeDetails, extractRecipeVideo } from './utils/recipe-seo'
 import { defineDocumentType, ComputedFields, makeSource } from 'contentlayer2/source-files'
 import { writeFileSync } from 'fs'
 import readingTime from 'reading-time'
@@ -109,6 +109,12 @@ export const Blog = defineDocumentType(() => ({
     // 추천 메뉴 여부
     featured: { type: 'boolean', default: false },
     videoType: { type: 'enum', options: ['full', 'short'], default: 'full' },
+    videoUploadDate: { type: 'date' },
+    videoDuration: { type: 'string' },
+    recipeCuisine: { type: 'string' },
+    prepTime: { type: 'string' },
+    cookTime: { type: 'string' },
+    totalTime: { type: 'string' },
     // 난이도 (별점 0~5점 사이, 소수점 포함 가능하도록 number 타입)
     difficulty: { type: 'number', default: 3 },
     thumbnail: { type: 'string' },
@@ -127,6 +133,7 @@ export const Blog = defineDocumentType(() => ({
         const recipeSlug = doc._raw.flattenedPath.replace(/^blog\//, '')
         const url =
           doc.canonicalUrl || `${siteMetadata.siteUrl.replace(/\/$/, '')}/recipe/${recipeSlug}/`
+        const video = extractRecipeVideo(doc.body.raw, doc)
         return {
           '@context': 'https://schema.org',
           '@type': 'Recipe',
@@ -138,6 +145,12 @@ export const Blog = defineDocumentType(() => ({
           author: { '@type': 'Person', name: siteMetadata.author },
           url,
           mainEntityOfPage: url,
+          ...(doc.recipeCuisine ? { recipeCuisine: doc.recipeCuisine } : {}),
+          ...(doc.totalTime ? { totalTime: doc.totalTime } : {}),
+          ...(doc.prepTime && doc.cookTime
+            ? { prepTime: doc.prepTime, cookTime: doc.cookTime }
+            : {}),
+          ...(video ? { video } : {}),
           ...extractRecipeDetails(doc.body.raw, url),
         }
       },

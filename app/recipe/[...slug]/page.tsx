@@ -109,9 +109,11 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
       <MDXLayoutRenderer code={post.body.code} components={components} toc={post.toc} />
 
       {/* ===== 광고 자동 삽입 ===== */}
-      <div className="my-10 flex justify-center">
-        <KakaoAd />
-      </div>
+      {!post.hasInlineAd && (
+        <div className="my-10 flex justify-center">
+          <KakaoAd />
+        </div>
+      )}
     </Layout>
   )
 }

@@ -1,4 +1,5 @@
 import { extractRecipeDetails, extractRecipeVideo } from './utils/recipe-seo'
+import { hasInlineAd } from './utils/mdx-ad'
 import { defineDocumentType, ComputedFields, makeSource } from 'contentlayer2/source-files'
 import { writeFileSync } from 'fs'
 import readingTime from 'reading-time'
@@ -127,6 +128,7 @@ export const Blog = defineDocumentType(() => ({
   },
   computedFields: {
     ...computedFields,
+    hasInlineAd: { type: 'boolean', resolve: (doc) => hasInlineAd(doc.body.raw) },
     structuredData: {
       type: 'json',
       resolve: (doc) => {

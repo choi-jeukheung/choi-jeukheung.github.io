@@ -13,11 +13,11 @@ const siteMetadata = {
   siteRepo: 'https://choi-jeukheung.github.io/',
 
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
-  socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,
+  socialBanner: `${process.env.BASE_PATH || ''}/static/favicons/android-chrome-512x512.png`,
 
   email: 'cyd5538@gmail.com',
 
-  youtube: 'https://www.youtube.com/@%EC%B5%9C%EC%A6%89%ED%9D%A5-yjin',
+  youtube: 'https://www.youtube.com/@%EC%B5%9C%EC%A6%89%ED%9D%A5-e9k  ',
   instagram: 'https://www.instagram.com/choi_jeukheung',
   tiktok: 'https://www.tiktok.com/@choi_jeukheung',
 

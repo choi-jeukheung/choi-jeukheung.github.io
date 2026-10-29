@@ -7,6 +7,8 @@ import Tag from '@/components/recipe/Tag'
 import { getCategoryName } from '@/data/recipeCategories'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ui/ScrollTopAndComment'
+import { allBlogs } from 'contentlayer/generated'
+import { getRelatedRecipes } from '@/utils/related-recipes'
 
 interface LayoutProps {
   content: CoreContent<Blog>
@@ -26,6 +28,7 @@ export default function PostLayout({
   children,
 }: LayoutProps) {
   const { slug, date, title, tags, category, time, videoType, recipeCuisine } = content
+  const relatedRecipes = getRelatedRecipes(content, allBlogs)
   const ingredients = toc.find((item) => item.depth === 2 && /재료/.test(item.value))
   const steps = toc.find((item) => item.depth === 2 && /만들|만드|조리/.test(item.value))
 
@@ -97,6 +100,28 @@ export default function PostLayout({
         {children}
       </div>
       <footer className="border-t border-gray-100 pt-6 dark:border-gray-800">
+        {relatedRecipes.length > 0 && (
+          <section aria-labelledby="related-recipes" className="mb-8">
+            <h2 id="related-recipes" className="text-xl font-bold text-gray-900 dark:text-gray-100">
+              함께 만들어볼 레시피
+            </h2>
+            <ul className="mt-4 grid gap-3 sm:grid-cols-3">
+              {relatedRecipes.map((recipe) => (
+                <li key={recipe.slug}>
+                  <Link
+                    href={`/recipe/${recipe.slug}/`}
+                    className="block h-full rounded-2xl border border-gray-200 p-4 font-semibold text-gray-900 hover:border-orange-400 hover:text-orange-700 dark:border-gray-800 dark:text-gray-100"
+                  >
+                    {recipe.title}
+                    <span aria-hidden="true" className="ml-2">
+                      →
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
         {tags && (
           <div className="flex flex-wrap gap-y-3">
             {tags.map((tag) => (

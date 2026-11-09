@@ -8,13 +8,27 @@ import MainContour from '@/components/home/MainContour'
 import KakaoAd from '@/components/ad/KakaoAd'
 
 const MAX_DISPLAY = 4
+// Recently selected recommendations appear first; other featured recipes remain available.
+const FEATURED_PRIORITY = [
+  'beef-jjamppong',
+  'short-cabbage-tuna-salad',
+  'short-pork-belly-butadon',
+  'short-rice-cake-dumpling-soup',
+  'short-spicy-dumpling-soup',
+]
 
 export default function Home({ posts }: { posts: CoreContent<Blog>[] }) {
   const publishedPosts = posts
     .filter((post) => !post.draft)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
   const featuredPostsRaw = publishedPosts.filter((post) => post.featured === true)
-  const displayFeatured = featuredPostsRaw.slice(0, MAX_DISPLAY)
+  const displayFeatured = [...featuredPostsRaw].sort((a, b) => {
+    const rank = (slug: string) => {
+      const index = FEATURED_PRIORITY.indexOf(slug)
+      return index === -1 ? FEATURED_PRIORITY.length : index
+    }
+    return rank(a.slug) - rank(b.slug)
+  })
 
   const featuredRecipes = displayFeatured.map((post: CoreContent<Blog>) => ({
     title: post.title,
@@ -30,11 +44,6 @@ export default function Home({ posts }: { posts: CoreContent<Blog>[] }) {
     difficulty: post.difficulty ?? 3,
     time: post.time || '10분',
   }))
-
-  const shortPosts = publishedPosts
-    .filter((post) => post.videoType === 'short')
-    .slice(0, MAX_DISPLAY)
-    .map((post) => ({ ...post, difficulty: post.difficulty ?? 3, time: post.time || '' }))
 
   return (
     /* 전체가 하나의 센터 컬럼 — 모바일/웹 동일하게 좁고 깔끔 */
@@ -52,11 +61,7 @@ export default function Home({ posts }: { posts: CoreContent<Blog>[] }) {
       <MainContour />
 
       {/* ── 레시피 피드 (같은 컬럼 안에서 2열 그리드) ── */}
-      <RecipeFeed
-        featuredRecipes={featuredRecipes}
-        latestPosts={latestPosts}
-        shortPosts={shortPosts}
-      />
+      <RecipeFeed featuredRecipes={featuredRecipes} latestPosts={latestPosts} />
 
       {/* 메인 광고 */}
       <div className="my-6 flex justify-center">

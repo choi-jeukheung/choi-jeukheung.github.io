@@ -21,35 +21,27 @@ export const recipeCategories = [
     textColor: 'text-blue-600 dark:text-blue-400',
   },
   {
-    name: '안주각',
-    icon: '🔥',
-    category: '안주각',
-    bgColor: 'bg-red-50 dark:bg-red-900/20',
-    textColor: 'text-red-600 dark:text-red-400',
-  },
-  {
-    name: '다이어트',
-    icon: '🥗',
-    category: '다이어트',
-    bgColor: 'bg-green-50 dark:bg-green-900/20',
-    textColor: 'text-green-600 dark:text-green-400',
-  },
-  {
     name: '간단한끼',
     icon: '🍳',
     category: '간단한끼',
     bgColor: 'bg-purple-50 dark:bg-purple-900/20',
     textColor: 'text-purple-600 dark:text-purple-400',
   },
-  {
-    name: '쇼츠요리',
-    icon: '📱',
-    category: '쇼츠요리',
-    bgColor: 'bg-rose-50 dark:bg-rose-900/20',
-    textColor: 'text-rose-600 dark:text-rose-400',
-  },
 ]
 
 export function getCategoryName(category: string) {
   return recipeCategories.find((item) => item.category === category)?.name || category
+}
+
+// Keep the historical Shorts URL available without listing it as a food category.
+export const archivedRecipeCategories = ['쇼츠요리']
+
+export function matchesRecipeCategory(
+  post: { category?: string; videoType?: string; draft?: boolean },
+  category: string
+) {
+  return (
+    !post.draft &&
+    (category === '쇼츠요리' ? post.videoType === 'short' : post.category === category)
+  )
 }

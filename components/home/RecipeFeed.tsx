@@ -30,7 +30,6 @@ interface Post {
 interface RecipeFeedProps {
   featuredRecipes: Recipe[]
   latestPosts: Post[]
-  shortPosts: Post[]
 }
 
 function Stars({ difficulty }: { difficulty: number }) {
@@ -121,13 +120,12 @@ function PostRow({ post }: { post: Post }) {
 const feedTabs = [
   { value: 'featured', label: '✨ 추천' },
   { value: 'latest', label: '🍳 최신' },
-  { value: 'short', label: '📱 쇼츠' },
 ] as const
 
-export default function RecipeFeed({ featuredRecipes, latestPosts, shortPosts }: RecipeFeedProps) {
-  const [tab, setTab] = useState<'featured' | 'latest' | 'short'>('featured')
-  const visibleRecipes =
-    tab === 'featured' ? featuredRecipes : tab === 'short' ? shortPosts : latestPosts
+export default function RecipeFeed({ featuredRecipes, latestPosts }: RecipeFeedProps) {
+  const [tab, setTab] = useState<'featured' | 'latest'>('featured')
+  const [featuredLimit, setFeaturedLimit] = useState(6)
+  const visibleRecipes = tab === 'featured' ? featuredRecipes.slice(0, featuredLimit) : latestPosts
 
   return (
     <div>
@@ -156,11 +154,7 @@ export default function RecipeFeed({ featuredRecipes, latestPosts, shortPosts }:
       <div id="recipe-feed-results" aria-live="polite">
         {visibleRecipes.length === 0 ? (
           <p className="py-12 text-center text-sm text-gray-500 dark:text-gray-400">
-            {tab === 'featured'
-              ? '아직 추천 레시피가 없습니다.'
-              : tab === 'short'
-                ? '아직 쇼츠 레시피가 없습니다.'
-                : '아직 등록된 레시피가 없습니다.'}
+            {tab === 'featured' ? '아직 추천 레시피가 없습니다.' : '아직 등록된 레시피가 없습니다.'}
           </p>
         ) : tab === 'latest' ? (
           <div className="flex flex-col gap-3">
@@ -176,6 +170,16 @@ export default function RecipeFeed({ featuredRecipes, latestPosts, shortPosts }:
           </div>
         )}
       </div>
+
+      {tab === 'featured' && featuredLimit < featuredRecipes.length && (
+        <button
+          type="button"
+          onClick={() => setFeaturedLimit((limit) => limit + 6)}
+          className="mt-5 min-h-11 w-full rounded-xl border border-gray-200 px-4 py-3 text-base font-semibold hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-800"
+        >
+          추천 더 보기 ({featuredRecipes.length - featuredLimit}개 남음)
+        </button>
+      )}
 
       {/* 더보기 */}
       <div className="mt-8 flex justify-center">

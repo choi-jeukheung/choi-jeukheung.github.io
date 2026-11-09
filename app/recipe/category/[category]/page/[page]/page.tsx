@@ -1,4 +1,9 @@
-import { getCategoryName } from '@/data/recipeCategories'
+import {
+  recipeCategories,
+  getCategoryName,
+  archivedRecipeCategories,
+  matchesRecipeCategory,
+} from '@/data/recipeCategories'
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
 import { allBlogs } from 'contentlayer/generated'
 import { notFound } from 'next/navigation'
@@ -7,11 +12,11 @@ import ListLayout from '@/layouts/ListLayoutWithTags'
 const POSTS_PER_PAGE = 5
 
 export const generateStaticParams = async () => {
-  const categories = [...new Set(allBlogs.map((post) => post.category).filter(Boolean))] as string[]
+  const categories = [...recipeCategories.map((item) => item.category), ...archivedRecipeCategories]
   const params: Array<{ category: string; page: string }> = []
 
   categories.forEach((category) => {
-    const filteredPosts = allBlogs.filter((post) => post.category === category)
+    const filteredPosts = allBlogs.filter((post) => matchesRecipeCategory(post, category))
     const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE)
     const pagesToGenerate = totalPages > 0 ? totalPages : 1
 
@@ -40,9 +45,9 @@ export default async function CategoryPage(props: {
 
   const categoryName = getCategoryName(category)
 
-  const allPosts = allCoreContent(sortPosts(allBlogs))
+  const allPosts = allCoreContent(sortPosts(allBlogs.filter((post) => !post.draft)))
   const filteredPosts = allCoreContent(
-    sortPosts(allBlogs.filter((post) => post.category === category))
+    sortPosts(allBlogs.filter((post) => matchesRecipeCategory(post, category)))
   )
 
   const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE)

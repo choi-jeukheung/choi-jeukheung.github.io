@@ -25,11 +25,11 @@ export default function TagExplorer({
     )
 
   return (
-    <div className="mx-auto w-full max-w-[640px] px-5 pb-16 text-gray-800 dark:text-gray-200">
-      <PageIntro icon={<span aria-hidden="true">#</span>} title="태그로 찾는 한 끼">
+    <div className="mx-auto max-w-3xl py-8 sm:py-12">
+      <PageIntro eyebrow="냉장고 속 재료로 시작해요" title="태그로 찾는 한 끼">
         재료나 메뉴를 골라 오늘의 레시피를 찾아보세요.
       </PageIntro>
-      <div className="mb-6 flex gap-2 text-xs font-bold">
+      <div className="mt-8 mb-6 flex gap-2 text-xs font-bold">
         <span className="rounded-lg bg-orange-50 px-3 py-1.5 text-orange-600 dark:bg-orange-900/20 dark:text-orange-400">
           태그 {tags.length}개
         </span>

@@ -1,7 +1,5 @@
 import { genPageMetadata } from 'app/seo'
 import Link from 'next/link'
-import Image from 'next/image'
-import siteMetadata from '@/data/siteMetadata'
 import MainSnsLink from '@/components/home/MainSnsLink'
 import MainContour from '@/components/home/MainContour'
 import type { Metadata } from 'next'
@@ -17,24 +15,12 @@ const qualifications = ['한식', '일식', '양식', '중식']
 
 export default function AboutPage() {
   return (
-    <article className="mx-auto w-full max-w-[640px] px-5 pb-16">
-      <PageIntro
-        icon={
-          <Image
-            src={siteMetadata.siteLogo}
-            alt={siteMetadata.headerTitle}
-            width={48}
-            height={48}
-            className="h-full w-full scale-175 object-cover"
-            priority
-          />
-        }
-        title="최즉흥 소개"
-      >
+    <article className="mx-auto max-w-3xl py-8 sm:py-12">
+      <PageIntro eyebrow="잘 해 먹고 사는 이야기" title="최즉흥 소개">
         30대 백수 남자의 잘 해 먹는 일상
       </PageIntro>
 
-      <section className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
+      <section className="mt-8 rounded-2xl border border-gray-100 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
         <h2 className="mb-4 text-base font-black text-gray-900 dark:text-white">
           시간은 좀 있고, 먹고 싶은 건 많습니다.
         </h2>

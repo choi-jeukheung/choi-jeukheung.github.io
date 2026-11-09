@@ -38,11 +38,12 @@ export default function ProductsClient({ products }: { products: Product[] }) {
       <div className="relative mb-5">
         <span className="absolute top-1/2 left-4 -translate-y-1/2 text-gray-400">🔍</span>
         <input
-          type="text"
+          type="search"
+          aria-label="추천 상품 검색"
           placeholder="상품명이나 카테고리로 검색..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full rounded-2xl border border-gray-200 bg-white py-3 pr-4 pl-10 text-sm font-medium transition outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 dark:border-gray-700 dark:bg-gray-900 dark:text-white dark:focus:border-orange-500"
+          className="focus:border-primary-400 w-full rounded-2xl border border-gray-200 bg-white py-3 pr-4 pl-10 text-base font-medium transition outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-white dark:focus:border-gray-500"
         />
       </div>
 
@@ -53,10 +54,10 @@ export default function ProductsClient({ products }: { products: Product[] }) {
             key={cat}
             onClick={() => setActiveCategory(cat)}
             aria-pressed={activeCategory === cat}
-            className={`min-h-11 flex-1 rounded-xl px-2 py-2 text-xs font-black transition-all sm:text-sm ${
+            className={`min-h-11 flex-1 rounded-xl px-2 py-2 text-sm font-semibold whitespace-nowrap transition-all ${
               activeCategory === cat
-                ? 'bg-white text-orange-600 shadow-sm dark:bg-gray-800 dark:text-orange-400'
-                : 'text-gray-500 hover:text-orange-600 dark:text-gray-400 dark:hover:text-orange-400'
+                ? 'bg-white text-gray-900 shadow-sm dark:bg-gray-800 dark:text-white'
+                : 'hover:text-primary-600 dark:hover:text-primary-400 text-gray-500 dark:text-gray-400'
             }`}
           >
             {cat}
@@ -66,7 +67,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
 
       {/* 상품 그리드 */}
       {filtered.length > 0 ? (
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 min-[400px]:grid-cols-2">
           {filtered.map((product) => (
             <a
               key={product.slug}
@@ -85,24 +86,24 @@ export default function ProductsClient({ products }: { products: Product[] }) {
                   className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
                 />
                 {product.affiliate && (
-                  <span className="absolute top-2 left-2 rounded-lg bg-orange-50 px-2 py-1 text-[10px] font-black text-orange-600">
+                  <span className="absolute top-2 left-2 rounded-lg bg-gray-50 px-2 py-1 text-xs font-black text-gray-600">
                     AD
                   </span>
                 )}
               </div>
               <div className="p-3">
-                <span className="mb-1 inline-block rounded-full bg-gray-100 px-2 py-0.5 text-[10px] font-bold text-gray-500 dark:bg-gray-800 dark:text-gray-400">
+                <span className="mb-1 inline-block rounded-full bg-gray-100 px-2 py-0.5 text-xs font-bold text-gray-500 dark:bg-gray-800 dark:text-gray-400">
                   {product.category}
                 </span>
-                <h3 className="mb-1 line-clamp-2 text-sm leading-snug font-black text-gray-900 group-hover:text-orange-600 dark:text-white dark:group-hover:text-orange-400">
+                <h3 className="group-hover:text-primary-600 dark:group-hover:text-primary-400 mb-1 text-base leading-6 font-semibold break-words text-gray-900 dark:text-white">
                   {product.title}
                 </h3>
                 {product.summary && (
-                  <p className="line-clamp-2 text-xs text-gray-500 dark:text-gray-400">
+                  <p className="line-clamp-2 text-sm text-gray-500 dark:text-gray-400">
                     {product.summary}
                   </p>
                 )}
-                <div className="mt-3 flex items-center justify-center rounded-xl bg-orange-50 py-2 text-xs font-black text-orange-600 transition group-hover:bg-orange-500 group-hover:text-white dark:bg-orange-950/30 dark:text-orange-400">
+                <div className="mt-3 flex min-h-11 items-center justify-center rounded-xl bg-gray-50 py-2 text-sm font-black text-gray-600 transition group-hover:bg-gray-800 group-hover:text-white dark:bg-gray-800 dark:text-gray-200 dark:group-hover:bg-gray-700 dark:group-hover:text-white">
                   구매하러 가기 →
                 </div>
               </div>

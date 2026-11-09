@@ -26,7 +26,7 @@ export default function ProductsPage() {
       <PageIntro eyebrow="요리에 곁들이는 도구와 재료" title="추천 아이템">
         요리에 곁들일 조리도구와 식재료를 모았어요.
       </PageIntro>
-      <p className="mt-8 mb-6 rounded-2xl border border-orange-100 bg-orange-50/60 px-4 py-3 text-xs leading-relaxed text-gray-500 dark:border-orange-900/40 dark:bg-orange-900/10 dark:text-gray-400">
+      <p className="mt-8 mb-6 rounded-2xl border border-gray-100 bg-gray-50/60 px-4 py-3 text-xs leading-relaxed text-gray-500 dark:border-gray-900/40 dark:bg-gray-900/10 dark:text-gray-400">
         이 페이지는 쿠팡파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.
       </p>
       <ProductsClient products={products} />

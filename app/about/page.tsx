@@ -24,7 +24,7 @@ export default function AboutPage() {
         <h2 className="mb-4 text-base font-black text-gray-900 dark:text-white">
           시간은 좀 있고, 먹고 싶은 건 많습니다.
         </h2>
-        <div className="space-y-4 text-sm leading-7 text-gray-600 dark:text-gray-300">
+        <div className="space-y-4 text-base leading-7 text-gray-600 dark:text-gray-300">
           <p>
             30대 백수 남자입니다. 하루 세 끼를 다 거창하게 차리는 건 아니지만, 먹고 싶은 음식이
             떠오르면 직접 만들어 보는 편이에요. 냉장고에 있는 재료를 꺼내 시작할 때도 있고, 한 끼
@@ -51,7 +51,7 @@ export default function AboutPage() {
           >
             주방에 쌓아둔 기본기
           </h2>
-          <span className="rounded-lg bg-orange-50 px-2.5 py-1 text-xs font-bold text-orange-600 dark:bg-orange-900/20 dark:text-orange-400">
+          <span className="rounded-lg bg-gray-50 px-2.5 py-1 text-sm font-bold text-gray-600 dark:bg-gray-900/20 dark:text-gray-400">
             조리기능사 4종 취득
           </span>
         </div>
@@ -63,13 +63,13 @@ export default function AboutPage() {
             >
               <span
                 aria-hidden="true"
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-orange-50 text-orange-500 dark:bg-orange-900/20 dark:text-orange-400"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gray-50 text-gray-500 dark:bg-gray-900/20 dark:text-gray-400"
               >
                 ✓
               </span>
               <div>
                 <p className="font-bold text-gray-900 dark:text-white">{name}</p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">조리기능사</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">조리기능사</p>
               </div>
             </li>
           ))}
@@ -88,7 +88,7 @@ export default function AboutPage() {
         <MainSnsLink />
         <a
           href="mailto:cyd5538@gmail.com"
-          className="mt-3 flex items-center justify-between rounded-2xl border border-gray-200 bg-white px-5 py-4 text-[15px] font-bold text-gray-800 shadow-sm transition-all hover:border-orange-200 hover:shadow-md dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:hover:border-orange-900/40"
+          className="mt-3 flex items-center justify-between rounded-2xl border border-gray-200 bg-white px-5 py-4 text-[15px] font-bold text-gray-800 shadow-sm transition-all hover:border-gray-200 hover:shadow-md dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:hover:border-gray-900/40"
         >
           <span>이야기 나누고 싶다면, 이메일</span>
           <span aria-hidden="true" className="text-gray-400">
@@ -99,7 +99,7 @@ export default function AboutPage() {
       <div className="mt-8 flex justify-center">
         <Link
           href="/recipe"
-          className="rounded-2xl border-2 border-gray-200 bg-white px-8 py-3 text-sm font-black text-gray-700 shadow-sm transition-all hover:border-orange-400 hover:text-orange-600 hover:shadow-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-orange-500 dark:hover:text-orange-400"
+          className="hover:text-primary-600 dark:hover:text-primary-400 rounded-2xl border-2 border-gray-200 bg-white px-8 py-3 text-sm font-black text-gray-700 shadow-sm transition-all hover:border-gray-400 hover:shadow-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-500"
         >
           오늘 뭐 해 먹지? 레시피 보기 →
         </Link>

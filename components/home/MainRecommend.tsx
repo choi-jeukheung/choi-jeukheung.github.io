@@ -23,7 +23,7 @@ const MainRecommend = () => {
       <p className="mb-1 px-1 text-base font-black tracking-widest text-gray-900 uppercase dark:text-white">
         추천 식재료
       </p>
-      <p className="px-1 text-xs leading-relaxed text-gray-500 dark:text-gray-400">
+      <p className="px-1 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
         쿠팡파트너스 활동의 일환으로, 구매 시 일정액의 수수료를 제공받습니다.
       </p>
       {affiliateLinks.map(({ label, href, icon }) => (
@@ -32,12 +32,12 @@ const MainRecommend = () => {
           href={href}
           target="_blank"
           rel="noopener noreferrer sponsored nofollow"
-          className="flex items-center gap-4 rounded-2xl border border-gray-200 bg-white px-5 py-4 font-bold text-gray-800 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-orange-200 hover:bg-orange-50 hover:shadow-md dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:hover:border-orange-900/50"
+          className="flex items-center gap-4 rounded-2xl border border-gray-200 bg-white px-5 py-4 font-bold text-gray-800 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-gray-200 hover:bg-gray-50 hover:shadow-md dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:hover:border-gray-600 dark:hover:bg-gray-700"
         >
           <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gray-50 text-4xl dark:bg-gray-700">
             {icon}
           </span>
-          <span className="flex-1 text-[15px]">{label}</span>
+          <span className="flex-1 text-base leading-6">{label}</span>
           <span className="text-gray-300 dark:text-gray-600">↗</span>
         </a>
       ))}
@@ -45,7 +45,7 @@ const MainRecommend = () => {
       {/* 전체 추천 상품 보기 */}
       <Link
         href="/products"
-        className="mt-1 flex items-center justify-center gap-2 rounded-2xl border border-dashed border-gray-200 py-4 text-sm font-black text-gray-400 transition-all hover:border-orange-300 hover:text-orange-500 dark:border-gray-700 dark:hover:border-orange-700 dark:hover:text-orange-400"
+        className="dark:hover:text-primary-400 mt-1 flex items-center justify-center gap-2 rounded-2xl border border-dashed border-gray-200 py-4 text-sm font-black text-gray-400 transition-all hover:border-gray-300 hover:text-gray-500 dark:border-gray-700 dark:hover:border-gray-700"
       >
         <span>🛒</span>
         전체 추천 아이템 보기

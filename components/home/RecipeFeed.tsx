@@ -70,11 +70,11 @@ function RecipeCard({ recipe }: { recipe: Recipe }) {
         </div>
       </div>
       <div className="p-4">
-        <h3 className="mb-1.5 line-clamp-1 font-bold text-gray-900 transition-colors group-hover:text-orange-600 dark:text-white dark:group-hover:text-orange-400">
+        <h3 className="group-hover:text-primary-600 dark:group-hover:text-primary-400 mb-1.5 text-base leading-6 font-bold break-words text-gray-900 transition-colors dark:text-white">
           {recipe.title}
         </h3>
         {recipe.summary && (
-          <p className="mb-3 line-clamp-2 text-xs leading-relaxed text-gray-500 dark:text-gray-400">
+          <p className="mb-3 line-clamp-2 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
             {recipe.summary}
           </p>
         )}
@@ -88,7 +88,7 @@ function PostRow({ post }: { post: Post }) {
   return (
     <Link
       href={`/recipe/${post.slug}`}
-      className="group flex gap-4 rounded-2xl border border-gray-100 bg-white p-4 shadow-sm transition-all hover:border-orange-200 hover:shadow-md dark:border-gray-800 dark:bg-gray-900 dark:hover:border-orange-900/40"
+      className="group flex gap-4 rounded-2xl border border-gray-100 bg-white p-4 shadow-sm transition-all hover:border-gray-200 hover:shadow-md dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-900/40"
     >
       {post.thumbnail && (
         <div className="h-20 w-20 flex-shrink-0 overflow-hidden rounded-xl sm:h-24 sm:w-24">
@@ -100,14 +100,14 @@ function PostRow({ post }: { post: Post }) {
         </div>
       )}
       <div className="flex min-w-0 flex-1 flex-col justify-center gap-1">
-        <h3 className="line-clamp-1 font-bold text-gray-900 transition-colors group-hover:text-orange-600 dark:text-white dark:group-hover:text-orange-400">
+        <h3 className="group-hover:text-primary-600 dark:group-hover:text-primary-400 text-base leading-6 font-bold break-words text-gray-900 transition-colors dark:text-white">
           {post.title}
         </h3>
         {post.summary && (
-          <p className="line-clamp-1 text-xs text-gray-500 dark:text-gray-400">{post.summary}</p>
+          <p className="line-clamp-2 text-sm text-gray-500 dark:text-gray-400">{post.summary}</p>
         )}
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-          <span className="text-xs font-bold text-orange-500">{post.time}</span>
+          <span className="text-xs font-bold text-gray-500">{post.time}</span>
           <Stars difficulty={post.difficulty} />
           <time className="text-xs text-gray-400 sm:ml-auto">
             {formatDate(post.date, siteMetadata.locale)}
@@ -144,7 +144,7 @@ export default function RecipeFeed({ featuredRecipes, latestPosts, shortPosts }:
             onClick={() => setTab(value)}
             className={`flex-1 rounded-xl py-2.5 text-base font-black transition-all ${
               tab === value
-                ? 'bg-white text-orange-600 shadow-sm dark:bg-gray-800 dark:text-orange-400'
+                ? 'bg-white text-gray-900 shadow-sm dark:bg-gray-800 dark:text-white'
                 : 'text-gray-500 hover:text-gray-700 dark:text-gray-500 dark:hover:text-gray-300'
             }`}
           >
@@ -169,7 +169,7 @@ export default function RecipeFeed({ featuredRecipes, latestPosts, shortPosts }:
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 min-[400px]:grid-cols-2">
             {visibleRecipes.map((recipe) => (
               <RecipeCard key={recipe.slug} recipe={recipe} />
             ))}
@@ -181,7 +181,7 @@ export default function RecipeFeed({ featuredRecipes, latestPosts, shortPosts }:
       <div className="mt-8 flex justify-center">
         <Link
           href="/recipe"
-          className="rounded-2xl border-2 border-gray-200 bg-white px-8 py-3 text-sm font-black text-gray-700 shadow-sm transition-all hover:border-orange-400 hover:text-orange-600 hover:shadow-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-orange-500 dark:hover:text-orange-400"
+          className="hover:text-primary-600 dark:hover:text-primary-400 rounded-2xl border-2 border-gray-200 bg-white px-8 py-3 text-sm font-black text-gray-700 shadow-sm transition-all hover:border-gray-400 hover:shadow-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-500"
         >
           모든 레시피 보기 →
         </Link>

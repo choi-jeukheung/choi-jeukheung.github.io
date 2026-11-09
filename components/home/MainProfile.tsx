@@ -4,7 +4,7 @@ import Image from 'next/image'
 const MainProfile = () => {
   return (
     <div className="flex items-center gap-3 pt-5 pb-3 sm:pt-8">
-      <div className="h-12 w-12 shrink-0 overflow-hidden rounded-full ring-2 ring-orange-100 dark:ring-orange-900/40">
+      <div className="h-12 w-12 shrink-0 overflow-hidden rounded-full ring-2 ring-gray-100 dark:ring-gray-900/40">
         <Image
           src={siteMetadata.siteLogo}
           alt={siteMetadata.headerTitle}

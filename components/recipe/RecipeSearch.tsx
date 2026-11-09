@@ -146,7 +146,7 @@ export default function RecipeSearch({ recipes }: { recipes: SearchRecipe[] }) {
             }
           }}
           placeholder="예: 양배추 참치, 대패, 우동"
-          className="min-w-0 flex-1 rounded-2xl border border-gray-300 bg-white px-4 py-3 text-base focus:border-orange-500 focus:ring-2 focus:ring-orange-500 dark:border-gray-700 dark:bg-gray-900"
+          className="min-w-0 flex-1 rounded-2xl border border-gray-300 bg-white px-4 py-3 text-base focus:border-gray-500 focus:ring-2 focus:ring-gray-500 dark:border-gray-700 dark:bg-gray-900"
         />
         {inputValue && (
           <button
@@ -156,7 +156,7 @@ export default function RecipeSearch({ recipes }: { recipes: SearchRecipe[] }) {
               setInputValue('')
               setQuery('')
             }}
-            className="rounded-xl px-3 text-sm font-semibold hover:bg-orange-50 dark:hover:bg-gray-800"
+            className="rounded-xl px-3 text-sm font-semibold hover:bg-gray-50 dark:hover:bg-gray-800"
           >
             초기화
           </button>
@@ -171,7 +171,7 @@ export default function RecipeSearch({ recipes }: { recipes: SearchRecipe[] }) {
             <li key={recipe.slug}>
               <Link
                 href={`/recipe/${recipe.slug}/`}
-                className="flex items-start gap-4 rounded-2xl border border-gray-200 p-3 transition-colors hover:border-orange-400 hover:bg-orange-50/50 focus-visible:outline-2 focus-visible:outline-orange-500 sm:p-5 dark:border-gray-800 dark:hover:bg-gray-900"
+                className="flex items-start gap-4 rounded-2xl border border-gray-200 p-3 transition-colors hover:border-gray-400 hover:bg-gray-50/50 focus-visible:outline-2 focus-visible:outline-gray-500 sm:p-5 dark:border-gray-800 dark:hover:bg-gray-900"
               >
                 <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl bg-gray-100 sm:h-32 sm:w-40 dark:bg-gray-800">
                   <Image
@@ -187,7 +187,7 @@ export default function RecipeSearch({ recipes }: { recipes: SearchRecipe[] }) {
                   />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <span className="text-xs font-semibold text-orange-600 dark:text-orange-400">
+                  <span className="text-xs font-semibold text-gray-600 dark:text-gray-400">
                     {recipe.videoType === 'short' ? '쇼츠 레시피' : '레시피'}
                   </span>
                   <h2 className="mt-2 text-lg font-bold">{recipe.title}</h2>
@@ -235,7 +235,7 @@ export default function RecipeSearch({ recipes }: { recipes: SearchRecipe[] }) {
                   href={pageHref(value)}
                   aria-current={page === value ? 'page' : undefined}
                   aria-label={`${value}페이지`}
-                  className={`flex h-11 min-w-11 items-center justify-center rounded-xl px-3 ${page === value ? 'bg-orange-600 font-bold text-white' : 'border border-gray-200 hover:bg-orange-50 dark:border-gray-700 dark:hover:bg-gray-800'}`}
+                  className={`flex h-11 min-w-11 items-center justify-center rounded-xl px-3 ${page === value ? 'bg-gray-600 font-bold text-white' : 'border border-gray-200 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-800'}`}
                 >
                   {value}
                 </Link>

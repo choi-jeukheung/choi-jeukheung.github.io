@@ -5,7 +5,7 @@ export default function SearchButton() {
     <Link
       href="/search/"
       aria-label="레시피 검색"
-      className="flex h-11 w-11 items-center justify-center rounded-xl text-gray-700 hover:bg-orange-50 hover:text-orange-600 dark:text-gray-200 dark:hover:bg-gray-800"
+      className="hover:text-primary-600 flex h-11 w-11 items-center justify-center rounded-xl text-gray-700 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-800"
     >
       <svg
         aria-hidden="true"

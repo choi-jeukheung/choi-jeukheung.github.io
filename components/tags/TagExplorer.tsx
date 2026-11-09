@@ -29,8 +29,8 @@ export default function TagExplorer({
       <PageIntro eyebrow="냉장고 속 재료로 시작해요" title="태그로 찾는 한 끼">
         재료나 메뉴를 골라 오늘의 레시피를 찾아보세요.
       </PageIntro>
-      <div className="mt-8 mb-6 flex gap-2 text-xs font-bold">
-        <span className="rounded-lg bg-orange-50 px-3 py-1.5 text-orange-600 dark:bg-orange-900/20 dark:text-orange-400">
+      <div className="mt-8 mb-6 flex gap-2 text-sm font-bold">
+        <span className="rounded-lg bg-gray-50 px-3 py-1.5 text-gray-600 dark:bg-gray-900/20 dark:text-gray-400">
           태그 {tags.length}개
         </span>
         <span className="rounded-lg bg-gray-50 px-3 py-1.5 text-gray-500 dark:bg-gray-800 dark:text-gray-400">
@@ -44,7 +44,7 @@ export default function TagExplorer({
             <label htmlFor="tag-search" className="mb-2 block text-sm font-semibold">
               어떤 재료나 메뉴를 찾으세요?
             </label>
-            <div className="flex items-center gap-3 rounded-2xl border border-gray-200 bg-white px-4 focus-within:border-orange-400 focus-within:ring-2 focus-within:ring-orange-400/20 dark:border-gray-700 dark:bg-gray-900">
+            <div className="focus-within:border-primary-400 focus-within:ring-primary-400/20 flex items-center gap-3 rounded-2xl border border-gray-200 bg-white px-4 focus-within:ring-2 dark:border-gray-700 dark:bg-gray-900">
               <svg
                 aria-hidden="true"
                 viewBox="0 0 24 24"
@@ -62,19 +62,19 @@ export default function TagExplorer({
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder="예: 토마토, 파스타, 바질"
-                className="min-w-0 flex-1 border-0 bg-transparent px-0 py-3.5 text-sm text-gray-800 placeholder:text-gray-400 focus:ring-0 dark:text-gray-100"
+                className="min-w-0 flex-1 border-0 bg-transparent px-0 py-3.5 text-base text-gray-800 placeholder:text-gray-400 focus:ring-0 dark:text-gray-100"
               />
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <label htmlFor="tag-sort" className="text-xs text-gray-500 dark:text-gray-400">
+            <label htmlFor="tag-sort" className="text-sm text-gray-500 dark:text-gray-400">
               정렬
             </label>
             <select
               id="tag-sort"
               value={sort}
               onChange={(event) => setSort(event.target.value)}
-              className="rounded-xl border-gray-200 bg-white py-2.5 pr-9 pl-3 text-sm focus:border-orange-400 focus:ring-orange-400 dark:border-gray-700 dark:bg-gray-900"
+              className="focus:border-primary-400 focus:ring-primary-400 rounded-xl border-gray-200 bg-white py-2.5 pr-9 pl-3 text-base dark:border-gray-700 dark:bg-gray-900"
             >
               <option value="count">레시피 많은 순</option>
               <option value="name">가나다순</option>
@@ -86,7 +86,7 @@ export default function TagExplorer({
           <h2 id="tag-list-heading" className="text-lg font-black">
             {normalizedQuery ? '검색한 태그' : '모든 태그'}
           </h2>
-          <p role="status" className="text-xs text-gray-500 dark:text-gray-400">
+          <p role="status" className="text-sm text-gray-500 dark:text-gray-400">
             {visibleTags.length}개의 키워드
           </p>
         </div>
@@ -96,11 +96,11 @@ export default function TagExplorer({
               <li key={tag.slug}>
                 <Link
                   href={`/tags/${tag.slug}`}
-                  className="group flex h-full min-h-20 items-center gap-3 rounded-2xl border border-gray-100 bg-white p-4 shadow-sm transition-all hover:border-orange-200 hover:shadow-md dark:border-gray-800 dark:bg-gray-900 dark:hover:border-orange-900/40"
+                  className="group flex h-full min-h-20 items-center gap-3 rounded-2xl border border-gray-100 bg-white p-4 shadow-sm transition-all hover:border-gray-200 hover:shadow-md dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-900/40"
                 >
                   <span
                     aria-hidden="true"
-                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-orange-50 text-xl font-bold text-orange-500 dark:bg-orange-900/20 dark:text-orange-400"
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gray-50 text-xl font-bold text-gray-500 dark:bg-gray-900/20 dark:text-gray-400"
                   >
                     #
                   </span>
@@ -108,13 +108,13 @@ export default function TagExplorer({
                     <p className="text-sm font-bold break-words text-gray-800 dark:text-gray-100">
                       {tag.name}
                     </p>
-                    <p className="mt-1.5 text-xs text-gray-500 dark:text-gray-400">
+                    <p className="mt-1.5 text-sm text-gray-500 dark:text-gray-400">
                       레시피 {tag.count}편
                     </p>
                   </div>
                   <span
                     aria-hidden="true"
-                    className="text-gray-400 group-hover:text-orange-600 dark:group-hover:text-orange-400"
+                    className="group-hover:text-primary-600 dark:group-hover:text-primary-400 text-gray-400"
                   >
                     ↗
                   </span>
@@ -138,7 +138,7 @@ export default function TagExplorer({
               <button
                 type="button"
                 onClick={() => setQuery('')}
-                className="mt-6 rounded-xl bg-orange-50 px-5 py-3 text-sm font-bold text-orange-600 hover:bg-orange-100 dark:bg-orange-900/20 dark:text-orange-400 dark:hover:bg-orange-900/40"
+                className="mt-6 rounded-xl bg-gray-50 px-5 py-3 text-sm font-bold text-gray-600 hover:bg-gray-100 dark:bg-gray-900/20 dark:text-gray-400 dark:hover:bg-gray-900/40"
               >
                 검색 초기화
               </button>
@@ -149,7 +149,7 @@ export default function TagExplorer({
           <p className="text-gray-500 dark:text-gray-400">아직 메뉴를 못 정했다면</p>
           <Link
             href="/recipe"
-            className="rounded-2xl border-2 border-gray-200 bg-white px-6 py-3 text-sm font-black text-gray-700 shadow-sm transition-all hover:border-orange-400 hover:text-orange-600 hover:shadow-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-orange-500 dark:hover:text-orange-400"
+            className="hover:text-primary-600 dark:hover:text-primary-400 rounded-2xl border-2 border-gray-200 bg-white px-6 py-3 text-sm font-black text-gray-700 shadow-sm transition-all hover:border-gray-400 hover:shadow-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-500"
           >
             전체 레시피 둘러보기 <span aria-hidden="true">→</span>
           </Link>

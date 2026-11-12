@@ -1,3 +1,5 @@
+import IngredientChecklist from '../recipe/IngredientChecklist'
+import IngredientProducts from '../recipe/IngredientProducts'
 import TOCInline from 'pliny/ui/TOCInline'
 import Pre from 'pliny/ui/Pre'
 import BlogNewsletterForm from 'pliny/ui/BlogNewsletterForm'
@@ -12,6 +14,8 @@ import KakaoAd from '../ad/KakaoAd'
 
 export const components: MDXComponents = {
   Image,
+  IngredientChecklist,
+  IngredientProducts,
   TOCInline,
   a: CustomLink,
   pre: Pre,

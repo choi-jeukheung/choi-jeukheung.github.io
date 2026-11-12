@@ -1,3 +1,4 @@
+import CopyRecipeLink from '@/components/recipe/CopyRecipeLink'
 import { ReactNode } from 'react'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Blog, Authors } from 'contentlayer/generated'
@@ -28,7 +29,6 @@ export default function PostLayout({
 }: LayoutProps) {
   const { date, title, tags, category, time, videoType, recipeCuisine } = content
   const relatedRecipes = getRelatedRecipes(content, allBlogs)
-  const ingredients = toc.find((item) => item.depth === 2 && /재료/.test(item.value))
   const steps = toc.find((item) => item.depth === 2 && /만들|만드|조리/.test(item.value))
 
   return (
@@ -75,26 +75,17 @@ export default function PostLayout({
               <span className="rounded-lg bg-gray-50 px-2 py-1 dark:bg-gray-900">조리 {time}</span>
             )}
           </div>
-          {(ingredients || steps) && (
-            <nav aria-label="레시피 바로가기" className="mt-5 grid grid-cols-2 gap-3">
-              {ingredients && (
-                <a
-                  href={ingredients.url}
-                  className="bg-primary-500 hover:bg-primary-600 flex min-h-12 items-center justify-center rounded-xl px-3 py-3 font-bold text-white"
-                >
-                  재료 보기 ↓
-                </a>
-              )}
-              {steps && (
-                <a
-                  href={steps.url}
-                  className="hover:border-primary-400 flex min-h-12 items-center justify-center rounded-xl border border-gray-200 px-3 py-3 font-bold text-gray-700 dark:border-gray-700 dark:text-gray-200"
-                >
-                  조리 순서 ↓
-                </a>
-              )}
-            </nav>
-          )}
+          <div className="mt-5 flex flex-wrap items-start gap-3">
+            {steps && (
+              <a
+                href={steps.url}
+                className="inline-flex min-h-12 items-center rounded-xl border border-gray-200 px-4 py-3 text-sm font-semibold hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-900"
+              >
+                조리 순서로 바로가기 ↓
+              </a>
+            )}
+            <CopyRecipeLink />
+          </div>
         </header>
         <div className="xl:hidden">
           <RecipeToc toc={toc} />

@@ -34,7 +34,7 @@ export default function Home({ posts }: { posts: CoreContent<Blog>[] }) {
     title: post.title,
     slug: post.slug,
     thumbnail: post.thumbnail,
-    time: post.time || '15분',
+    time: post.time,
     difficulty: post.difficulty ?? 3,
     summary: post.summary,
   }))
@@ -42,7 +42,7 @@ export default function Home({ posts }: { posts: CoreContent<Blog>[] }) {
   const latestPosts = publishedPosts.slice(0, MAX_DISPLAY).map((post: CoreContent<Blog>) => ({
     ...post,
     difficulty: post.difficulty ?? 3,
-    time: post.time || '10분',
+    time: post.time,
   }))
 
   return (

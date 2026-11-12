@@ -3,14 +3,13 @@
 import { useState } from 'react'
 import Link from '../ui/Link'
 import Image from '../ui/Image'
-import { StarFull, StarHalf, StarEmpty } from '../social-icons/icons'
 import { formatDate } from 'pliny/utils/formatDate'
 import siteMetadata from '@/data/siteMetadata'
 
 interface Recipe {
   title: string
   slug: string
-  time: string
+  time?: string
   difficulty: number
   summary?: string
   thumbnail?: string
@@ -23,30 +22,13 @@ interface Post {
   summary?: string
   tags: string[]
   difficulty: number
-  time: string
+  time?: string
   thumbnail?: string
 }
 
 interface RecipeFeedProps {
   featuredRecipes: Recipe[]
   latestPosts: Post[]
-}
-
-function Stars({ difficulty }: { difficulty: number }) {
-  return (
-    <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
-      <span className="mr-1 text-xs">난이도</span>
-      {[1, 2, 3, 4, 5].map((star) => {
-        const isFull = star <= Math.floor(difficulty)
-        const isHalf = star === Math.ceil(difficulty) && difficulty % 1 !== 0
-        if (isFull)
-          return <StarFull key={star} className="h-3.5 w-3.5 text-gray-500 dark:text-gray-400" />
-        if (isHalf)
-          return <StarHalf key={star} className="h-3.5 w-3.5 text-gray-500 dark:text-gray-400" />
-        return <StarEmpty key={star} className="h-3.5 w-3.5 text-gray-300 dark:text-gray-600" />
-      })}
-    </div>
-  )
 }
 
 function RecipeCard({ recipe }: { recipe: Recipe }) {
@@ -64,9 +46,11 @@ function RecipeCard({ recipe }: { recipe: Recipe }) {
         ) : (
           <div className="flex h-full w-full items-center justify-center text-5xl">🍳</div>
         )}
-        <div className="absolute right-2.5 bottom-2.5 rounded-lg bg-black/60 px-2 py-1 text-xs font-bold text-white backdrop-blur-sm">
-          {recipe.time}
-        </div>
+        {recipe.time && (
+          <div className="absolute right-2.5 bottom-2.5 rounded-lg bg-black/60 px-2 py-1 text-xs font-bold text-white backdrop-blur-sm">
+            {recipe.time}
+          </div>
+        )}
       </div>
       <div className="pt-4 pb-2">
         <h3 className="group-hover:text-primary-600 dark:group-hover:text-primary-400 mb-2 text-lg leading-7 font-bold break-words text-gray-900 transition-colors dark:text-white">
@@ -77,7 +61,6 @@ function RecipeCard({ recipe }: { recipe: Recipe }) {
             {recipe.summary}
           </p>
         )}
-        <Stars difficulty={recipe.difficulty} />
       </div>
     </Link>
   )
@@ -106,8 +89,7 @@ function PostRow({ post }: { post: Post }) {
           <p className="line-clamp-2 text-sm text-gray-500 dark:text-gray-400">{post.summary}</p>
         )}
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-          <span className="text-xs font-bold text-gray-500">{post.time}</span>
-          <Stars difficulty={post.difficulty} />
+          {post.time && <span className="text-xs font-bold text-gray-500">{post.time}</span>}
           <time className="text-xs text-gray-400 sm:ml-auto">
             {formatDate(post.date, siteMetadata.locale)}
           </time>

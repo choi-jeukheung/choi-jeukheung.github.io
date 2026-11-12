@@ -1,3 +1,4 @@
+import remarkRecipeTools from './utils/remark-recipe-tools'
 import { extractRecipeDetails, extractRecipeVideo } from './utils/recipe-seo'
 import { hasInlineAd } from './utils/mdx-ad'
 import { defineDocumentType, ComputedFields, makeSource } from 'contentlayer2/source-files'
@@ -206,6 +207,7 @@ export default makeSource({
     remarkPlugins: [
       remarkExtractFrontmatter,
       remarkGfm,
+      remarkRecipeTools,
       remarkCodeTitles,
       remarkMath,
       remarkImgToJsx,

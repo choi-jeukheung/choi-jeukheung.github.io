@@ -3,12 +3,10 @@ import Image from '@/components/ui/Image'
 import Bleed from 'pliny/ui/Bleed'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Blog } from 'contentlayer/generated'
-import Comments from '@/components/mdx/Comments'
 import Link from '@/components/ui/Link'
 import PageTitle from '@/components/ui/PageTitle'
 import SectionContainer from '@/components/layout/SectionContainer'
-import siteMetadata from '@/data/siteMetadata'
-import ScrollTopAndComment from '@/components/ui/ScrollTopAndComment'
+import ScrollTop from '@/components/ui/ScrollTop'
 
 interface LayoutProps {
   content: CoreContent<Blog>
@@ -18,12 +16,12 @@ interface LayoutProps {
 }
 
 export default function PostMinimal({ content, next, prev, children }: LayoutProps) {
-  const { slug, title, thumbnail } = content
+  const { title, thumbnail } = content
   const displayImage = thumbnail ? thumbnail : 'https://picsum.photos/seed/picsum/800/400'
 
   return (
     <SectionContainer>
-      <ScrollTopAndComment />
+      <ScrollTop />
       <article>
         <div>
           <div className="space-y-1 pb-10 text-center dark:border-gray-700">
@@ -39,11 +37,6 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
             </div>
           </div>
           <div className="prose dark:prose-invert max-w-none py-4">{children}</div>
-          {siteMetadata.comments && (
-            <div className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300" id="comment">
-              <Comments slug={slug} />
-            </div>
-          )}
           <footer>
             <div className="flex flex-col text-sm font-medium sm:flex-row sm:justify-between sm:text-base">
               {prev && prev.path && (

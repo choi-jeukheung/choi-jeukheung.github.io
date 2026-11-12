@@ -1,12 +1,10 @@
 import { ReactNode } from 'react'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Blog, Authors } from 'contentlayer/generated'
-import Comments from '@/components/mdx/Comments'
 import Link from '@/components/ui/Link'
 import Tag from '@/components/recipe/Tag'
 import { getCategoryName } from '@/data/recipeCategories'
-import siteMetadata from '@/data/siteMetadata'
-import ScrollTopAndComment from '@/components/ui/ScrollTopAndComment'
+import ScrollTop from '@/components/ui/ScrollTop'
 import { allBlogs } from 'contentlayer/generated'
 import { getRelatedRecipes } from '@/utils/related-recipes'
 
@@ -27,14 +25,14 @@ export default function PostLayout({
   toc = [],
   children,
 }: LayoutProps) {
-  const { slug, date, title, tags, category, time, videoType, recipeCuisine } = content
+  const { date, title, tags, category, time, videoType, recipeCuisine } = content
   const relatedRecipes = getRelatedRecipes(content, allBlogs)
   const ingredients = toc.find((item) => item.depth === 2 && /재료/.test(item.value))
   const steps = toc.find((item) => item.depth === 2 && /만들|만드|조리/.test(item.value))
 
   return (
     <article className="mx-auto w-full max-w-3xl min-w-0 py-6 sm:py-10">
-      <ScrollTopAndComment />
+      <ScrollTop />
       <header className="border-b border-gray-100 pb-6 dark:border-gray-800">
         <Link
           href="/recipe"
@@ -149,11 +147,6 @@ export default function PostLayout({
               )
           )}
         </nav>
-        {siteMetadata.comments?.provider && (
-          <div className="mt-8 scroll-mt-28" id="comment">
-            <Comments slug={slug} />
-          </div>
-        )}
       </footer>
     </article>
   )

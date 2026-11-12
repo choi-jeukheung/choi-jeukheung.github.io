@@ -1,58 +1,70 @@
 import Link from '../ui/Link'
+import Image from '../ui/Image'
+import { allProducts } from 'contentlayer/generated'
 
-const affiliateLinks = [
-  {
-    label: '비비고 왕교자 (냉동), 1.715kg, 1개',
-    href: 'https://link.coupang.com/a/hMwkBM7Wxg',
-    icon: '🥟',
-  },
-  { label: '디벨라 토마토 퓌레 680G', href: 'https://link.coupang.com/a/eniXyb', icon: '🍅' },
-  { label: '데체코 구르메 스파게티 500g', href: 'https://link.coupang.com/a/eniVLJ', icon: '🍝' },
-  {
-    label: '아그리폼 파르미지아노 레지아노 200g',
-    href: 'https://link.coupang.com/a/enjp3D',
-    icon: '🧀',
-  },
-  { label: '이금기 프리미엄 굴소스 167g', href: 'https://link.coupang.com/a/enjsUx', icon: '🥫' },
-  { label: '데체코 리가토니, 500g, 1개', href: 'https://link.coupang.com/a/eBFjOh', icon: '🍝' },
+const featuredProductSlugs = [
+  'bibigo-wang-gyoza',
+  'divella-tomato-puree',
+  'de-cecco-spaghetti',
+  'parmigiano-reggiano',
+  'oyster-sauce',
+  'decheko-ligatoni',
 ]
 
-const MainRecommend = () => {
+export default function MainRecommend() {
+  const products = featuredProductSlugs.flatMap((slug) => {
+    const product = allProducts.find((item) => item.slug === slug)
+    return product ? [product] : []
+  })
+
   return (
-    <div className="mt-6 flex flex-col gap-3">
-      <p className="mb-1 px-1 text-base font-black tracking-widest text-gray-900 uppercase dark:text-white">
-        추천 식재료
-      </p>
-      <p className="px-1 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+    <section aria-labelledby="home-products-heading" className="mt-9">
+      <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+        <h2 id="home-products-heading" className="text-xl font-semibold tracking-tight">
+          추천 식재료
+        </h2>
+        <Link
+          href="/products"
+          className="text-primary-600 dark:text-primary-400 inline-flex min-h-11 items-center text-sm font-medium"
+        >
+          전체 보기{' '}
+          <span aria-hidden="true" className="ml-2">
+            →
+          </span>
+        </Link>
+      </div>
+      <p className="mb-5 text-sm leading-6 text-gray-500 dark:text-gray-400">
         쿠팡파트너스 활동의 일환으로, 구매 시 일정액의 수수료를 제공받습니다.
       </p>
-      {affiliateLinks.map(({ label, href, icon }) => (
-        <a
-          key={label}
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer sponsored nofollow"
-          className="flex items-center gap-4 rounded-2xl border border-gray-200 bg-white px-5 py-4 font-bold text-gray-800 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-gray-200 hover:bg-gray-50 hover:shadow-md dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:hover:border-gray-600 dark:hover:bg-gray-700"
-        >
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gray-50 text-4xl dark:bg-gray-700">
-            {icon}
-          </span>
-          <span className="flex-1 text-base leading-6">{label}</span>
-          <span className="text-gray-300 dark:text-gray-600">↗</span>
-        </a>
-      ))}
-
-      {/* 전체 추천 상품 보기 */}
-      <Link
-        href="/products"
-        className="dark:hover:text-primary-400 mt-1 flex items-center justify-center gap-2 rounded-2xl border border-dashed border-gray-200 py-4 text-sm font-black text-gray-400 transition-all hover:border-gray-300 hover:text-gray-500 dark:border-gray-700 dark:hover:border-gray-700"
-      >
-        <span>🛒</span>
-        전체 추천 아이템 보기
-        <span className="text-xs">→</span>
-      </Link>
-    </div>
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {products.map((product) => (
+          <a
+            key={product.slug}
+            href={product.link}
+            target="_blank"
+            rel="noopener noreferrer sponsored nofollow"
+            className="group flex min-w-0 items-center gap-4 rounded-2xl border border-gray-200 bg-gray-50 p-4 transition-colors hover:border-gray-400 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-600"
+          >
+            <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-white">
+              <Image
+                src={product.image}
+                alt={product.title}
+                fill
+                sizes="80px"
+                className="object-contain p-2"
+              />
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className="text-sm leading-6 font-semibold break-words text-gray-900 dark:text-gray-100">
+                {product.title}
+              </p>
+              <span className="mt-2 inline-block text-xs text-gray-500 dark:text-gray-400">
+                상품 보기 <span aria-hidden="true">↗</span>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
   )
 }
-
-export default MainRecommend

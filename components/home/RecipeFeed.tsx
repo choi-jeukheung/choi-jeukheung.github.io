@@ -34,12 +34,15 @@ interface RecipeFeedProps {
 
 function Stars({ difficulty }: { difficulty: number }) {
   return (
-    <div className="flex items-center gap-0.5">
+    <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
+      <span className="mr-1 text-xs">난이도</span>
       {[1, 2, 3, 4, 5].map((star) => {
         const isFull = star <= Math.floor(difficulty)
         const isHalf = star === Math.ceil(difficulty) && difficulty % 1 !== 0
-        if (isFull) return <StarFull key={star} className="h-3.5 w-3.5 text-yellow-400" />
-        if (isHalf) return <StarHalf key={star} className="h-3.5 w-3.5 text-yellow-400" />
+        if (isFull)
+          return <StarFull key={star} className="h-3.5 w-3.5 text-gray-500 dark:text-gray-400" />
+        if (isHalf)
+          return <StarHalf key={star} className="h-3.5 w-3.5 text-gray-500 dark:text-gray-400" />
         return <StarEmpty key={star} className="h-3.5 w-3.5 text-gray-300 dark:text-gray-600" />
       })}
     </div>
@@ -48,11 +51,8 @@ function Stars({ difficulty }: { difficulty: number }) {
 
 function RecipeCard({ recipe }: { recipe: Recipe }) {
   return (
-    <Link
-      href={`/recipe/${recipe.slug}`}
-      className="group overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl dark:border-gray-800 dark:bg-gray-900"
-    >
-      <div className="relative aspect-video overflow-hidden bg-gray-100 dark:bg-gray-800">
+    <Link href={`/recipe/${recipe.slug}`} className="group block min-w-0">
+      <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-gray-100 dark:bg-gray-900">
         {recipe.thumbnail ? (
           <Image
             src={recipe.thumbnail}
@@ -68,8 +68,8 @@ function RecipeCard({ recipe }: { recipe: Recipe }) {
           {recipe.time}
         </div>
       </div>
-      <div className="p-4">
-        <h3 className="group-hover:text-primary-600 dark:group-hover:text-primary-400 mb-1.5 text-base leading-6 font-bold break-words text-gray-900 transition-colors dark:text-white">
+      <div className="pt-4 pb-2">
+        <h3 className="group-hover:text-primary-600 dark:group-hover:text-primary-400 mb-2 text-lg leading-7 font-bold break-words text-gray-900 transition-colors dark:text-white">
           {recipe.title}
         </h3>
         {recipe.summary && (
@@ -118,8 +118,8 @@ function PostRow({ post }: { post: Post }) {
 }
 
 const feedTabs = [
-  { value: 'featured', label: '✨ 추천' },
-  { value: 'latest', label: '🍳 최신' },
+  { value: 'featured', label: '추천' },
+  { value: 'latest', label: '최신' },
 ] as const
 
 export default function RecipeFeed({ featuredRecipes, latestPosts }: RecipeFeedProps) {
@@ -163,7 +163,7 @@ export default function RecipeFeed({ featuredRecipes, latestPosts }: RecipeFeedP
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-4 min-[400px]:grid-cols-2">
+          <div className="grid grid-cols-1 gap-x-7 gap-y-9 sm:grid-cols-2">
             {visibleRecipes.map((recipe) => (
               <RecipeCard key={recipe.slug} recipe={recipe} />
             ))}

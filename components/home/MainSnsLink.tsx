@@ -26,15 +26,14 @@ const snsLinks = [
   {
     label: 'YouTube',
     href: siteMetadata.youtube,
-    icon: <Youtube className="h-5 w-5 stroke-2" />,
-    hoverClass: 'hover:bg-[#FF0000] hover:text-white hover:border-[#FF0000]',
+    icon: <Youtube className="h-5 w-5 fill-current" />,
+    hoverClass: 'hover:bg-gray-100 dark:hover:bg-gray-700',
   },
   {
     label: 'Instagram',
     href: siteMetadata.instagram,
-    icon: <Instagram className="h-5 w-5 stroke-2" />,
-    hoverClass:
-      'hover:bg-gradient-to-tr hover:from-[#f9ce34] hover:via-[#ee2a7b] hover:to-[#6228d7] hover:text-white hover:border-transparent',
+    icon: <Instagram className="h-5 w-5 fill-current" />,
+    hoverClass: 'hover:bg-gray-100 dark:hover:bg-gray-700',
   },
 ]
 
@@ -48,7 +47,7 @@ const MainSnsLink = () => {
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className={`group inline-flex min-h-11 items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-2 text-xs font-bold text-gray-800 transition-colors dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 ${hoverClass}`}
+            className={`group inline-flex min-h-11 items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-800 transition-colors dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 ${hoverClass}`}
           >
             <span className="flex h-5 w-5 items-center justify-center">{icon}</span>
             <span>{label}</span>

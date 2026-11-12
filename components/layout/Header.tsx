@@ -25,7 +25,7 @@ const Header = () => {
       </header>
 
       {/* 데스크탑: 기존 헤더 유지 */}
-      <header className="sticky top-4 z-50 mx-auto my-4 hidden w-full max-w-5xl items-center justify-between rounded-3xl border border-white/20 bg-white/70 px-6 py-4 font-bold shadow-lg shadow-black/5 backdrop-blur-xl sm:flex dark:bg-gray-950/70">
+      <header className="sticky top-0 z-50 mx-auto hidden w-full max-w-5xl items-center justify-between border-b border-gray-200 bg-white/95 px-6 py-4 font-semibold backdrop-blur-xl sm:flex dark:border-gray-800 dark:bg-gray-950/95">
         <Link href="/" aria-label={siteMetadata.headerTitle}>
           최즉흥
         </Link>

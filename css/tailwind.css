@@ -18,38 +18,38 @@
 
 /* 4. 통합 테마 설정 */
 @theme {
-  /* 기본 폰트: 이서윤체 */
+  /* Shared UI and reading typography */
   --font-sans:
-    'IsYun', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-    'Segoe UI Symbol', 'Noto Color Emoji';
+    'Pretendard Variable', 'Pretendard', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
   /* h1 전용: 프리텐다드 가변 글꼴 */
   --font-h1: 'Pretendard Variable', 'Pretendard', sans-serif;
 
-  /* Colors (도파민 레시피 컨셉) */
-  --color-primary-50: oklch(0.971 0.014 343.198);
-  --color-primary-100: oklch(0.948 0.028 342.258);
-  --color-primary-200: oklch(0.899 0.061 343.231);
-  --color-primary-300: oklch(0.823 0.12 346.018);
-  --color-primary-400: oklch(0.718 0.202 349.761);
-  --color-primary-500: oklch(0.656 0.241 354.308);
-  --color-primary-600: oklch(0.592 0.249 0.584);
-  --color-primary-700: oklch(0.525 0.223 3.958);
-  --color-primary-800: oklch(0.459 0.187 3.815);
-  --color-primary-900: oklch(0.408 0.153 2.432);
-  --color-primary-950: oklch(0.284 0.109 3.907);
+  /* Neutral charcoal surfaces with restrained blue accents */
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+  --color-primary-950: #172554;
 
-  --color-gray-50: oklch(0.985 0.002 247.839);
-  --color-gray-100: oklch(0.967 0.003 264.542);
-  --color-gray-200: oklch(0.928 0.006 264.531);
-  --color-gray-300: oklch(0.872 0.01 258.338);
-  --color-gray-400: oklch(0.707 0.022 261.325);
-  --color-gray-500: oklch(0.551 0.027 264.364);
-  --color-gray-600: oklch(0.446 0.03 256.802);
-  --color-gray-700: oklch(0.373 0.034 259.733);
-  --color-gray-800: oklch(0.278 0.033 256.848);
-  --color-gray-900: oklch(0.21 0.034 264.665);
-  --color-gray-950: oklch(0.13 0.028 261.692);
+  --color-gray-50: #fafafa;
+  --color-gray-100: #f3f3f3;
+  --color-gray-200: #e4e4e5;
+  --color-gray-300: #ceced0;
+  --color-gray-400: #a1a1a6;
+  --color-gray-500: #707076;
+  --color-gray-600: #56565d;
+  --color-gray-700: #414146;
+  --color-gray-800: #303034;
+  --color-gray-900: #242528;
+  --color-gray-950: #191a1c;
 
   --line-height-11: 2.75rem;
   --line-height-12: 3rem;
@@ -81,13 +81,13 @@
   /* h1: 프리텐다드 900(Black) 적용 및 자간 조정 */
   h1 {
     font-family: var(--font-h1);
-    font-weight: 900;
-    font-variation-settings: 'wght' 900;
+    font-weight: 700;
+    font-variation-settings: normal;
     letter-spacing: -0.04em;
     line-height: 1.2;
   }
 
-  /* h2 이하는 이서윤체 유지 */
+  /* Consistent heading typography */
   h2,
   h3,
   h4 {
@@ -123,8 +123,8 @@
     }
     & h1 {
       font-family: var(--font-h1);
-      font-weight: 900;
-      font-variation-settings: 'wght' 900;
+      font-weight: 700;
+      font-variation-settings: normal;
     }
     & :where(h2, h3) {
       font-weight: 700;

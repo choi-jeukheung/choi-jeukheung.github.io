@@ -46,8 +46,8 @@ export default function Home({ posts }: { posts: CoreContent<Blog>[] }) {
   }))
 
   return (
-    /* 전체가 하나의 센터 컬럼 — 모바일/웹 동일하게 좁고 깔끔 */
-    <div className="mx-auto w-full max-w-[640px] px-5 pb-16">
+    /* Product-first home, with wider photo cards on desktop. */
+    <div className="mx-auto w-full max-w-5xl px-5 pb-16 sm:px-8">
       {/* ── 프로필 ── */}
       <MainProfile />
 

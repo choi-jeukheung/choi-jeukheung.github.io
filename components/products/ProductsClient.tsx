@@ -67,7 +67,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
 
       {/* 상품 그리드 */}
       {filtered.length > 0 ? (
-        <div className="grid grid-cols-1 gap-4 min-[400px]:grid-cols-2">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {filtered.map((product) => (
             <a
               key={product.slug}
@@ -76,14 +76,14 @@ export default function ProductsClient({ products }: { products: Product[] }) {
               rel={
                 product.affiliate ? 'noopener noreferrer sponsored nofollow' : 'noopener noreferrer'
               }
-              className="group overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900"
+              className="group overflow-hidden rounded-2xl border border-gray-100 bg-white transition-colors hover:border-gray-400 dark:border-gray-800 dark:bg-gray-900"
             >
-              <div className="relative aspect-square overflow-hidden bg-gray-100 dark:bg-gray-800">
+              <div className="relative aspect-square overflow-hidden bg-white">
                 <Image
                   src={product.image}
                   alt={product.title}
                   fill
-                  className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  className="object-contain object-center p-4 transition-transform duration-500 group-hover:scale-105"
                 />
                 {product.affiliate && (
                   <span className="absolute top-2 left-2 rounded-lg bg-gray-50 px-2 py-1 text-xs font-black text-gray-600">

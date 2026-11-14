@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import Image from '@/components/ui/Image'
+import Link from '@/components/ui/Link'
 
 interface Product {
   title: string
@@ -12,6 +13,7 @@ interface Product {
   affiliate: boolean
   summary?: string
   slug: string
+  recipes: { title: string; slug: string }[]
 }
 
 const CATEGORIES = ['전체', '조리도구', '식재료', '그릇', '기타']
@@ -69,45 +71,68 @@ export default function ProductsClient({ products }: { products: Product[] }) {
       {filtered.length > 0 ? (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {filtered.map((product) => (
-            <a
+            <article
               key={product.slug}
-              href={product.link}
-              target="_blank"
-              rel={
-                product.affiliate ? 'noopener noreferrer sponsored nofollow' : 'noopener noreferrer'
-              }
-              className="group overflow-hidden rounded-2xl border border-gray-100 bg-white transition-colors hover:border-gray-400 dark:border-gray-800 dark:bg-gray-900"
+              className="overflow-hidden rounded-2xl border border-gray-800 bg-gray-900"
             >
-              <div className="relative aspect-square overflow-hidden bg-white">
-                <Image
-                  src={product.image}
-                  alt={product.title}
-                  fill
-                  className="object-contain object-center p-4 transition-transform duration-500 group-hover:scale-105"
-                />
-                {product.affiliate && (
-                  <span className="absolute top-2 left-2 rounded-lg bg-gray-50 px-2 py-1 text-xs font-black text-gray-600">
-                    AD
-                  </span>
-                )}
-              </div>
-              <div className="p-3">
-                <span className="mb-1 inline-block rounded-full bg-gray-100 px-2 py-0.5 text-xs font-bold text-gray-500 dark:bg-gray-800 dark:text-gray-400">
-                  {product.category}
-                </span>
-                <h3 className="group-hover:text-primary-600 dark:group-hover:text-primary-400 mb-1 text-base leading-6 font-semibold break-words text-gray-900 dark:text-white">
-                  {product.title}
-                </h3>
-                {product.summary && (
-                  <p className="line-clamp-2 text-sm text-gray-500 dark:text-gray-400">
-                    {product.summary}
-                  </p>
-                )}
-                <div className="mt-3 flex min-h-11 items-center justify-center rounded-xl bg-gray-50 py-2 text-sm font-black text-gray-600 transition group-hover:bg-gray-800 group-hover:text-white dark:bg-gray-800 dark:text-gray-200 dark:group-hover:bg-gray-700 dark:group-hover:text-white">
-                  구매하러 가기 →
+              <a
+                href={product.link}
+                target="_blank"
+                rel={
+                  product.affiliate
+                    ? 'noopener noreferrer sponsored nofollow'
+                    : 'noopener noreferrer'
+                }
+                className="group overflow-hidden rounded-2xl border border-gray-100 bg-white transition-colors hover:border-gray-400 dark:border-gray-800 dark:bg-gray-900"
+              >
+                <div className="relative aspect-square overflow-hidden bg-white">
+                  <Image
+                    src={product.image}
+                    alt={product.title}
+                    fill
+                    className="object-contain object-center p-4 transition-transform duration-500 group-hover:scale-105"
+                  />
+                  {product.affiliate && (
+                    <span className="absolute top-2 left-2 rounded-lg bg-gray-50 px-2 py-1 text-xs font-black text-gray-600">
+                      AD
+                    </span>
+                  )}
                 </div>
-              </div>
-            </a>
+                <div className="p-3">
+                  <span className="mb-1 inline-block rounded-full bg-gray-100 px-2 py-0.5 text-xs font-bold text-gray-500 dark:bg-gray-800 dark:text-gray-400">
+                    {product.category}
+                  </span>
+                  <h3 className="group-hover:text-primary-600 dark:group-hover:text-primary-400 mb-1 text-base leading-6 font-semibold break-words text-gray-900 dark:text-white">
+                    {product.title}
+                  </h3>
+                  {product.summary && (
+                    <p className="text-sm leading-6 text-gray-500 dark:text-gray-400">
+                      {product.summary}
+                    </p>
+                  )}
+                  <div className="mt-3 flex min-h-11 items-center justify-center rounded-xl bg-gray-50 py-2 text-sm font-black text-gray-600 transition group-hover:bg-gray-800 group-hover:text-white dark:bg-gray-800 dark:text-gray-200 dark:group-hover:bg-gray-700 dark:group-hover:text-white">
+                    구매하러 가기 →
+                  </div>
+                </div>
+              </a>
+              {product.recipes.length > 0 && (
+                <div className="border-t border-gray-800 p-4">
+                  <p className="mb-2 text-sm font-semibold text-gray-300">활용 레시피</p>
+                  <ul className="space-y-2">
+                    {product.recipes.map((recipe) => (
+                      <li key={recipe.slug}>
+                        <Link
+                          href={`/recipe/${recipe.slug}/`}
+                          className="block py-2 text-sm leading-6 text-blue-400 underline-offset-4 hover:underline"
+                        >
+                          {recipe.title} →
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </article>
           ))}
         </div>
       ) : (

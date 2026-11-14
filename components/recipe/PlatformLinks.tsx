@@ -1,6 +1,7 @@
 'use client'
 
 import Link from './Link'
+import siteMetadata from '@/data/siteMetadata'
 import { Youtube, Instagram } from './social-icons/icons'
 
 export default function PlatformLinks() {
@@ -23,7 +24,7 @@ export default function PlatformLinks() {
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
             {/* 유튜브 */}
             <Link
-              href="https://www.youtube.com/@%EC%B5%9C%EC%A6%89%ED%9D%A5-yjin"
+              href={siteMetadata.youtube}
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center gap-2.5 rounded-2xl border border-gray-100 bg-white px-5 py-2.5 shadow-sm transition-all hover:-translate-y-1 hover:border-[#FF0000] hover:bg-[#FF0000] hover:text-white hover:shadow-xl dark:border-gray-800 dark:bg-gray-900"
@@ -34,7 +35,7 @@ export default function PlatformLinks() {
 
             {/* 인스타그램 */}
             <Link
-              href="https://www.instagram.com/choi_jeukheung"
+              href={siteMetadata.instagram}
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center gap-2.5 rounded-2xl border border-gray-100 bg-white px-5 py-2.5 shadow-sm transition-all hover:-translate-y-1 hover:border-transparent hover:bg-gradient-to-tr hover:from-[#f9ce34] hover:via-[#ee2a7b] hover:to-[#6228d7] hover:text-white hover:shadow-xl dark:border-gray-800 dark:bg-gray-900"

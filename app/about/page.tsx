@@ -1,3 +1,4 @@
+import siteMetadata from '@/data/siteMetadata'
 import { genPageMetadata } from 'app/seo'
 import Link from 'next/link'
 import MainSnsLink from '@/components/home/MainSnsLink'
@@ -87,7 +88,7 @@ export default function AboutPage() {
         </h2>
         <MainSnsLink />
         <a
-          href="mailto:cyd5538@gmail.com"
+          href={`mailto:${siteMetadata.email}`}
           className="mt-3 flex items-center justify-between rounded-2xl border border-gray-200 bg-white px-5 py-4 text-[15px] font-bold text-gray-800 shadow-sm transition-all hover:border-gray-200 hover:shadow-md dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:hover:border-gray-900/40"
         >
           <span>이야기 나누고 싶다면, 이메일</span>

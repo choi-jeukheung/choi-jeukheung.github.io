@@ -46,7 +46,7 @@ export default function Home({ posts }: { posts: CoreContent<Blog>[] }) {
   }))
 
   return (
-    /* Product-first home, with wider photo cards on desktop. */
+    /* Recipes lead the home page; related products follow the feed. */
     <div className="mx-auto w-full max-w-5xl px-5 pb-16 sm:px-8">
       {/* ── 프로필 ── */}
       <MainProfile />
@@ -55,13 +55,15 @@ export default function Home({ posts }: { posts: CoreContent<Blog>[] }) {
       {/* 추후에 넣을까말까 고민 */}
       <MainSnsLink />
 
-      {/* ── 추천 식재료 ── */}
-      <MainRecommend />
-
       <MainContour />
 
       {/* ── 레시피 피드 (같은 컬럼 안에서 2열 그리드) ── */}
       <RecipeFeed featuredRecipes={featuredRecipes} latestPosts={latestPosts} />
+
+      <MainContour />
+
+      {/* ── 추천 식재료 ── */}
+      <MainRecommend />
 
       {/* 메인 광고 */}
       <div className="my-6 flex justify-center">

@@ -195,6 +195,7 @@ export const Product = defineDocumentType(() => ({
     link: { type: 'string', required: true },
     affiliate: { type: 'boolean', default: false },
     summary: { type: 'string' },
+    recipes: { type: 'list', of: { type: 'string' }, default: [] },
   },
   computedFields,
 }))

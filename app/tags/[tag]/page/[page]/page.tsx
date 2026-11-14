@@ -4,6 +4,25 @@ import ListLayout from '@/layouts/ListLayoutWithTags'
 import { allBlogs } from 'contentlayer/generated'
 import { notFound } from 'next/navigation'
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ tag: string; page: string }>
+}) {
+  const { tag, page } = await params
+  const base = await import('../../page')
+  const metadata = await base.generateMetadata({ params: Promise.resolve({ tag }) })
+  const tagPath = `/tags/${encodeURIComponent(decodeURIComponent(tag))}/`
+  return {
+    ...metadata,
+    title: `${decodeURIComponent(tag)} · ${page}페이지`,
+    alternates: {
+      ...metadata.alternates,
+      canonical: page === '1' ? tagPath : `${tagPath}page/${page}/`,
+    },
+  }
+}
+
 const POSTS_PER_PAGE = 5
 
 /**
@@ -12,14 +31,16 @@ const POSTS_PER_PAGE = 5
  */
 export const generateStaticParams = async () => {
   const tagCounts: Record<string, number> = {}
-  allBlogs.forEach((file) => {
-    if (file.tags) {
-      file.tags.forEach((tag) => {
-        const formattedTag = slug(tag)
-        tagCounts[formattedTag] = (tagCounts[formattedTag] || 0) + 1
-      })
-    }
-  })
+  allBlogs
+    .filter((post) => !post.draft)
+    .forEach((file) => {
+      if (file.tags) {
+        file.tags.forEach((tag) => {
+          const formattedTag = slug(tag)
+          tagCounts[formattedTag] = (tagCounts[formattedTag] || 0) + 1
+        })
+      }
+    })
 
   return Object.keys(tagCounts).flatMap((tag) => {
     const postCount = tagCounts[tag]
@@ -44,7 +65,7 @@ export default async function TagPage(props: { params: Promise<{ tag: string; pa
   const filteredPosts = allCoreContent(
     sortPosts(
       allBlogs.filter((post) => {
-        if (!post.tags) return false
+        if (post.draft || !post.tags) return false
         return post.tags.some((t) => {
           const s = slug(t)
           return (

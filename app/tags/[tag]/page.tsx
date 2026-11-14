@@ -16,6 +16,13 @@ export async function generateMetadata(props: {
   const tag = decodeURIComponent(params.tag)
   return genPageMetadata({
     title: tag,
+    robots: {
+      index:
+        allBlogs.filter(
+          (post) => !post.draft && post.tags?.some((name) => slug(name) === slug(tag))
+        ).length > 1,
+      follow: true,
+    },
     description: `${siteMetadata.title} ${tag} 태그 레시피`,
     alternates: {
       canonical: './',
@@ -33,14 +40,16 @@ export async function generateMetadata(props: {
  */
 export const generateStaticParams = async () => {
   const tagCounts: Record<string, number> = {}
-  allBlogs.forEach((file) => {
-    if (file.tags) {
-      file.tags.forEach((tag) => {
-        const formattedTag = slug(tag)
-        tagCounts[formattedTag] = (tagCounts[formattedTag] || 0) + 1
-      })
-    }
-  })
+  allBlogs
+    .filter((post) => !post.draft)
+    .forEach((file) => {
+      if (file.tags) {
+        file.tags.forEach((tag) => {
+          const formattedTag = slug(tag)
+          tagCounts[formattedTag] = (tagCounts[formattedTag] || 0) + 1
+        })
+      }
+    })
 
   return Object.keys(tagCounts).map((tag) => ({
     tag: tag, // 이미 slug화 된 태그 목록이 반환됨
@@ -57,7 +66,7 @@ export default async function TagPage(props: { params: Promise<{ tag: string }> 
   const filteredPosts = allCoreContent(
     sortPosts(
       allBlogs.filter((post) => {
-        if (!post.tags) return false
+        if (post.draft || !post.tags) return false
         return post.tags.some((t) => {
           const s = slug(t)
           // URL 파라미터(slug)와 데이터상의 태그(원본/slug)를 모두 대조

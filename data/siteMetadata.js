@@ -17,7 +17,7 @@ const siteMetadata = {
 
   email: 'cyd5538@gmail.com',
 
-  youtube: 'https://www.youtube.com/@%EC%B5%9C%EC%A6%89%ED%9D%A5-e9k  ',
+  youtube: 'https://www.youtube.com/@%EC%B5%9C%EC%A6%89%ED%9D%A5-e9k',
   instagram: 'https://www.instagram.com/choi_jeukheung',
   tiktok: 'https://www.tiktok.com/@choi_jeukheung',
 
@@ -26,9 +26,9 @@ const siteMetadata = {
   stickyNav: true,
 
   analytics: {
-    umamiAnalytics: {
-      umamiWebsiteId: process.env.NEXT_UMAMI_ID,
-    },
+    ...(process.env.NEXT_UMAMI_ID
+      ? { umamiAnalytics: { umamiWebsiteId: process.env.NEXT_UMAMI_ID } }
+      : {}),
   },
 
   newsletter: {

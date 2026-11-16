@@ -10,6 +10,7 @@ import KakaoAd from '@/components/ad/KakaoAd'
 const MAX_DISPLAY = 4
 // Recently selected recommendations appear first; other featured recipes remain available.
 const FEATURED_PRIORITY = [
+  'buldak-yaki-udon',
   'beef-jjamppong',
   'short-cabbage-tuna-salad',
   'short-pork-belly-butadon',

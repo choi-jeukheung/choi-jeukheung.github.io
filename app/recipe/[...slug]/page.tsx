@@ -14,7 +14,7 @@ import siteMetadata from '@/data/siteMetadata'
 import { notFound } from 'next/navigation'
 
 // 👇 광고 컴포넌트 추가
-import KakaoAd from '@/components/ad/KakaoAd'
+// import KakaoAd from '@/components/ad/KakaoAd'
 
 const defaultLayout = 'PostLayout'
 const layouts = {
@@ -109,11 +109,12 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
       <MDXLayoutRenderer code={post.body.code} components={components} toc={post.toc} />
 
       {/* ===== 광고 자동 삽입 ===== */}
+      {/* 애드핏 일시 중단: 본문 광고가 없어도 자동 삽입하지 않습니다.
       {!post.hasInlineAd && (
         <div className="my-10 flex justify-center">
           <KakaoAd />
         </div>
-      )}
+      )} */}
     </Layout>
   )
 }

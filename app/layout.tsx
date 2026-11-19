@@ -92,12 +92,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         `}
       </Script>
 
-      {/* ✅ Kakao AdFit */}
+      {/* 애드핏 일시 중단
       <Script
         id="kakao-adfit"
         src="https://t1.kakaocdn.net/kas/static/ba.min.js"
         strategy="afterInteractive"
-      />
+      /> */}
 
       <head>
         {/* Google Tag Manager */}

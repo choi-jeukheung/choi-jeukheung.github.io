@@ -11,7 +11,7 @@ export default function PrivacyPage() {
   return (
     <article className="mx-auto max-w-3xl py-8 sm:py-12">
       <PageIntro eyebrow="사이트 이용 안내" title="개인정보처리방침">
-        시행 및 최종 수정일: 2026년 11월 14일
+        시행 및 최종 수정일: 2026년 11월 19일
       </PageIntro>
       <div className="prose dark:prose-invert mt-8 max-w-none break-words">
         <p>
@@ -62,10 +62,11 @@ export default function PrivacyPage() {
         </p>
         <h2>3. 광고와 제휴 상품 링크</h2>
         <p>
-          현재 사이트의 배너 광고는 카카오 애드핏을 통해 제공됩니다. 광고 제공과 성과 측정을 위해
-          광고 서비스에서 쿠키, 기기·브라우저 정보 및 광고 이용 기록 등을 처리할 수 있습니다. 자세한
-          사항은 <a href="https://www.kakao.com/policy/privacy?lang=ko">카카오 개인정보처리방침</a>
-          을 확인해 주세요.
+          카카오 애드핏 배너 광고는 현재 게재를 일시 중단했습니다. 광고를 다시 게재할 경우, 광고
+          제공과 성과 측정을 위해 광고 서비스에서 쿠키, 기기·브라우저 정보 및 광고 이용 기록 등을
+          처리할 수 있습니다. 자세한 사항은{' '}
+          <a href="https://www.kakao.com/policy/privacy?lang=ko">카카오 개인정보처리방침</a>을
+          확인해 주세요.
         </p>
         <p>
           일부 레시피와 상품 소개에는 쿠팡파트너스 링크가 있습니다. 해당 링크를 통한 구매가 발생하면

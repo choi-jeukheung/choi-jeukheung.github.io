@@ -25,6 +25,10 @@ export default function Footer() {
         </div>
         <div className="mb-8 text-sm text-gray-500 dark:text-gray-400">
           <Link href="/privacy">개인정보처리방침</Link>
+          <span aria-hidden="true" className="mx-3">
+            ·
+          </span>
+          <Link href="/about">최즉흥 소개</Link>
         </div>
       </div>
     </footer>

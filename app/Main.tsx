@@ -5,7 +5,7 @@ import MainProfile from '@/components/home/MainProfile'
 import MainRecommend from '@/components/home/MainRecommend'
 import MainSnsLink from '@/components/home/MainSnsLink'
 import MainContour from '@/components/home/MainContour'
-import KakaoAd from '@/components/ad/KakaoAd'
+// import KakaoAd from '@/components/ad/KakaoAd'
 
 const MAX_DISPLAY = 4
 // Recently selected recommendations appear first; other featured recipes remain available.
@@ -67,9 +67,9 @@ export default function Home({ posts }: { posts: CoreContent<Blog>[] }) {
       <MainRecommend />
 
       {/* 메인 광고 */}
-      <div className="my-6 flex justify-center">
+      {/* <div className="my-6 flex justify-center">
         <KakaoAd />
-      </div>
+      </div> */}
     </div>
   )
 }

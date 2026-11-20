@@ -8,28 +8,12 @@ import MainContour from '@/components/home/MainContour'
 // import KakaoAd from '@/components/ad/KakaoAd'
 
 const MAX_DISPLAY = 4
-// Recently selected recommendations appear first; other featured recipes remain available.
-const FEATURED_PRIORITY = [
-  'buldak-yaki-udon',
-  'beef-jjamppong',
-  'short-cabbage-tuna-salad',
-  'short-pork-belly-butadon',
-  'short-rice-cake-dumpling-soup',
-  'short-spicy-dumpling-soup',
-]
 
 export default function Home({ posts }: { posts: CoreContent<Blog>[] }) {
   const publishedPosts = posts
     .filter((post) => !post.draft)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-  const featuredPostsRaw = publishedPosts.filter((post) => post.featured === true)
-  const displayFeatured = [...featuredPostsRaw].sort((a, b) => {
-    const rank = (slug: string) => {
-      const index = FEATURED_PRIORITY.indexOf(slug)
-      return index === -1 ? FEATURED_PRIORITY.length : index
-    }
-    return rank(a.slug) - rank(b.slug)
-  })
+  const displayFeatured = publishedPosts.filter((post) => post.featured === true)
 
   const featuredRecipes = displayFeatured.map((post: CoreContent<Blog>) => ({
     title: post.title,

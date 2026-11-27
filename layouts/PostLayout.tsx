@@ -1,3 +1,4 @@
+import RecipeThumbnail from '@/components/recipe/RecipeThumbnail'
 import CopyRecipeLink from '@/components/recipe/CopyRecipeLink'
 import { ReactNode } from 'react'
 import { CoreContent } from 'pliny/utils/contentlayer'
@@ -13,8 +14,8 @@ import { getRelatedRecipes } from '@/utils/related-recipes'
 interface LayoutProps {
   content: CoreContent<Blog>
   authorDetails: CoreContent<Authors>[]
-  next?: { path: string; title: string }
-  prev?: { path: string; title: string }
+  next?: { path: string; title: string; thumbnail?: string }
+  prev?: { path: string; title: string; thumbnail?: string }
   toc?: { value: string; url: string; depth: number }[]
   children: ReactNode
 }
@@ -107,11 +108,17 @@ export default function PostLayout({
                   <li key={recipe.slug}>
                     <Link
                       href={`/recipe/${recipe.slug}/`}
-                      className="hover:border-primary-400 hover:text-primary-700 block h-full rounded-2xl border border-gray-200 p-4 font-semibold text-gray-900 dark:border-gray-800 dark:text-gray-100"
+                      className="hover:border-primary-400 hover:text-primary-700 flex h-full min-w-0 items-center gap-3 overflow-hidden rounded-2xl border border-gray-200 p-3 font-semibold text-gray-900 sm:flex-col sm:items-stretch dark:border-gray-800 dark:text-gray-100"
                     >
-                      {recipe.title}
-                      <span aria-hidden="true" className="ml-2">
-                        →
+                      <RecipeThumbnail
+                        src={recipe.thumbnail}
+                        className="h-24 w-24 shrink-0 rounded-xl sm:aspect-[4/3] sm:h-auto sm:w-full"
+                      />
+                      <span className="min-w-0 text-sm leading-6 break-words sm:pb-1">
+                        {recipe.title}
+                        <span aria-hidden="true" className="ml-2">
+                          →
+                        </span>
                       </span>
                     </Link>
                   </li>
@@ -136,11 +143,17 @@ export default function PostLayout({
                   <Link
                     key={post.path}
                     href={`/${post.path.replace(/^blog\//, 'recipe/')}`}
-                    className="hover:border-primary-300 min-w-0 rounded-2xl border border-gray-200 p-4 dark:border-gray-800"
+                    className="hover:border-primary-300 flex min-w-0 items-center gap-3 rounded-2xl border border-gray-200 p-3 dark:border-gray-800"
                   >
-                    <span className="text-xs text-gray-500 dark:text-gray-400">{label}</span>
-                    <span className="mt-2 block font-bold break-words text-gray-900 dark:text-gray-100">
-                      {post.title}
+                    <RecipeThumbnail
+                      src={post.thumbnail}
+                      className="h-20 w-20 shrink-0 rounded-xl"
+                    />
+                    <span className="min-w-0">
+                      <span className="text-xs text-gray-500 dark:text-gray-400">{label}</span>
+                      <span className="mt-1 block text-sm leading-6 font-bold break-words text-gray-900 dark:text-gray-100">
+                        {post.title}
+                      </span>
                     </span>
                   </Link>
                 )

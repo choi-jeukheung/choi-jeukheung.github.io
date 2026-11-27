@@ -96,13 +96,11 @@ export default function RecipeToc({
   }
 
   return (
-    <details
-      ref={details}
-      className="group my-5 rounded-2xl border border-gray-200 bg-gray-50/70 dark:border-gray-800 dark:bg-gray-900/60"
-    >
-      <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-base font-semibold [&::-webkit-details-marker]:hidden">
+    <details ref={details} className="group my-3 rounded-xl bg-gray-50 dark:bg-gray-900/60">
+      <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 px-4 py-2.5 text-sm font-medium [&::-webkit-details-marker]:hidden">
         <span>
-          목차 <span className="ml-2 text-sm font-normal text-gray-500">{entries.length}</span>
+          레시피 한눈에 보기{' '}
+          <span className="ml-2 text-sm font-normal text-gray-500">{entries.length}</span>
         </span>
         <svg
           aria-hidden="true"

@@ -6,7 +6,7 @@ export default function IngredientChecklist({ items }: { items: string }) {
   const id = useId()
   const ingredients: string[] = JSON.parse(items)
   return (
-    <ul className="not-prose my-5 list-none divide-y divide-gray-100 rounded-xl border border-gray-200 px-4 dark:divide-gray-800 dark:border-gray-800">
+    <ul className="not-prose my-5 list-none divide-y divide-blue-100/70 rounded-2xl border border-blue-100 bg-blue-50/40 px-4 sm:px-5 dark:divide-gray-700 dark:border-gray-700 dark:bg-gray-900/60">
       {ingredients.map((ingredient, index) => (
         <li key={`${id}-${index}`}>
           <label className="flex min-h-12 cursor-pointer items-start gap-3 py-3 text-base leading-7">

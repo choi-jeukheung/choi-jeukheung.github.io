@@ -221,3 +221,54 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* Recipe reading: generous steps without changing the Markdown content. */
+.recipe-content > ol {
+  list-style: none;
+  counter-reset: recipe-step;
+  padding-left: 0;
+  margin-block: 1.5rem 2rem;
+}
+.recipe-content > ol > li {
+  counter-increment: recipe-step;
+  position: relative;
+  padding: 0.15rem 0 1.25rem 2.75rem;
+  margin-block: 0 1rem;
+  border-bottom: 1px solid var(--color-gray-100);
+}
+.recipe-content > ol > li::before {
+  content: counter(recipe-step, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0.2rem;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.625rem;
+  background: var(--color-primary-50);
+  color: var(--color-primary-700);
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.recipe-content > ol > li:last-child {
+  border-bottom: 0;
+}
+.recipe-content > ol > li > p:first-child {
+  margin-top: 0;
+}
+.dark .recipe-content > ol > li {
+  border-color: var(--color-gray-800);
+}
+.dark .recipe-content > ol > li::before {
+  background: var(--color-primary-950);
+  color: var(--color-primary-300);
+}
+@media (max-width: 639px) {
+  .recipe-content > h2 {
+    font-size: 1.25rem;
+    line-height: 1.5;
+    margin-top: 2rem;
+  }
+}

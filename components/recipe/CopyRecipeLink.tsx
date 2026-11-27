@@ -27,7 +27,7 @@ export default function CopyRecipeLink() {
       <button
         type="button"
         onClick={copy}
-        className="min-h-12 rounded-xl border border-gray-200 px-4 py-3 text-sm font-semibold hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-900"
+        className="min-h-11 rounded-xl px-3 py-2.5 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-100"
       >
         링크 복사
       </button>

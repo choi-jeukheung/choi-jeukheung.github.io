@@ -33,13 +33,13 @@ export default function PostLayout({
   const steps = toc.find((item) => item.depth === 2 && /만들|만드|조리/.test(item.value))
 
   return (
-    <article className="mx-auto grid w-full max-w-6xl min-w-0 grid-cols-1 gap-x-10 px-4 py-6 sm:px-6 sm:py-10 xl:grid-cols-[minmax(0,48rem)_15rem]">
+    <article className="mx-auto grid w-full max-w-6xl min-w-0 grid-cols-1 gap-x-10 px-0 py-4 sm:px-6 sm:py-10 xl:grid-cols-[minmax(0,48rem)_15rem]">
       <div className="mx-auto w-full max-w-3xl min-w-0">
         <ScrollTop />
-        <header className="border-b border-gray-100 pb-6 dark:border-gray-800">
+        <header className="border-b border-gray-100 pb-5 dark:border-gray-800">
           <Link
             href="/recipe"
-            className="hover:text-primary-600 mb-4 inline-flex min-h-11 items-center text-sm font-bold text-gray-500 dark:text-gray-400"
+            className="hover:text-primary-600 mb-2 inline-flex min-h-11 items-center text-sm font-bold text-gray-500 dark:text-gray-400"
           >
             ← 모든 레시피
           </Link>
@@ -59,10 +59,10 @@ export default function PostLayout({
               <span className="text-gray-500 dark:text-gray-400">{recipeCuisine}</span>
             )}
           </div>
-          <h1 className="text-[1.75rem] leading-tight tracking-tight break-words text-gray-900 sm:text-4xl dark:text-white">
+          <h1 className="text-[1.5rem] leading-[1.35] tracking-tight break-keep text-gray-900 sm:text-4xl dark:text-white">
             {title}
           </h1>
-          <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-gray-500 sm:text-sm dark:text-gray-400">
             <span>{authorDetails.map((author) => author.name).join(', ')}</span>
             <time dateTime={date}>
               {new Date(date).toLocaleDateString('ko-KR', {
@@ -76,11 +76,11 @@ export default function PostLayout({
               <span className="rounded-lg bg-gray-50 px-2 py-1 dark:bg-gray-900">조리 {time}</span>
             )}
           </div>
-          <div className="mt-5 flex flex-wrap items-start gap-3">
+          <div className="mt-4 flex flex-wrap items-start gap-2">
             {steps && (
               <a
                 href={steps.url}
-                className="inline-flex min-h-12 items-center rounded-xl border border-gray-200 px-4 py-3 text-sm font-semibold hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-900"
+                className="inline-flex min-h-11 items-center rounded-xl bg-gray-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-gray-700 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-white"
               >
                 조리 순서로 바로가기 ↓
               </a>
@@ -91,7 +91,7 @@ export default function PostLayout({
         <div className="xl:hidden">
           <RecipeToc toc={toc} />
         </div>
-        <div className="recipe-content prose dark:prose-invert prose-headings:scroll-mt-28 prose-h2:text-2xl prose-h3:text-xl prose-li:my-2 max-w-none pt-4 pb-8 text-base leading-8 break-words sm:pt-6">
+        <div className="recipe-content prose dark:prose-invert prose-headings:scroll-mt-28 prose-h2:text-2xl prose-h3:text-xl prose-li:my-2 max-w-none pt-2 pb-8 text-base leading-[1.9] break-words sm:pt-6">
           {children}
         </div>
         <footer className="border-t border-gray-100 pt-6 dark:border-gray-800">
